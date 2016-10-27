@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/bottomBarToDo"
+        icon="@drawable/ic_action_list"
+        title="To Do"/>
+
+    <tab
+        id="@+id/bottomBarListCow"
+        icon="@drawable/ic_action_cow"
+        title="List Cow"/>
+
+    <tab
+        id="@+id/bottomBarSearch"
+        icon="@drawable/ic_action_search"
+        title="Search"/>
+
+    <tab
+        id="@+id/bottomBarLibrary"
+        icon="@drawable/ic_action_library"
+        title="Library"/>
+
+    <tab
+        id="@+id/bottomBarMarket"
+        icon="@drawable/ic_action_market"
+        title="Market"/>
+</tabs>
+
