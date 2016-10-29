@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"
-        android:textSize="20dp" />
+        android:id="@+id/cow_list"
+        android:textSize="20sp" />
+
 </LinearLayout>

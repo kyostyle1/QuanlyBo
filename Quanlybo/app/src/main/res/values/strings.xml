@@ -2,5 +2,7 @@
     <string name="app_name">Quanlybo</string>
     <string name="login">Login</string>
     <string name="create_account">No account yet? Create one</string>
+    <string name="ng_y_tu_i">Ngày tuổi :</string>
+    <string name="c">Đực</string>
 
 </resources>

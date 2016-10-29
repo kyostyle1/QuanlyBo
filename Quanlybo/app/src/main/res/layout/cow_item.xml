@@ -23,7 +23,8 @@
                 android:layout_column="0"
                 android:text="#1"
                 android:textSize="20dp"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:id="@+id/cow_id" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -35,22 +36,21 @@
 
                 <TableRow>
                     <TextView
-                        android:text="Giống"/>
+                        android:text="Giống"
+                        android:id="@+id/cow_type" />
                     <TextView
-                        android:text="Đực"/>
+                        android:text="@string/c"
+                        android:id="@+id/cow_gender" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
-                        android:text="Ngày tuổi :"
-                        android:layout_span="2" />
+                        android:text="@string/ng_y_tu_i"
+                        android:layout_span="2"
+                        android:id="@+id/cow_born" />
                 </TableRow>
             </TableLayout>
         </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
 
     </TableLayout>
 </LinearLayout>

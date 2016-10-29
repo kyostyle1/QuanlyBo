@@ -4,64 +4,64 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Network.ApiConnection;
 import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by phuc9 on 10/19/2016.
  */
-public class ListCowAdapter extends BaseAdapter {
+public class ListCowAdapter extends ArrayAdapter<Cow> {
+    int i ;
+    String gender;
+    ArrayList<String> typeCow = new ArrayList<>();
 
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private ArrayList<String> data;
-
-    public ListCowAdapter(Context context, ArrayList<String> data) {
-        this.context = context;
-        this.data = data;
-        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-
-    private static class ToDoViewHolder {
-        public TextView tvTitle;
-        public TextView tvSubtitle;
-        public TextView tvDetail;
-        public ImageView ivThumbnail;
+    public ListCowAdapter(Context context,int resource, List<Cow> cows){
+        super(context, resource, cows);
     }
 
     @Override
-    public int getCount() {
-        return data.size();
+    public Cow getItem(int position) {
+        return super.getItem(position);
+    }
+
+    static class ViewHolder {
+        TextView cow_type;
+        TextView cow_born;
+        TextView cow_gender;
+        TextView cow_id;
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Cow cow = getItem(position);
+        ViewHolder holder;
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ToDoViewHolder vh;
-        if (view == null){
-            view = layoutInflater.inflate(R.layout.to_do_list_item, null);
-            vh = new ToDoViewHolder();
-            //vh.tvDetail = (TextView)view.findViewById(R.id.);
-            view.setTag(vh);
-        }
-        else{
-            vh = (ToDoViewHolder)view.getTag();
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cow_item, parent, false);
+            holder = new ViewHolder();
+            holder.cow_type = (TextView)convertView.findViewById(R.id.cow_type);
+            holder.cow_id = (TextView)convertView.findViewById(R.id.cow_id);
+            holder.cow_born = (TextView)convertView.findViewById(R.id.cow_born);
+            holder.cow_gender = (TextView)convertView.findViewById(R.id.cow_gender);
+            convertView.setTag(holder);
+        }else {
+            holder = (ViewHolder)convertView.getTag();
+            i++;
         }
 
-        return view;
+        holder.cow_id.setText("#" + cow.getId());
+        holder.cow_gender.setText(cow.getGender());
+        holder.cow_type.setText(cow.getTypeId().toString());
+        holder.cow_born.setText(cow.getBirthday());
+        return convertView;
     }
 }
