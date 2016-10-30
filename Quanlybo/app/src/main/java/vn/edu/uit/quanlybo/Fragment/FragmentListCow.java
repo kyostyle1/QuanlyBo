@@ -2,16 +2,16 @@ package vn.edu.uit.quanlybo.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +20,7 @@ import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.ApiConnection;
 import vn.edu.uit.quanlybo.R;
-import vn.edu.uit.quanlybo.Respone.ListCowRespone;
+import vn.edu.uit.quanlybo.Respone.ListCowResponse;
 
 /**
  * Created by phuc9 on 10/19/2016.
@@ -34,18 +34,16 @@ public class FragmentListCow extends Fragment implements ApiConnection {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list_cow, container, false);
         cow_list = (ListView)rootView.findViewById(R.id.cow_list);
-        Call<ListCowRespone> listCowResponseCall = service.getListCow(User.getInstance().getId(), User.getInstance().getAccess_token());
-        Log.d("OK", "OK");
-        listCowResponseCall.enqueue(new Callback<ListCowRespone>() {
+        Call<ListCowResponse> listCowResponseCall = service.getListCow(User.getInstance().getId(), User.getInstance().getAccess_token());
+
+        listCowResponseCall.enqueue(new Callback<ListCowResponse>() {
             @Override
-            public void onResponse(Call<ListCowRespone> call, Response<ListCowRespone> response) {
-                Log.d("Body", response.body().toString());
-                Log.d("Raw", response.raw().toString());
-                ListCowRespone listCowRespone = response.body();
-                if ( listCowRespone.getCow() == null){
+            public void onResponse(Call<ListCowResponse> call, Response<ListCowResponse> response) {
+                ListCowResponse listCowResponse = response.body();
+                if ( listCowResponse.getCow() == null){
                     return;
                 }else {
-                    cows = listCowRespone.getCow();
+                    cows = listCowResponse.getCow();
                     adapter = new ListCowAdapter(getContext(), R.layout.cow_item, cows);
                     adapter.setNotifyOnChange(true);
                     adapter.notifyDataSetChanged();
@@ -54,11 +52,17 @@ public class FragmentListCow extends Fragment implements ApiConnection {
             }
 
             @Override
-            public void onFailure(Call<ListCowRespone> call, Throwable t) {
+            public void onFailure(Call<ListCowResponse> call, Throwable t) {
 
             }
         });
 
+        cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(getContext(), position, Toast.LENGTH_SHORT).show();
+            }
+        });
         return rootView;
     }
 

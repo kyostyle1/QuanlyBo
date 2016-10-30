@@ -32,6 +32,7 @@ public class MainActivity extends FragmentActivity {
                     case R.id.bottomBarToDo:
                         fragment = new FragmentToDoList();
                         break;
+
                     case R.id.bottomBarListCow:
                         fragment = new FragmentTabTwo();
                         break;

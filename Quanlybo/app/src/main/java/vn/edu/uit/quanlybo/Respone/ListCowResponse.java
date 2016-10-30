@@ -11,7 +11,7 @@ import vn.edu.uit.quanlybo.Model.Cow;
 /**
  * Created by phuc9 on 10/28/2016.
  */
-public class ListCowRespone {
+public class ListCowResponse {
 
     @SerializedName("Cow")
     @Expose
@@ -49,7 +49,7 @@ public class ListCowRespone {
 
     @Override
     public String toString() {
-        return "ListCowRespone{" +
+        return "ListCowResponse{" +
                 "cow=" + cow +
                 ", links=" + links +
                 ", meta=" + meta +
