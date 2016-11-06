@@ -14,6 +14,7 @@ import vn.edu.uit.quanlybo.Service.QuanLyService;
  */
 public interface ApiConnection {
     public static final String BASE_URL = "http://api.quanlybo.pkgs.vn/v1/";
+    public static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 

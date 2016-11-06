@@ -4,5 +4,6 @@
     <string name="create_account">No account yet? Create one</string>
     <string name="ng_y_tu_i">Ngày tuổi :</string>
     <string name="c">Đực</string>
-
+    <string name="nfc_disable">NFC DISABLE</string>
+    nfc_disable
 </resources>

@@ -6,9 +6,10 @@ package vn.edu.uit.quanlybo.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Cow {
+public class Cow implements Serializable{
 
     @SerializedName("id")
     @Expose
@@ -56,6 +57,9 @@ public class Cow {
     @Expose
     private Date dateUpdated;
 
+    public Cow(){
+
+    }
     public Cow(Integer id, Integer father, Integer mother, Integer userId, Integer typeId, String qrId, String nfcId, String birthday, String gender, String target, String isBorn, Integer price, Integer marketCode) {
         this.id = id;
         this.father = father;

@@ -6,6 +6,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Respone.ListCowResponse;
 
@@ -32,4 +33,13 @@ public interface QuanLyService {
     Call<ListCowResponse> getListCow(@Query("userId") String userId,
                                      @Query("access-token") String access_token);
 
+    @GET("cow/search-one")
+    Call<Cow> getCowById(@Query("id") String id,
+                     @Query("userId") String userId,
+                     @Query("access-token") String access_token);
+
+    @GET("cow/search-one")
+    Call<Cow> getCowByNfc(@Query("nfcId") String nfcId,
+                         @Query("userId") String userId,
+                         @Query("access-token") String access_token);
 }

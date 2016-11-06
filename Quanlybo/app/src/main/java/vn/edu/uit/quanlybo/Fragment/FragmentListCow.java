@@ -1,7 +1,9 @@
 package vn.edu.uit.quanlybo.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListCowAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
@@ -60,7 +64,12 @@ public class FragmentListCow extends Fragment implements ApiConnection {
         cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(getContext(), position, Toast.LENGTH_SHORT).show();
+                Log.d("Id", String.valueOf(position));
+                Cow cow_position = new Cow();
+                cow_position = cows.get(position);
+                Intent intent = new Intent(getActivity(), CowDetailActivity.class);
+                intent.putExtra("cow_position", cow_position);
+                startActivity(intent);
             }
         });
         return rootView;
