@@ -15,13 +15,12 @@ import java.util.List;
 import vn.edu.uit.quanlybo.Adapter.ListCowAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.ApiConnection;
 import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by phuc9 on 10/19/2016.
  */
-public class FragmentPhoiGiong extends Fragment implements ApiConnection{
+public class FragmentPhoiGiong extends Fragment{
     ListCowAdapter adapter = null;
     ListView cow_list = null;
     Button phoigiong;

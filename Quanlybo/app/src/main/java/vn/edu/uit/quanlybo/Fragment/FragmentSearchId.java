@@ -1,8 +1,6 @@
 package vn.edu.uit.quanlybo.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,22 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Model.Cow;
-import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.ApiConnection;
 import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by phuc9 on 10/30/2016.
  */
 
-public class FragmentSearchId extends Fragment implements ApiConnection{
+public class FragmentSearchId extends Fragment{
 
     EditText search_cow_id;
     Button btn_search_id;
@@ -50,7 +41,7 @@ public class FragmentSearchId extends Fragment implements ApiConnection{
                 Log.d("OK", "OK");
                 String search = search_cow_id.getText().toString();
                 if( search != null ){
-                    Call<Cow> cowSearchCall = service.getCowById(search_cow_id.getText().toString(), User.getInstance().getId(), User.getInstance().getAccess_token());
+                    /*Call<Cow> cowSearchCall = service.getCowById(search_cow_id.getText().toString(), User.getInstance().getId(), User.getInstance().getAccess_token());
                     Log.d("Id", search);
                     Log.d("UserId", User.getInstance().getId());
                     Log.d("access_token", User.getInstance().getAccess_token());
@@ -77,7 +68,7 @@ public class FragmentSearchId extends Fragment implements ApiConnection{
                         public void onFailure(Call<Cow> call, Throwable t) {
                             Toast.makeText(getContext(), "Không thể tìm thấy con bò này", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });*/
                 }
             }
         });

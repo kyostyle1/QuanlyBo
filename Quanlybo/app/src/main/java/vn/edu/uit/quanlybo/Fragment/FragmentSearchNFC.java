@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import vn.edu.uit.quanlybo.Network.ApiConnection;
 import vn.edu.uit.quanlybo.R;
 import vn.edu.uit.quanlybo.Service.NfcCardReader;
 
@@ -18,7 +17,7 @@ import vn.edu.uit.quanlybo.Service.NfcCardReader;
  * Created by phuc9 on 10/30/2016.
  */
 
-public class FragmentSearchNFC extends Fragment implements ApiConnection, NfcCardReader.NfcCallback {
+public class FragmentSearchNFC extends Fragment implements NfcCardReader.NfcCallback {
     public static final String TAG = "CardReaderFragment";
     private TextView text_nfc;
     public static int READER_FLAGS =  NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;

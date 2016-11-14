@@ -1,25 +1,22 @@
-package vn.edu.uit.quanlybo;
+package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.ApiConnection;
+import vn.edu.uit.quanlybo.Network.Model.UserRegisterResponse;
+import vn.edu.uit.quanlybo.Network.UserService;
+import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by phuc9 on 10/25/2016.
  */
-public class SignUpActivity extends Activity implements ApiConnection {
+public class SignUpActivity extends Activity{
     private EditText username;
     private EditText password;
     private EditText email;
@@ -49,26 +46,18 @@ public class SignUpActivity extends Activity implements ApiConnection {
                 String str_username = username.getText().toString();
                 String str_email = email.getText().toString();
                 String str_password = password.getText().toString();
-                String emailPartern = "[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}";
+                String emailPartern = "\\S+@\\S+\\.\\S+";
                 if (str_email.matches(emailPartern)) {
-                    Call<User> createUser = service.createUser(str_username,str_password,str_email,str_address);
-                    createUser.enqueue(new Callback<User>() {
+                    UserService.getInstance().registerUser(str_username, str_password, str_email, str_address, str_address, str_username, new UserService.RegisterUserCallBack() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if ( response.code() == 422 ){
-                                Toast.makeText(getApplicationContext(), "Email or Username already in use", Toast.LENGTH_SHORT).show();
-                            }else if ( response.code() == 201){
-                                Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                startActivity(intent);
-                            }else {
-                                Toast.makeText(getApplicationContext(), "Couldn't connect to server", Toast.LENGTH_SHORT).show();
-                            }
+                        public void onSuccess(UserRegisterResponse registerResponse) {
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Couldn't connect to server", Toast.LENGTH_SHORT).show();
+                        public void onFailure(String errorCode) {
+
                         }
                     });
                 }

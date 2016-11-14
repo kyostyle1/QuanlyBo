@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlybo;
+package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,19 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.ApiConnection;
-import vn.edu.uit.quanlybo.Service.QuanLyService;
+import vn.edu.uit.quanlybo.MainActivity;
+import vn.edu.uit.quanlybo.Network.UserService;
+import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by phuc9 on 10/18/2016.
  */
-public class LoginActivity extends Activity implements ApiConnection {
+public class LoginActivity extends Activity {
     private EditText username;
     private EditText password;
 
@@ -37,33 +32,26 @@ public class LoginActivity extends Activity implements ApiConnection {
 
     }
 
-    public void LoginButton(){
-        Button btn_login = (Button)findViewById(R.id.btn_login);
+    public void LoginButton() {
+        Button btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username_text = username.getText().toString();
                 String password_text = password.getText().toString();
-                if( username_text.length() <= 3 || password_text.length() <= 3){
+                if (username_text.length() <= 3 || password_text.length() <= 3) {
                     Toast.makeText(getApplicationContext(), "Username or Passworld not enough length", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Call<User> userCall = service.getUserLogin(username_text, password_text);
-                    userCall.enqueue(new Callback<User>() {
+                } else {
+                    UserService.getInstance().userLogin(username_text, password_text, new UserService.GetUserCallBack() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            User decodeRespone = response.body();
-                            if (decodeRespone == null) {
-                                return;
-                            }
-                            User.getInstance().setUser(decodeRespone);
+                        public void onSuccess() {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Your Username or Password is not correct", Toast.LENGTH_SHORT).show();
+                        public void onFailure(String errorCode) {
+
                         }
                     });
                 }

@@ -1,6 +1,7 @@
-package vn.edu.uit.quanlybo.Service;
+package vn.edu.uit.quanlybo.Network;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -8,26 +9,33 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
+import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
+import vn.edu.uit.quanlybo.Network.Model.UserLoginResponse;
+import vn.edu.uit.quanlybo.Network.Model.UserRegisterRequest;
+import vn.edu.uit.quanlybo.Network.Model.UserRegisterResponse;
 import vn.edu.uit.quanlybo.Respone.ListCowResponse;
 
 /**
  * Created by phuc9 on 10/24/2016.
  */
-public interface QuanLyService {
+public interface QuanLyBoAPI {
 
-    @FormUrlEncoded
-    @POST("site/login")
-    Call<User> getUserLogin(
-            @Field("login") String username,
-            @Field("password") String password);
+    @POST("login")
+    Call<Response<UserLoginResponse>> getUserLogin(
+            @Body UserLoginRequest userLoginRequest);
 
-    @FormUrlEncoded
-    @POST("site/register")
+    @POST("register")
+    Call<Response<UserRegisterResponse>> registerUser(
+            @Body UserRegisterRequest userRegisterRequest);
+
+    /*@FormUrlEncoded
+    @POST("login")
     Call<User> createUser(
             @Field("login") String login,
             @Field("password") String password,
             @Field("email") String email,
-            @Field("address") String address);
+            @Field("address") String address);*/
 
     @GET("cow/search")
     Call<ListCowResponse> getListCow(@Query("userId") String userId,
