@@ -133,7 +133,6 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_column="0"
                     android:layout_gravity="center"
                     android:text="ID Bò Cha"
                     />
@@ -155,11 +154,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:layout_span="2" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:layout_column="2"
                     android:layout_span="2" />
             </TableRow>
@@ -199,6 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:maxLines="1"
                     android:layout_span="3" />
             </TableRow>
 
@@ -226,6 +230,7 @@
                         <EditText
                             android:id="@+id/nfcId"
                             android:layout_column="0"
+                            android:maxLines="1"
                             android:layout_span="4">
                         </EditText>
 

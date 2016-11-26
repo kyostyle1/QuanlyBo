@@ -21,9 +21,10 @@ public class ListCowAdapter extends ArrayAdapter<Cow> {
     String gender;
     ArrayList<String> typeCow = new ArrayList<>();
 
-    public ListCowAdapter(Context context,int resource, List<Cow> cows){
-        super(context, resource, cows);
+    public ListCowAdapter(Context context, List<Cow> cows){
+        super(context, 0, cows);
     }
+
 
     @Override
     public Cow getItem(int position) {

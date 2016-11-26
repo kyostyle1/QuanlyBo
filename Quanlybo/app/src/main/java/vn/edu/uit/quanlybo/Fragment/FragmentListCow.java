@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,54 +23,44 @@ import vn.edu.uit.quanlybo.R;
  * Created by phuc9 on 10/19/2016.
  */
 public class FragmentListCow extends Fragment{
-
+    private View rootView;
     ListCowAdapter adapter = null;
     List<Cow> cows = new ArrayList<>();
-    ListView cow_list = null;
+    ListView cow_list;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_list_cow, container, false);
+        rootView = inflater.inflate(R.layout.fragment_list_cow, container, false);
+        addCow();
         cow_list = (ListView)rootView.findViewById(R.id.cow_list);
-
-/*Call<ListCowResponse> listCowResponseCall = service.getListCow(User.getInstance().getId(), User.getInstance().getAccess_token());
-
-        listCowResponseCall.enqueue(new Callback<ListCowResponse>() {
-            @Override
-            public void onResponse(Call<ListCowResponse> call, Response<ListCowResponse> response) {
-                ListCowResponse listCowResponse = response.body();
-                if ( listCowResponse.getCow() == null){
-                    return;
-                }else {
-                    cows = listCowResponse.getCow();
-                    adapter = new ListCowAdapter(getContext(), R.layout.cow_item, cows);
-                    adapter.setNotifyOnChange(true);
-                    adapter.notifyDataSetChanged();
-                    cow_list.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ListCowResponse> call, Throwable t) {
-
-            }
-        });*/
+        adapter = new ListCowAdapter(getContext(), cows);
+        cow_list.setAdapter(adapter);
         cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.d("Id", String.valueOf(position));
-                Cow cow_position = new Cow();
-                cow_position = cows.get(position);
-                Intent intent = new Intent(getActivity(), CowDetailActivity.class);
-                intent.putExtra("cow_position", cow_position);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cow itemCow = cows.get(position);
+                int cowId = itemCow.getId();
+
             }
         });
         return rootView;
     }
 
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-
+    private void addCow(){
+        Cow cow = new Cow(1,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
+        Cow cow1 = new Cow(2,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
+        Cow cow2 = new Cow(3,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
+        Cow cow3 = new Cow(4,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
+        Cow cow4 = new Cow(5,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
+        cows.add(cow);
+        cows.add(cow1);
+        cows.add(cow2);
+        cows.add(cow3);
+        cows.add(cow4);
+        cows.add(cow1);
+        cows.add(cow2);
+        cows.add(cow3);
+        cows.add(cow4);
     }
+
+
 }
