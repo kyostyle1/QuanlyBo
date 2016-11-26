@@ -2,27 +2,22 @@
 <tabs>
     <tab
         id="@+id/bottomBarToDo"
-        icon="@drawable/ic_action_list"
-        title="To Do"/>
+        icon="@drawable/ic_action_list"/>
 
     <tab
         id="@+id/bottomBarListCow"
-        icon="@drawable/ic_action_cow"
-        title="List Cow"/>
+        icon="@drawable/ic_action_cow"/>
 
     <tab
         id="@+id/bottomBarSearch"
-        icon="@drawable/ic_action_search"
-        title="Search"/>
+        icon="@drawable/ic_action_search"/>
 
     <tab
         id="@+id/bottomBarLibrary"
-        icon="@drawable/ic_action_library"
-        title="Library"/>
+        icon="@drawable/ic_action_library"/>
 
     <tab
         id="@+id/bottomBarMarket"
-        icon="@drawable/ic_action_market"
-        title="Market"/>
+        icon="@drawable/ic_action_market"/>
 </tabs>
 
