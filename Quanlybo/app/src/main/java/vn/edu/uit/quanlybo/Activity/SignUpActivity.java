@@ -1,14 +1,19 @@
 package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
+import vn.edu.uit.quanlybo.MainActivity;
 import vn.edu.uit.quanlybo.Network.Model.UserRegisterResponse;
 import vn.edu.uit.quanlybo.Network.UserService;
 import vn.edu.uit.quanlybo.R;
@@ -57,7 +62,8 @@ public class SignUpActivity extends Activity{
 
                         @Override
                         public void onFailure(String errorCode) {
-
+                            AlertDialog alertFailure = new AlertDialogInfo().alertDialog(errorCode,SignUpActivity.this);
+                            alertFailure.show();
                         }
                     });
                 }

@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
 import vn.edu.uit.quanlybo.MainActivity;
 import vn.edu.uit.quanlybo.Network.UserService;
 import vn.edu.uit.quanlybo.R;
@@ -51,7 +53,8 @@ public class LoginActivity extends Activity {
 
                         @Override
                         public void onFailure(String errorCode) {
-
+                            AlertDialog alertFailure = new AlertDialogInfo().alertDialog(errorCode,LoginActivity.this);
+                            alertFailure.show();
                         }
                     });
                 }
