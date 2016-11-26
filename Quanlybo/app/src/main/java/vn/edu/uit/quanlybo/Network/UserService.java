@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Network;
 
 import android.app.Activity;
+import android.util.Log;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,23 +46,24 @@ public class UserService extends BaseService {
     public void userLogin(String username, String password, final GetUserCallBack getUserCallBack){
         showProgressDialog();
         final UserLoginRequest request = new UserLoginRequest(username, password);
-        Call<Response<UserLoginResponse>> call = quanLyBoAPI.getUserLogin(request);
-        call.enqueue(new Callback<Response<UserLoginResponse>>() {
+        Call<Response<User>> call = quanLyBoAPI.getUserLogin(request);
+        call.enqueue(new Callback<Response<User>>() {
             @Override
-            public void onResponse(Call<Response<UserLoginResponse>> call, retrofit2.Response<Response<UserLoginResponse>> response) {
+            public void onResponse(Call<Response<User>> call, retrofit2.Response<Response<User>> response) {
                 if (response.isSuccessful()){
                     if (!response.body().getSuccess()){
                         getUserCallBack.onFailure(response.body().getMessage());
                     }
                     else {
-                        UserLoginResponse userLoginResponse = response.body().getData();
+                        User userLoginResponse = response.body().getData();
+                        Log.d("AAA",String.valueOf(userLoginResponse.getId()));
                         getUserCallBack.onSuccess();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<Response<UserLoginResponse>> call, Throwable t) {
+            public void onFailure(Call<Response<User>> call, Throwable t) {
                 getUserCallBack.onFailure("");
             }
         });
