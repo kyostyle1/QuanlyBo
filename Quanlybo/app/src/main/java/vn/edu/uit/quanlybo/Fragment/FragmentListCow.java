@@ -31,7 +31,7 @@ public class FragmentListCow extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_list_cow, container, false);
         cow_list = (ListView)rootView.findViewById(R.id.cow_list);
 
-/*Call<ListCowResponse> listCowResponseCall = service.getListCow(User.getInstance().getId(), User.getInstance().getAccess_token());
+/* Call<ListCowResponse> listCowResponseCall = service.getListCow(User.getInstance().getId(), User.getInstance().getAccess_token());
 
         listCowResponseCall.enqueue(new Callback<ListCowResponse>() {
             @Override
@@ -52,7 +52,8 @@ public class FragmentListCow extends Fragment{
             public void onFailure(Call<ListCowResponse> call, Throwable t) {
 
             }
-        });*/
+        });
+        */
         cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

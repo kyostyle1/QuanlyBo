@@ -22,7 +22,7 @@ import vn.edu.uit.quanlybo.Respone.ListCowResponse;
 public interface QuanLyBoAPI {
 
     @POST("login")
-    Call<Response<UserLoginResponse>> getUserLogin(
+    Call<Response<User>> getUserLogin(
             @Body UserLoginRequest userLoginRequest);
 
     @POST("register")
