@@ -19,5 +19,9 @@
     <tab
         id="@+id/bottomBarMarket"
         icon="@drawable/ic_action_market"/>
+
+    <tab
+        id="@+id/bottomBarMarket1"
+        icon="@drawable/ic_action_market"/>
 </tabs>
 

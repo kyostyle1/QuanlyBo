@@ -94,27 +94,7 @@ public class CowDetailActivity extends Activity {
     }
 
 
-    public void initTodoList(){
+    public void initTodoList(){}
 
-        List<String> cowId = new ArrayList<>();
-        cowId.add("1");
-        cowId.add("2");
-        cowId.add("3");
-        List<ToDoHeader> toDoHeaders = new ArrayList<>();
-        for ( int i = 0 ; i< 5; i++){
-            ToDoHeader eachHeader = new ToDoHeader("Header " + i);
-            toDoHeaders.add(eachHeader);
-        }
-        List<ParentListItem> parentListItems = new ArrayList<>();
-        for ( ToDoHeader toDoHeader : toDoHeaders){
-            List<ToDoItem> toDoItems = new ArrayList<>();
-            for ( int i = 0 ; i < 5 ; i++){
-                toDoItems.add(new ToDoItem("Item" + i, cowId));
-            }
-            toDoHeader.setToDoItems(toDoItems);
-            parentListItems.add(toDoHeader);
-        }
-        toDoList.setLayoutManager(new LinearLayoutManager(this));
-        toDoList.setAdapter(new ListCowToDoAdapter(this, parentListItems));
-    }
+
 }

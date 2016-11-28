@@ -13,11 +13,13 @@ import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoItemViewHolder;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
@@ -55,24 +57,27 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
     }
 
     @Override
-    public void onBindChildViewHolder(ListCowToDoItemViewHolder childViewHolder, final int position, Object childListItem) {
-        ToDoItem toDoItem = (ToDoItem)childListItem;
-        childViewHolder.itemTitle.setText(toDoItem.getTitle());
-        String cowIds = "";
-        cowIds = TextUtils.join(",", toDoItem.getCowId().toArray());
+    public void onBindChildViewHolder(ListCowToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
+        //ToDoItem toDoItem = (ToDoItem)childListItem;
+        CowToDo cowToDo = (CowToDo)childListItem;
 
-        for ( int i = 0 ; i < toDoItem.getCowId().size(); i++){
-            //cowIds = toDoItem.getCowId().get(i) + "," + cowIds;
+        childViewHolder.itemTitle.setText(cowToDo.getTodo().getTitle());
+        List<String> listCowId = new ArrayList<>();
+        for ( int i = 0 ; i < cowToDo.getCow().size(); i ++){
+            listCowId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
         }
-
+        String cowIds = TextUtils.join(",", listCowId);
         childViewHolder.itemCowId.setText("Danh sách con bò cần làm: " + cowIds);
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Test", Integer.toString(position));
+                //Toast.makeText(, "", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
+    @Override
+    public void expandParent(ParentListItem parentListItem) {
+        super.expandParent(parentListItem);
+    }
 }

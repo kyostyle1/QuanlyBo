@@ -46,34 +46,10 @@ public class FragmentToDoList extends Fragment {
             @Override
             public void onSuccess(List<ToDoResponse> toDoResponseList) {
                 for ( ToDoResponse toDoResponse : toDoResponseList) {
-                    //ToDoHeader eachHeader = new ToDoHeader(toDoResponse.getType().getName());
-                    List<ToDoItem> toDoItems = new ArrayList<>();
-                    for ( int i=0 ; i < toDoResponse.getCow_todo().size(); i++){
-                        List<String> cowId = new ArrayList<>();
-                        for ( int j = 0 ; j < toDoResponse.getCow_todo().get(i).getCow().size(); j++){
-                            cowId.add(String.valueOf(toDoResponse.getCow_todo().get(i).getCow().get(j).getId()));
-                        }
-                        toDoItems.add(new ToDoItem(toDoResponse.getCow_todo().get(i).getTodo().getTitle(), cowId));
-                    }
-                    //eachHeader.setToDoItems(toDoItems);
-                    //toDoHeaders.add(eachHeader);
-                    toDoResponse.setToDoItems(toDoItems);
+                    toDoResponse.setToDoItems(toDoResponse.getCow_todo());
                     parentListItems.add(toDoResponse);
                 }
 
-                List<String> cowId = new ArrayList<>();
-                cowId.add("1");
-                cowId.add("2");
-                cowId.add("3");
-
-                for ( ToDoHeader toDoHeader : toDoHeaders){
-                    List<ToDoItem> toDoItems = new ArrayList<>();
-                    for ( int i = 0 ; i < 5 ; i++){
-                        toDoItems.add(new ToDoItem("Item" + i, cowId));
-                    }
-                    toDoHeader.setToDoItems(toDoItems);
-                    parentListItems.add(toDoHeader);
-                }
                 adapter = new ListCowToDoAdapter(getContext(), parentListItems);
                 adapter.notifyDataSetChanged();
                 lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -86,27 +62,6 @@ public class FragmentToDoList extends Fragment {
             }
         });
 
-        /*List<String> cowId = new ArrayList<>();
-        cowId.add("1");
-        cowId.add("2");
-        cowId.add("3");
-        for ( int i = 0 ; i< 5; i++){
-            ToDoHeader eachHeader = new ToDoHeader("Header " + i);
-            toDoHeaders.add(eachHeader);
-        }
-
-        for ( ToDoHeader toDoHeader : toDoHeaders){
-            List<ToDoItem> toDoItems = new ArrayList<>();
-            for ( int i = 0 ; i < 5 ; i++){
-                toDoItems.add(new ToDoItem("Item" + i, cowId));
-            }
-            toDoHeader.setToDoItems(toDoItems);
-            parentListItems.add(toDoHeader);
-        }
-        adapter = new ListCowToDoAdapter(getContext(), parentListItems);
-        adapter.notifyDataSetChanged();
-        lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
-        lvToDo.setAdapter(adapter);*/
         return rootView;
     }
 }

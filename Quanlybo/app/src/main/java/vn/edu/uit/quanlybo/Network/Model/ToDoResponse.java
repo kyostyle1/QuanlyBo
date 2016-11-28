@@ -30,7 +30,7 @@ public class ToDoResponse implements ParentListItem {
         this.cow_todo = cow_todo;
     }
 
-    private List<ToDoItem> toDoItems;
+    private List<CowToDo> toDoItems;
 
 
     public Type getType() {
@@ -50,7 +50,7 @@ public class ToDoResponse implements ParentListItem {
     }
 
     @Override
-    public List<ToDoItem> getChildItemList() {
+    public List<CowToDo> getChildItemList() {
         return toDoItems;
     }
 
@@ -59,7 +59,7 @@ public class ToDoResponse implements ParentListItem {
         return false;
     }
 
-    public void setToDoItems(List<ToDoItem> toDoItems) {
+    public void setToDoItems(List<CowToDo> toDoItems) {
         this.toDoItems = toDoItems;
     }
 
