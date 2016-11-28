@@ -1,15 +1,19 @@
 package vn.edu.uit.quanlybo.Network;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserRegisterRequest;
@@ -50,4 +54,8 @@ public interface QuanLyBoAPI {
     Call<Cow> getCowByNfc(@Query("nfcId") String nfcId,
                          @Query("userId") String userId,
                          @Query("access-token") String access_token);
+
+    @GET("cow/todo-all/{userId}")
+    Call<List<ToDoResponse>> getToDoList(@Path("userId") String userId);
+
 }

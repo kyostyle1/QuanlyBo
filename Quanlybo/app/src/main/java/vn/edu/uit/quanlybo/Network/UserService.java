@@ -46,24 +46,24 @@ public class UserService extends BaseService {
     public void userLogin(String username, String password, final GetUserCallBack getUserCallBack){
         showProgressDialog();
         final UserLoginRequest request = new UserLoginRequest(username, password);
-        Call<Response<User>> call = quanLyBoAPI.getUserLogin(request);
-        call.enqueue(new Callback<Response<User>>() {
+        Call<Response<UserLoginResponse>> call = quanLyBoAPI.getUserLogin(request);
+        call.enqueue(new Callback<Response<UserLoginResponse>>() {
             @Override
-            public void onResponse(Call<Response<User>> call, retrofit2.Response<Response<User>> response) {
+            public void onResponse(Call<Response<UserLoginResponse>> call, retrofit2.Response<Response<UserLoginResponse>> response) {
                 if (response.isSuccessful()){
                     if (!response.body().getSuccess()){
                         getUserCallBack.onFailure(response.body().getMessage());
                     }
                     else {
-                        User userLoginResponse = response.body().getData();
-                        Log.d("AAA",String.valueOf(userLoginResponse.getId()));
+                        UserLoginResponse userLoginResponse = response.body().getData();
+                        Log.d("AAA",String.valueOf(userLoginResponse.getData()));
                         getUserCallBack.onSuccess();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<Response<User>> call, Throwable t) {
+            public void onFailure(Call<Response<UserLoginResponse>> call, Throwable t) {
                 getUserCallBack.onFailure("");
             }
         });

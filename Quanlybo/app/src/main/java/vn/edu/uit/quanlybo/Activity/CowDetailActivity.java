@@ -2,13 +2,21 @@ package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import vn.edu.uit.quanlybo.Adapter.ListCowToDoAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -26,12 +34,15 @@ public class CowDetailActivity extends Activity {
     TextView cow_mother;
     TextView cow_target;
     TextView cow_born;
+    RecyclerView toDoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cow_detail);
         cow = (Cow) getIntent().getSerializableExtra("cow_position");
+
+        toDoList = (RecyclerView)findViewById(R.id.cow_detail_list_to_do);
 
         cow_id = (TextView)findViewById(R.id.cow_detail_id);
         cow_type = (TextView)findViewById(R.id.cow_detail_type);
@@ -40,6 +51,7 @@ public class CowDetailActivity extends Activity {
         cow_mother = (TextView)findViewById(R.id.cow_detail_mother);
         cow_target = (TextView)findViewById(R.id.cow_detail_target);
         cow_born = (TextView)findViewById(R.id.cow_detail_born);
+        initTodoList();
         initToolBar();
         String father;
         String mother;
@@ -50,7 +62,7 @@ public class CowDetailActivity extends Activity {
             father = cow.getFather().toString();
         }
 
-        if ( cow.getFather() == null){
+        if ( cow.getMother() == null){
             mother = "";
         }else {
             mother = cow.getFather().toString();
@@ -81,4 +93,28 @@ public class CowDetailActivity extends Activity {
         );
     }
 
+
+    public void initTodoList(){
+
+        List<String> cowId = new ArrayList<>();
+        cowId.add("1");
+        cowId.add("2");
+        cowId.add("3");
+        List<ToDoHeader> toDoHeaders = new ArrayList<>();
+        for ( int i = 0 ; i< 5; i++){
+            ToDoHeader eachHeader = new ToDoHeader("Header " + i);
+            toDoHeaders.add(eachHeader);
+        }
+        List<ParentListItem> parentListItems = new ArrayList<>();
+        for ( ToDoHeader toDoHeader : toDoHeaders){
+            List<ToDoItem> toDoItems = new ArrayList<>();
+            for ( int i = 0 ; i < 5 ; i++){
+                toDoItems.add(new ToDoItem("Item" + i, cowId));
+            }
+            toDoHeader.setToDoItems(toDoItems);
+            parentListItems.add(toDoHeader);
+        }
+        toDoList.setLayoutManager(new LinearLayoutManager(this));
+        toDoList.setAdapter(new ListCowToDoAdapter(this, parentListItems));
+    }
 }

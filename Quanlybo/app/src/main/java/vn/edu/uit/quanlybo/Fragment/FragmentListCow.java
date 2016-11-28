@@ -39,6 +39,10 @@ public class FragmentListCow extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cow itemCow = cows.get(position);
                 int cowId = itemCow.getId();
+                Intent intent = new Intent(getContext(), CowDetailActivity.class);
+                intent.putExtra("cow_position", itemCow);
+                startActivity(intent);
+
 
             }
         });
