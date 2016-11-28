@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDo;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.Type;
 
 
@@ -20,15 +22,12 @@ public class CurrentToDo implements ParentListItem{
 
     @SerializedName("todo")
     @Expose
-    private List<ToDo> toDoList = new ArrayList<>();
+    private List<ToDoDetail> toDoDetailList = new ArrayList<>();
 
-    public CurrentToDo(Type type, List<ToDo> toDoList) {
+    public CurrentToDo(Type type, List<ToDoDetail> toDoDetailList) {
         this.type = type;
-        this.toDoList = toDoList;
+        this.toDoDetailList = toDoDetailList;
     }
-
-    private List<ToDo> toDoItems;
-
 
     public Type getType() {
         return type;
@@ -38,17 +37,17 @@ public class CurrentToDo implements ParentListItem{
         this.type = type;
     }
 
-    public List<ToDo> getToDoList() {
-        return toDoList;
+    public List<ToDoDetail> getToDoDetailList() {
+        return toDoDetailList;
     }
 
-    public void setToDoList(List<ToDo> toDoList) {
-        this.toDoList = toDoList;
+    public void setToDoDetailList(List<ToDoDetail> toDoDetailList) {
+        this.toDoDetailList = toDoDetailList;
     }
 
     @Override
-    public List<ToDo> getChildItemList() {
-        return toDoItems;
+    public List<ToDoDetail> getChildItemList() {
+        return toDoDetailList;
     }
 
     @Override

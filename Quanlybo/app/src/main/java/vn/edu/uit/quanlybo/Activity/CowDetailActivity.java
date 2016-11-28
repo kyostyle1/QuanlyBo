@@ -15,8 +15,10 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.uit.quanlybo.Adapter.CowDetailToDoAdapter;
 import vn.edu.uit.quanlybo.Adapter.ListCowToDoAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.CowDetail.CurrentToDo;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Network.CowService;
@@ -42,6 +44,9 @@ public class CowDetailActivity extends Activity {
     TextView cow_source;
     RecyclerView toDoList;
     String cow_id_intent;
+    CowDetailToDoAdapter adapter;
+    final List<ParentListItem> parentListItems = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +119,15 @@ public class CowDetailActivity extends Activity {
                 cow_target.setText("Mục đích nuôi : " + cow.getTargetName());
                 cow_born.setText("Ngày sinh : " + cow.getBirthday());
                 cow_source.setText("Nguồn gốc: " + cow.getSourceName());
+                List<CurrentToDo> currentToDoList = cowDetailResponse.getCurrentToDoList();
+                for (CurrentToDo currentToDo : cowDetailResponse.getCurrentToDoList()){
+                    currentToDo.getChildItemList();
+                    parentListItems.add(currentToDo);
+                }
+
+                adapter = new CowDetailToDoAdapter(getParent(), getBaseContext(), parentListItems);
+                toDoList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                toDoList.setAdapter(adapter);
             }
 
             @Override
