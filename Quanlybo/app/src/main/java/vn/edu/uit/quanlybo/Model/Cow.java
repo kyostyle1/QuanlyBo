@@ -13,19 +13,19 @@ public class Cow implements Serializable{
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("father")
     @Expose
-    private Integer father;
+    private String father;
     @SerializedName("mother")
     @Expose
-    private Integer mother;
+    private String mother;
     @SerializedName("userId")
     @Expose
-    private Integer userId;
+    private String userId;
     @SerializedName("typeId")
     @Expose
-    private Integer typeId;
+    private String typeId;
     @SerializedName("qrId")
     @Expose
     private String qrId;
@@ -46,21 +46,33 @@ public class Cow implements Serializable{
     private String isBorn;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private String price;
     @SerializedName("market_code")
     @Expose
-    private Integer marketCode;
+    private String marketCode;
     @SerializedName("dateCreated")
     @Expose
-    private Date dateCreated;
+    private String dateCreated;
     @SerializedName("dateUpdated")
     @Expose
-    private Date dateUpdated;
+    private String dateUpdated;
+    @SerializedName("type_name")
+    @Expose
+    private String typeName;
+    @SerializedName("target_name")
+    @Expose
+    private String targetName;
+    @SerializedName("gender_name")
+    @Expose
+    private String genderName;
+    @SerializedName("source_name")
+    @Expose
+    private String sourceName;
+    @SerializedName("day_old")
+    @Expose
+    private Integer dayOld;
 
-    public Cow(){
-
-    }
-    public Cow(Integer id, Integer father, Integer mother, Integer userId, Integer typeId, String qrId, String nfcId, String birthday, String gender, String target, String isBorn, Integer price, Integer marketCode) {
+    public Cow(String id, String father, String mother, String userId, String typeId, String qrId, String nfcId, String birthday, String gender, String target, String isBorn, String price, String marketCode, String dateCreated, String dateUpdated, String typeName, String targetName, String genderName, String sourceName, Integer dayOld) {
         this.id = id;
         this.father = father;
         this.mother = mother;
@@ -74,45 +86,55 @@ public class Cow implements Serializable{
         this.isBorn = isBorn;
         this.price = price;
         this.marketCode = marketCode;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+        this.typeName = typeName;
+        this.targetName = targetName;
+        this.genderName = genderName;
+        this.sourceName = sourceName;
+        this.dayOld = dayOld;
     }
 
-    public Integer getId() {
+    public Cow() {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getFather() {
+    public String getFather() {
         return father;
     }
 
-    public void setFather(Integer father) {
+    public void setFather(String father) {
         this.father = father;
     }
 
-    public Integer getMother() {
+    public String getMother() {
         return mother;
     }
 
-    public void setMother(Integer mother) {
+    public void setMother(String mother) {
         this.mother = mother;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Integer getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 
@@ -164,56 +186,75 @@ public class Cow implements Serializable{
         this.isBorn = isBorn;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Integer getMarketCode() {
+    public String getMarketCode() {
         return marketCode;
     }
 
-    public void setMarketCode(Integer marketCode) {
+    public void setMarketCode(String marketCode) {
         this.marketCode = marketCode;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateUpdated() {
+    public String getDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(Date dateUpdated) {
+    public void setDateUpdated(String dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 
-    @Override
-    public String toString() {
-        return "Cow{" +
-                "id=" + id +
-                ", father=" + father +
-                ", mother=" + mother +
-                ", userId=" + userId +
-                ", typeId=" + typeId +
-                ", qrId='" + qrId + '\'' +
-                ", nfcId='" + nfcId + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", gender='" + gender + '\'' +
-                ", target='" + target + '\'' +
-                ", isBorn='" + isBorn + '\'' +
-                ", price=" + price +
-                ", marketCode=" + marketCode +
-                ", dateCreated=" + dateCreated +
-                ", dateUpdated=" + dateUpdated +
-                '}';
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public String getTargetName() {
+        return targetName;
+    }
+
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
+    }
+
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
+    public Integer getDayOld() {
+        return dayOld;
+    }
+
+    public void setDayOld(Integer dayOld) {
+        this.dayOld = dayOld;
     }
 }

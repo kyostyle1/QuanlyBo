@@ -4,14 +4,12 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import vn.edu.uit.quanlybo.Model.Cow;
-import vn.edu.uit.quanlybo.Model.User;
+import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.Response;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
@@ -58,4 +56,10 @@ public interface QuanLyBoAPI {
     @GET("cow/todo-all/{userId}")
     Call<List<ToDoResponse>> getToDoList(@Path("userId") String userId);
 
+    @GET("cow/todo-one")
+    Call<CowDetailResponse> getCowDetail(@Query("userId") String userId,
+                                         @Query("id") String cowId);
+
+    @GET("cow")
+    Call<List<Cow>> getListCow(@Query("userId") String userId);
 }

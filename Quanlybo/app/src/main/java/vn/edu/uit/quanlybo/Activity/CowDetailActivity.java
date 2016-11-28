@@ -1,11 +1,13 @@
 package vn.edu.uit.quanlybo.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
@@ -17,6 +19,9 @@ import vn.edu.uit.quanlybo.Adapter.ListCowToDoAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
+import vn.edu.uit.quanlybo.Network.CowService;
+import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
+import vn.edu.uit.quanlybo.Network.ToDoService;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -34,16 +39,21 @@ public class CowDetailActivity extends Activity {
     TextView cow_mother;
     TextView cow_target;
     TextView cow_born;
+    TextView cow_source;
     RecyclerView toDoList;
+    String cow_id_intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cow_detail);
-        cow = (Cow) getIntent().getSerializableExtra("cow_position");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if( bundle != null) {
+            cow_id_intent = (String) bundle.get("cow_id");
+        }
 
-        toDoList = (RecyclerView)findViewById(R.id.cow_detail_list_to_do);
-
+        initData();
         cow_id = (TextView)findViewById(R.id.cow_detail_id);
         cow_type = (TextView)findViewById(R.id.cow_detail_type);
         cow_gender = (TextView)findViewById(R.id.cow_detail_gender);
@@ -51,30 +61,9 @@ public class CowDetailActivity extends Activity {
         cow_mother = (TextView)findViewById(R.id.cow_detail_mother);
         cow_target = (TextView)findViewById(R.id.cow_detail_target);
         cow_born = (TextView)findViewById(R.id.cow_detail_born);
+        cow_source = (TextView)findViewById(R.id.cow_detail_source);
         initTodoList();
         initToolBar();
-        String father;
-        String mother;
-
-        if ( cow.getFather() == null){
-            father = "";
-        }else {
-            father = cow.getFather().toString();
-        }
-
-        if ( cow.getMother() == null){
-            mother = "";
-        }else {
-            mother = cow.getFather().toString();
-        }
-
-        cow_id.setText("#" + cow.getId());
-        cow_type.setText("Giống bò : " + cow.getTypeId().toString());
-        cow_gender.setText("Giới tính : " + cow.getGender());
-        cow_father.setText("Bò cha : " + father);
-        cow_mother.setText("Bò mẹ : " +  mother);
-        cow_target.setText("Mục đích nuôi : " + cow.getTarget());
-        cow_born.setText("Ngày sinh : " + cow.getBirthday());
 
     }
 
@@ -94,7 +83,43 @@ public class CowDetailActivity extends Activity {
     }
 
 
-    public void initTodoList(){}
+    public void initTodoList(){
+        toDoList = (RecyclerView)findViewById(R.id.cow_detail_list_to_do);
 
+    }
 
+    public void initData(){
+        CowService.getInstance().getCowDetail("24", cow_id_intent, new CowService.CowDetailCallBack() {
+            @Override
+            public void onSuccess(CowDetailResponse cowDetailResponse) {
+                cow = cowDetailResponse.getCow();
+                String father;
+                String mother;
+                if ( cow.getFather() == null){
+                    father = "";
+                }else {
+                    father = cow.getFather().toString();
+                }
+
+                if ( cow.getMother() == null){
+                    mother = "";
+                }else {
+                    mother = cow.getFather().toString();
+                }
+                cow_id.setText("#" + cow.getId());
+                cow_type.setText("Giống bò : " + cow.getTypeName());
+                cow_gender.setText("Giới tính : " + cow.getGenderName());
+                cow_father.setText("Bò cha : " + father);
+                cow_mother.setText("Bò mẹ : " +  mother);
+                cow_target.setText("Mục đích nuôi : " + cow.getTargetName());
+                cow_born.setText("Ngày sinh : " + cow.getBirthday());
+                cow_source.setText("Nguồn gốc: " + cow.getSourceName());
+            }
+
+            @Override
+            public void onFailure(String errorCode) {
+                Toast.makeText(CowDetailActivity.this, errorCode, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

@@ -1,27 +1,22 @@
 package vn.edu.uit.quanlybo.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoItemViewHolder;
+import vn.edu.uit.quanlybo.AlertDialog.ListToDoDialog;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
-import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
-import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.R;
 
@@ -32,10 +27,15 @@ import vn.edu.uit.quanlybo.R;
 public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHeaderViewHolder, ListCowToDoItemViewHolder> {
 
     private LayoutInflater inflater;
+    private Context context;
+    private Activity activity;
 
-    public ListCowToDoAdapter(Context context, List<ParentListItem> itemList){
+    public ListCowToDoAdapter(Activity activity,Context context, List<ParentListItem> itemList){
         super(itemList);
         inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.activity = activity;
+
     }
 
     @Override
@@ -59,10 +59,10 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
     @Override
     public void onBindChildViewHolder(ListCowToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
         //ToDoItem toDoItem = (ToDoItem)childListItem;
-        CowToDo cowToDo = (CowToDo)childListItem;
+        final CowToDo cowToDo = (CowToDo)childListItem;
 
-        childViewHolder.itemTitle.setText(cowToDo.getTodo().getTitle());
-        List<String> listCowId = new ArrayList<>();
+        childViewHolder.itemTitle.setText(cowToDo.getToDo().getTitle());
+        final List<String> listCowId = new ArrayList<>();
         for ( int i = 0 ; i < cowToDo.getCow().size(); i ++){
             listCowId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
         }
@@ -72,6 +72,12 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
             @Override
             public void onClick(View view) {
                 //Toast.makeText(, "", Toast.LENGTH_SHORT).show();
+                ListToDoDialog listToDoDialog = new ListToDoDialog(activity);
+                listToDoDialog.setTitle(cowToDo.getToDo().getTitle());
+                listToDoDialog.setContent(cowToDo.getToDo().getContent());
+                listToDoDialog.confirm();
+                listToDoDialog.setListCheck(cowToDo.getCow());
+                listToDoDialog.show();
             }
         });
     }

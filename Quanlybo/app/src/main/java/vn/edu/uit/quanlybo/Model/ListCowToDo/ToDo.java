@@ -1,24 +1,17 @@
-package vn.edu.uit.quanlybo.Model;
+package vn.edu.uit.quanlybo.Model.ListCowToDo;
 
 /**
  * Created by PhucHuynh on 11/27/16.
  */
 
-public class Todo {
+public class ToDo {
     private String id;
     private String title;
     private String description;
     private String content;
-    private Boolean success;
+    private String success;
 
-    public Todo(String id, String title, String description, String content) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.content = content;
-    }
-
-    public Todo(String id, String title, String description, String content, Boolean success) {
+    public ToDo(String id, String title, String description, String content, String success) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -58,11 +51,11 @@ public class Todo {
         this.content = content;
     }
 
-    public Boolean isSuccess() {
+    public String getSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public void setSuccess(String success) {
         this.success = success;
     }
 }

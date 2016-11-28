@@ -34,7 +34,7 @@
                 android:textAlignment="center"
                 android:textSize="20dp"></TextView>
             <TableLayout
-                android:layout_weight="2">
+                android:layout_weight="3">
 
                 <TableRow android:layout_weight="1">
                     <TextView android:text="Giống bò :"
@@ -61,9 +61,12 @@
                 </TableRow>
 
                 <TableRow android:layout_weight="1">
-                <TextView android:text="Mục đích nuôi : "
-                    android:id="@+id/cow_detail_target"
-                    android:layout_weight="1"/>
+                    <TextView android:text="Mục đích nuôi : "
+                        android:id="@+id/cow_detail_target"
+                        android:layout_weight="1"/>
+                    <TextView android:text="Nguồn gốc"
+                        android:id="@+id/cow_detail_source"
+                        android:layout_weight="1"/>
                 </TableRow>
 
             </TableLayout>

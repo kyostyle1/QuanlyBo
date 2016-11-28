@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.Response;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
@@ -70,4 +71,6 @@ public class ToDoService extends BaseService {
         void onFailure(String errorCode);
 
     }
+
+
 }

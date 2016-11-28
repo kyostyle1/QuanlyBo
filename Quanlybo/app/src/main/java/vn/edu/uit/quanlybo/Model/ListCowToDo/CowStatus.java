@@ -7,9 +7,9 @@ package vn.edu.uit.quanlybo.Model.ListCowToDo;
 public class CowStatus {
     private int id;
     private int day_old;
-    private boolean success;
+    private String success;
 
-    public CowStatus(int id, int day_old, boolean success) {
+    public CowStatus(int id, int day_old, String success) {
         this.id = id;
         this.day_old = day_old;
         this.success = success;
@@ -31,11 +31,11 @@ public class CowStatus {
         this.day_old = day_old;
     }
 
-    public boolean isSuccess() {
+    public String getSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(String success) {
         this.success = success;
     }
 }

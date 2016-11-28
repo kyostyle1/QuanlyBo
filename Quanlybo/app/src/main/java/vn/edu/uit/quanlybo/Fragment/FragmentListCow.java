@@ -17,6 +17,7 @@ import java.util.List;
 import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListCowAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -32,38 +33,34 @@ public class FragmentListCow extends Fragment{
         rootView = inflater.inflate(R.layout.fragment_list_cow, container, false);
         addCow();
         cow_list = (ListView)rootView.findViewById(R.id.cow_list);
-        adapter = new ListCowAdapter(getContext(), cows);
-        cow_list.setAdapter(adapter);
+        //cow_list.setAdapter(adapter);
         cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cow itemCow = cows.get(position);
-                int cowId = itemCow.getId();
                 Intent intent = new Intent(getContext(), CowDetailActivity.class);
-                intent.putExtra("cow_position", itemCow);
+                intent.putExtra("cow_id", itemCow.getId());
                 startActivity(intent);
-
-
             }
         });
         return rootView;
     }
 
     private void addCow(){
-        Cow cow = new Cow(1,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
-        Cow cow1 = new Cow(2,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
-        Cow cow2 = new Cow(3,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
-        Cow cow3 = new Cow(4,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
-        Cow cow4 = new Cow(5,50,51,3,1,"Abc","efd","28-11-2016","male", "milk", "born", 500, 123);
-        cows.add(cow);
-        cows.add(cow1);
-        cows.add(cow2);
-        cows.add(cow3);
-        cows.add(cow4);
-        cows.add(cow1);
-        cows.add(cow2);
-        cows.add(cow3);
-        cows.add(cow4);
+        CowService.getInstance().getListCow("24", new CowService.GetListCow() {
+            @Override
+            public void onSuccess(List<Cow> cowList) {
+                cows = cowList;
+                adapter = new ListCowAdapter(getContext(), cows);
+                adapter.notifyDataSetChanged();
+                cow_list.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(String errorCode) {
+                Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

@@ -17,9 +17,9 @@ import vn.edu.uit.quanlybo.R;
  * Created by phuc9 on 10/19/2016.
  */
 public class ListCowAdapter extends ArrayAdapter<Cow> {
+
     int i ;
     String gender;
-    ArrayList<String> typeCow = new ArrayList<>();
 
     public ListCowAdapter(Context context, List<Cow> cows){
         super(context, 0, cows);
@@ -32,7 +32,9 @@ public class ListCowAdapter extends ArrayAdapter<Cow> {
     }
 
     static class ViewHolder {
+        TextView cow_target;
         TextView cow_type;
+        TextView cow_source;
         TextView cow_born;
         TextView cow_gender;
         TextView cow_id;
@@ -50,6 +52,8 @@ public class ListCowAdapter extends ArrayAdapter<Cow> {
             holder.cow_id = (TextView)convertView.findViewById(R.id.cow_id);
             holder.cow_born = (TextView)convertView.findViewById(R.id.cow_born);
             holder.cow_gender = (TextView)convertView.findViewById(R.id.cow_gender);
+            holder.cow_target = (TextView)convertView.findViewById(R.id.cow_target);
+            holder.cow_source = (TextView)convertView.findViewById(R.id.cow_source);
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder)convertView.getTag();
@@ -57,9 +61,11 @@ public class ListCowAdapter extends ArrayAdapter<Cow> {
         }
 
         holder.cow_id.setText("#" + cow.getId());
-        holder.cow_gender.setText(cow.getGender());
-        holder.cow_type.setText(cow.getTypeId().toString());
-        holder.cow_born.setText(cow.getBirthday());
+        holder.cow_gender.setText("Giới tính: " + cow.getGenderName());
+        holder.cow_type.setText("Giống bò: " + cow.getTypeName());
+        holder.cow_born.setText("Số ngày tuổi: " + cow.getDayOld().toString() + " ngày");
+        holder.cow_source.setText("Nguồn gốc: " + cow.getSourceName());
+        holder.cow_target.setText("Mục đích nuôi: " + cow.getTargetName());
         return convertView;
     }
 }

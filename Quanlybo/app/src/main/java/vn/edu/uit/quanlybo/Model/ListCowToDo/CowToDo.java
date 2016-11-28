@@ -5,31 +5,31 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import vn.edu.uit.quanlybo.Model.Todo;
-
 /**
  * Created by PhucHuynh on 11/28/16.
  */
 
 public class CowToDo {
 
-    private Todo todo;
+    @SerializedName("todo")
+    @Expose
+    private ToDo toDo;
 
     @SerializedName("cow")
     @Expose
     private List<CowStatus> cow;
 
-    public CowToDo(Todo todo, List<CowStatus> cow) {
-        this.todo = todo;
+    public CowToDo(ToDo toDo, List<CowStatus> cow) {
+        this.toDo = toDo;
         this.cow = cow;
     }
 
-    public Todo getTodo() {
-        return todo;
+    public ToDo getToDo() {
+        return toDo;
     }
 
-    public void setTodo(Todo todo) {
-        this.todo = todo;
+    public void setToDo(ToDo toDo) {
+        this.toDo = toDo;
     }
 
     public List<CowStatus> getCow() {

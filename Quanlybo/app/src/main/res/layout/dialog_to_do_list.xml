@@ -6,17 +6,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:text="Content"
         android:id="@+id/dialog_to_do_content"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:id="@+id/checkListToDo">
     </ListView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_confirm"
         android:text="Confirm"/>
 </LinearLayout>

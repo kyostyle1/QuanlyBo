@@ -30,17 +30,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:id="@+id/cow_type_spinner"
                 android:stretchColumns="*"
-                android:layout_span="3">
+                android:layout_span="5">
+
+                <TableRow>
+                    <TextView
+                        android:text="Mục đích "
+                        android:id="@+id/cow_target" />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Loại"
+                        android:id="@+id/cow_type" />
+                </TableRow>
 
                 <TableRow>
                     <TextView
                         android:text="Giống"
-                        android:id="@+id/cow_type" />
-                    <TextView
-                        android:text="@string/c"
                         android:id="@+id/cow_gender" />
+                    <TextView
+                        android:text="Nguồn gốc"
+                        android:id="@+id/cow_source" />
                 </TableRow>
 
                 <TableRow>

@@ -40,7 +40,7 @@ public class FragmentToDoList extends Fragment {
         final List<ToDoHeader> toDoHeaders = new ArrayList<>();
         final List<ParentListItem> parentListItems = new ArrayList<>();
 
-        adapter = new ListCowToDoAdapter(getContext(), parentListItems);
+        adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems);
 
         ToDoService.getInstance().getToDoList("24", new ToDoService.ToDoCallBack() {
             @Override
@@ -50,7 +50,7 @@ public class FragmentToDoList extends Fragment {
                     parentListItems.add(toDoResponse);
                 }
 
-                adapter = new ListCowToDoAdapter(getContext(), parentListItems);
+                adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems);
                 adapter.notifyDataSetChanged();
                 lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
                 lvToDo.setAdapter(adapter);
