@@ -52,6 +52,6 @@ public class CurrentToDo implements ParentListItem{
 
     @Override
     public boolean isInitiallyExpanded() {
-        return false;
+        return true;
     }
 }

@@ -7,45 +7,47 @@ import com.google.gson.annotations.SerializedName;
  * Created by phuc9 on 10/24/2016.
  */
 public class User {
+
     @SerializedName("id")
     @Expose
-    private String id;
+    public String id;
     @SerializedName("role")
     @Expose
-    private String role;
-    @SerializedName("login")
+    public String role;
+    @SerializedName("username")
     @Expose
-    private String login;
+    public String username;
     @SerializedName("email")
     @Expose
-    private String email;
+    public String email;
+    @SerializedName("phone")
+    @Expose
+    public String phone;
     @SerializedName("address")
     @Expose
-    private String address;
+    public String address;
     @SerializedName("access_token")
     @Expose
-    private String access_token;
+    public String accessToken;
     @SerializedName("name")
     @Expose
-    private String name;
+    public Object name;
     @SerializedName("password")
     @Expose
-    private String password;
+    public String password;
     @SerializedName("active")
     @Expose
-    private int active;
+    public String active;
     @SerializedName("dateCreated")
     @Expose
-    private String dateCreated;
+    public String dateCreated;
     @SerializedName("dateUpdated")
     @Expose
-    private String dateUpdated;
-
+    public String dateUpdated;
 
     private static User mInstance = null;
 
     private User(){
-
     }
 
     public static User getInstance(){
@@ -59,10 +61,10 @@ public class User {
     public void setUser(User user) {
         this.id = user.id;
         this.role = user.role;
-        this.login = user.login;
+        this.username = user.username;
         this.email = user.email;
         this.address = user.address;
-        this.access_token = user.access_token;
+        this.accessToken = user.accessToken;
         this.name = user.name;
         this.password = user.password;
         this.active = user.active;
@@ -70,192 +72,99 @@ public class User {
         this.dateUpdated = user.dateUpdated;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     * The role
-     */
     public String getRole() {
         return role;
     }
 
-    /**
-     *
-     * @param role
-     * The role
-     */
     public void setRole(String role) {
         this.role = role;
     }
 
-    /**
-     *
-     * @return
-     * The login
-     */
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    /**
-     *
-     * @param login
-     * The login
-     */
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    /**
-     *
-     * @return
-     * The email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     *
-     * @param email
-     * The email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     *
-     * @return
-     * The address
-     */
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    /**
-     *
-     * @param address
-     * The address
-     */
     public void setAddress(String address) {
         this.address = address;
     }
 
-    /**
-     *
-     * @return
-     * The name
-     */
-    public String getName() {
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public Object getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     * The name
-     */
-    public void setName(String name) {
+    public void setName(Object name) {
         this.name = name;
     }
 
-    /**
-     *
-     * @return
-     * The password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     *
-     * @param password
-     * The password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     *
-     * @return
-     * The active
-     */
-    public int getActive() {
+    public String getActive() {
         return active;
     }
 
-    /**
-     *
-     * @param active
-     * The active
-     */
-    public void setActive(int active) {
+    public void setActive(String active) {
         this.active = active;
     }
 
-    /**
-     *
-     * @return
-     * The dateCreated
-     */
-    public Object getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    /**
-     *
-     * @param dateCreated
-     * The dateCreated
-     */
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    /**
-     *
-     * @return
-     * The dateUpdated
-     */
-    public Object getDateUpdated() {
+    public String getDateUpdated() {
         return dateUpdated;
     }
 
-    /**
-     *
-     * @param dateUpdated
-     * The dateUpdated
-     */
     public void setDateUpdated(String dateUpdated) {
         this.dateUpdated = dateUpdated;
-    }
-
-
-    public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
     }
 }

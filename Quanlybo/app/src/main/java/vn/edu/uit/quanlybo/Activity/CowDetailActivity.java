@@ -120,14 +120,15 @@ public class CowDetailActivity extends Activity {
                 cow_born.setText("Ngày sinh : " + cow.getBirthday());
                 cow_source.setText("Nguồn gốc: " + cow.getSourceName());
                 List<CurrentToDo> currentToDoList = cowDetailResponse.getCurrentToDoList();
-                for (CurrentToDo currentToDo : cowDetailResponse.getCurrentToDoList()){
-                    currentToDo.getChildItemList();
-                    parentListItems.add(currentToDo);
+                if ( cowDetailResponse.getCurrentToDoList() != null) {
+                    for (CurrentToDo currentToDo : cowDetailResponse.getCurrentToDoList()) {
+                        currentToDo.getChildItemList();
+                        parentListItems.add(currentToDo);
+                    }
+                    adapter = new CowDetailToDoAdapter(getParent(), getBaseContext(), parentListItems);
+                    toDoList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    toDoList.setAdapter(adapter);
                 }
-
-                adapter = new CowDetailToDoAdapter(getParent(), getBaseContext(), parentListItems);
-                toDoList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                toDoList.setAdapter(adapter);
             }
 
             @Override

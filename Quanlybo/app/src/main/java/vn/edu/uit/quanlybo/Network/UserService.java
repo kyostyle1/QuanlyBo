@@ -56,8 +56,8 @@ public class UserService extends BaseService {
                     }
                     else {
                         UserLoginResponse userLoginResponse = response.body().getData();
-                        Log.d("AAA",String.valueOf(userLoginResponse.getData()));
-                        getUserCallBack.onSuccess();
+                        Log.d("Id",String.valueOf(userLoginResponse.getId()));
+                        getUserCallBack.onSuccess(userLoginResponse);
                     }
                 }
             }
@@ -72,7 +72,7 @@ public class UserService extends BaseService {
     }
 
     public interface GetUserCallBack {
-        void onSuccess();
+        void onSuccess(UserLoginResponse userLoginResponse);
         void onFailure(String errorCode);
 
     }
