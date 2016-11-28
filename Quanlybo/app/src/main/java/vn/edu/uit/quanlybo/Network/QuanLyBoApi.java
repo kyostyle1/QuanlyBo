@@ -45,13 +45,13 @@ public interface QuanLyBoAPI {
 
     @GET("cow/search-one")
     Call<Cow> getCowById(@Query("id") String id,
-                     @Query("userId") String userId,
-                     @Query("access-token") String access_token);
+                         @Query("userId") String userId,
+                         @Query("access-token") String access_token);
 
     @GET("cow/search-one")
     Call<Cow> getCowByNfc(@Query("nfcId") String nfcId,
-                         @Query("userId") String userId,
-                         @Query("access-token") String access_token);
+                          @Query("userId") String userId,
+                          @Query("access-token") String access_token);
 
     @GET("cow/todo-all/{userId}")
     Call<List<ToDoResponse>> getToDoList(@Path("userId") String userId);
