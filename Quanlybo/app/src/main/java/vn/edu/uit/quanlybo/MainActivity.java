@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentLibrary;
+import vn.edu.uit.quanlybo.Fragment.FragmentListLibrary;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentTabTwo;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarket;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentSearchCow;
@@ -43,7 +43,7 @@ public class MainActivity extends FragmentActivity {
                         break;
 
                     case R.id.bottomBarLibrary:
-                        fragment = new FragmentLibrary();
+                        fragment = new FragmentListLibrary();
                         break;
 
                     case R.id.bottomBarMarket:
