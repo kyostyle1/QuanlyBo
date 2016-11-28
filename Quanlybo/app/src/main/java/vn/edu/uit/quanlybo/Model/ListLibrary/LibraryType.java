@@ -1,7 +1,10 @@
 package vn.edu.uit.quanlybo.Model.ListLibrary;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,11 +13,17 @@ import java.util.List;
 
 public class LibraryType implements ParentListItem {
 
-    private String id;
-    private String name;
-    private String description;
+    @SerializedName("id")
+    @Expose
+    public String id;
+    @SerializedName("name")
+    @Expose
+    public String name;
+    @SerializedName("description")
+    @Expose
+    public String description;
 
-    private List<LibraryResponse> libraryResponseList;
+    private List<LibraryResponse> libraryResponseList = new ArrayList<>();
 
     public LibraryType (String id, String name, String description) {
         this.id = id;

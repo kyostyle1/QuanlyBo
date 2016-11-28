@@ -13,6 +13,8 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListLibraryHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListLibraryItemViewHolder;
+import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
+import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibratyToDo;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.R;
@@ -44,27 +46,17 @@ public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHea
 
     @Override
     public void onBindParentViewHolder(ListLibraryHeaderViewHolder parentViewHolder, int position, ParentListItem parentListItem) {
-        ToDoResponse toDoResponse = (ToDoResponse) parentListItem;
-        parentViewHolder.library_title_type.setText(toDoResponse.getType().getName());
+        LibraryType libraryType = (LibraryType) parentListItem;
+        parentViewHolder.library_title_type.setText(libraryType.getName());
     }
 
     @Override
     public void onBindChildViewHolder(ListLibraryItemViewHolder childViewHolder, final int position, final Object childListItem) {
         //ToDoItem toDoItem = (ToDoItem)childListItem;
-        LibratyToDo libratyToDo = (LibratyToDo)childListItem;
+        LibraryResponse libraryResponse = (LibraryResponse) childListItem;
        // childViewHolder.library_title.setText(libratyToDo.getLibraryType().ge);
       //  childViewHolder.library_desctiption.setText(libratyToDo.getTodo().getDescription());
-        List<String> listLibraryTitleType = new ArrayList<>();
-        for (int i = 0; i < libratyToDo.getLibraryResponse().size(); i ++){
-            listLibraryTitleType.add(String.valueOf(libratyToDo.getLibraryResponse().get(i).getLibTypeId()));
-        }
-
-        childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(, "", Toast.LENGTH_SHORT).show();
-            }
-        });
+        childViewHolder.library_title.setText(libraryResponse.getContent());
     }
 
     @Override

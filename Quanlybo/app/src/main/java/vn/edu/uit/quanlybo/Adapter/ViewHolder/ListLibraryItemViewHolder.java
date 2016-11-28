@@ -14,13 +14,11 @@ import vn.edu.uit.quanlybo.R;
 public class ListLibraryItemViewHolder  extends ChildViewHolder {
 
         public TextView library_title;
-        public TextView library_desctiption;
 
         public ListLibraryItemViewHolder(View itemView) {
             super(itemView);
 
             library_title = (TextView) itemView.findViewById(R.id.library_title);
-            library_desctiption = (TextView) itemView.findViewById(R.id.library_description);
         }
 
 }

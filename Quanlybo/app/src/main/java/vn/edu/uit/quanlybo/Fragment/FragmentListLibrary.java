@@ -39,30 +39,8 @@ public class FragmentListLibrary  extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_library, container, false);
         lvLibrary = (RecyclerView)rootView.findViewById(R.id.list_library);
-        final List<ToDoHeader> toDoHeaders = new ArrayList<>();
         final List<ParentListItem> parentListItems = new ArrayList<>();
 
-        adapter = new ListLibraryAdapter(getContext(), parentListItems);
-
-        /*ToDoService.getInstance().getToDoList(User.getInstance().getId(), new ToDoService.ToDoCallBack() {
-            @Override
-            public void onSuccess(List<ToDoResponse> toDoResponseList) {
-                for ( ToDoResponse toDoResponse : toDoResponseList) {
-                    toDoResponse.setToDoItems(toDoResponse.getCow_todo());
-                    parentListItems.add(toDoResponse);
-                }
-
-                adapter = new ListLibraryAdapter(getContext(), parentListItems);
-                adapter.notifyDataSetChanged();
-                lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
-                lvToDo.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(String errorCode) {
-
-            }
-        });*/
         LibraryService.getInstance().getListTypeLibrary(new LibraryService.GetListTypeLibrary() {
             @Override
             public void onSuccess(List<LibraryType> libraryTypeList) {
@@ -71,6 +49,12 @@ public class FragmentListLibrary  extends Fragment {
                         @Override
                         public void onSuccess(List<LibraryResponse> libraryResponseList) {
                             libraryType.setLibraryResponseList(libraryResponseList);
+                            parentListItems.add(libraryType);
+                            adapter = new ListLibraryAdapter(getContext(), parentListItems);
+                            adapter.notifyDataSetChanged();
+                            lvLibrary.setLayoutManager(new LinearLayoutManager(getContext()));
+                            lvLibrary.setAdapter(adapter);
+
                         }
 
                         @Override
@@ -78,11 +62,6 @@ public class FragmentListLibrary  extends Fragment {
 
                         }
                     });
-                    parentListItems.add(libraryType);
-                    adapter = new ListLibraryAdapter(getContext(), parentListItems);
-                    adapter.notifyDataSetChanged();
-                    lvLibrary.setLayoutManager(new LinearLayoutManager(getContext()));
-                    lvLibrary.setAdapter(adapter);
                 }
             }
 
