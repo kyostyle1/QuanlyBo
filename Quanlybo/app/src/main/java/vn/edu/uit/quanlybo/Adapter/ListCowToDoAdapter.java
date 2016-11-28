@@ -20,6 +20,7 @@ import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoItemViewHolder;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
+import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -49,8 +50,8 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
 
     @Override
     public void onBindParentViewHolder(ListCowToDoHeaderViewHolder parentViewHolder, int position, ParentListItem parentListItem) {
-        ToDoHeader toDoHeader = (ToDoHeader)parentListItem;
-        parentViewHolder.headerTitle.setText(toDoHeader.getTitle());
+        ToDoResponse toDoResponse = (ToDoResponse) parentListItem;
+        parentViewHolder.headerTitle.setText(toDoResponse.getType().getName());
     }
 
     @Override
@@ -64,7 +65,7 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
             //cowIds = toDoItem.getCowId().get(i) + "," + cowIds;
         }
 
-        childViewHolder.itemCowId.setText(cowIds);
+        childViewHolder.itemCowId.setText("Danh sách con bò cần làm: " + cowIds);
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

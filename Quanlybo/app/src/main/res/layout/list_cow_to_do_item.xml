@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_marginRight="5dp"
+    android:background="@drawable/border_layout"
     android:layout_marginEnd="5dp"
     android:id="@+id/item_layout">
 
@@ -13,19 +14,20 @@
         android:text="Công việc"
         android:id="@+id/list_cow_to_do_item_title"
         android:textSize="15sp"
-        android:layout_weight="2"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list_cow_to_do_item_id"
         android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:paddingTop="5dp"
+        android:textColor="#FF0000"
+        android:paddingBottom="10dp"
         android:text="1,2,3,4,5"/>
 
 </LinearLayout>

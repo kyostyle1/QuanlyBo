@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuanLyBoService {
     private static QuanLyBoAPI quanLyBoAPI;
-    private static String baseUrl = "http://quanlybo.nenhocgi.com/";
+    private static String baseUrl = "http://api.quanlybo.nenhocgi.com/";
 
     public static QuanLyBoAPI getService(){
         if ( quanLyBoAPI == null){

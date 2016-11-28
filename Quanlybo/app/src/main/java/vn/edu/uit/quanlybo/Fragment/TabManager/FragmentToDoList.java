@@ -31,29 +31,53 @@ public class FragmentToDoList extends Fragment {
 
     private RecyclerView lvToDo;
     private View rootView;
-
+    private ListCowToDoAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_to_do_list, container, false);
         lvToDo = (RecyclerView)rootView.findViewById(R.id.to_do_list_view);
         final List<ToDoHeader> toDoHeaders = new ArrayList<>();
+        final List<ParentListItem> parentListItems = new ArrayList<>();
+
+        adapter = new ListCowToDoAdapter(getContext(), parentListItems);
 
         ToDoService.getInstance().getToDoList("24", new ToDoService.ToDoCallBack() {
             @Override
             public void onSuccess(List<ToDoResponse> toDoResponseList) {
                 for ( ToDoResponse toDoResponse : toDoResponseList) {
-                    ToDoHeader eachHeader = new ToDoHeader(toDoResponse.getType().getName());
-                    toDoHeaders.add(eachHeader);
-                    List<ToDoItem> todoItems = new ArrayList<ToDoItem>();
-                    for (CowToDo cowToDo : toDoResponse.getCow_todo()){
-                        List<String> arrayId = new ArrayList<String>();
-                        for ( int i = 0; i < cowToDo.getCow().size(); i ++){
-                            arrayId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
+                    //ToDoHeader eachHeader = new ToDoHeader(toDoResponse.getType().getName());
+                    List<ToDoItem> toDoItems = new ArrayList<>();
+                    for ( int i=0 ; i < toDoResponse.getCow_todo().size(); i++){
+                        List<String> cowId = new ArrayList<>();
+                        for ( int j = 0 ; j < toDoResponse.getCow_todo().get(i).getCow().size(); j++){
+                            cowId.add(String.valueOf(toDoResponse.getCow_todo().get(i).getCow().get(j).getId()));
                         }
-                        todoItems.add(new ToDoItem(cowToDo.getTodo().getTitle(), arrayId));
+                        toDoItems.add(new ToDoItem(toDoResponse.getCow_todo().get(i).getTodo().getTitle(), cowId));
                     }
+                    //eachHeader.setToDoItems(toDoItems);
+                    //toDoHeaders.add(eachHeader);
+                    toDoResponse.setToDoItems(toDoItems);
+                    parentListItems.add(toDoResponse);
                 }
+
+                List<String> cowId = new ArrayList<>();
+                cowId.add("1");
+                cowId.add("2");
+                cowId.add("3");
+
+                for ( ToDoHeader toDoHeader : toDoHeaders){
+                    List<ToDoItem> toDoItems = new ArrayList<>();
+                    for ( int i = 0 ; i < 5 ; i++){
+                        toDoItems.add(new ToDoItem("Item" + i, cowId));
+                    }
+                    toDoHeader.setToDoItems(toDoItems);
+                    parentListItems.add(toDoHeader);
+                }
+                adapter = new ListCowToDoAdapter(getContext(), parentListItems);
+                adapter.notifyDataSetChanged();
+                lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
+                lvToDo.setAdapter(adapter);
             }
 
             @Override
@@ -62,16 +86,15 @@ public class FragmentToDoList extends Fragment {
             }
         });
 
-        List<String> cowId = new ArrayList<>();
+        /*List<String> cowId = new ArrayList<>();
         cowId.add("1");
         cowId.add("2");
         cowId.add("3");
-
         for ( int i = 0 ; i< 5; i++){
             ToDoHeader eachHeader = new ToDoHeader("Header " + i);
             toDoHeaders.add(eachHeader);
         }
-        List<ParentListItem> parentListItems = new ArrayList<>();
+
         for ( ToDoHeader toDoHeader : toDoHeaders){
             List<ToDoItem> toDoItems = new ArrayList<>();
             for ( int i = 0 ; i < 5 ; i++){
@@ -80,8 +103,10 @@ public class FragmentToDoList extends Fragment {
             toDoHeader.setToDoItems(toDoItems);
             parentListItems.add(toDoHeader);
         }
+        adapter = new ListCowToDoAdapter(getContext(), parentListItems);
+        adapter.notifyDataSetChanged();
         lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
-        lvToDo.setAdapter(new ListCowToDoAdapter(getContext(), parentListItems));
+        lvToDo.setAdapter(adapter);*/
         return rootView;
     }
 }

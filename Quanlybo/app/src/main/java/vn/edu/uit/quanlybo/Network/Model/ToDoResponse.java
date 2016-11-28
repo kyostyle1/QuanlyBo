@@ -1,5 +1,6 @@
 package vn.edu.uit.quanlybo.Network.Model;
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.Type;
 
 /**
  * Created by PhucHuynh on 11/28/16.
  */
 
-public class ToDoResponse {
+public class ToDoResponse implements ParentListItem {
 
     @SerializedName("type")
     @Expose
@@ -27,6 +29,9 @@ public class ToDoResponse {
         this.type = type;
         this.cow_todo = cow_todo;
     }
+
+    private List<ToDoItem> toDoItems;
+
 
     public Type getType() {
         return type;
@@ -43,4 +48,19 @@ public class ToDoResponse {
     public void setCow_todo(List<CowToDo> cow_todo) {
         this.cow_todo = cow_todo;
     }
+
+    @Override
+    public List<ToDoItem> getChildItemList() {
+        return toDoItems;
+    }
+
+    @Override
+    public boolean isInitiallyExpanded() {
+        return false;
+    }
+
+    public void setToDoItems(List<ToDoItem> toDoItems) {
+        this.toDoItems = toDoItems;
+    }
+
 }
