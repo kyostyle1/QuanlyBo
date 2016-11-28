@@ -17,6 +17,7 @@ import java.util.List;
 import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListCowAdapter;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.R;
 
@@ -47,7 +48,7 @@ public class FragmentListCow extends Fragment{
     }
 
     private void addCow(){
-        CowService.getInstance().getListCow("24", new CowService.GetListCow() {
+        CowService.getInstance().getListCow(User.getInstance().getId(), new CowService.GetListCow() {
             @Override
             public void onSuccess(List<Cow> cowList) {
                 cows = cowList;

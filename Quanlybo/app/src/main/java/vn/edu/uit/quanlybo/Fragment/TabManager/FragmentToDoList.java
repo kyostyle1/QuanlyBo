@@ -42,7 +42,7 @@ public class FragmentToDoList extends Fragment {
 
         adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems);
 
-        ToDoService.getInstance().getToDoList("24", new ToDoService.ToDoCallBack() {
+        ToDoService.getInstance().getToDoList(User.getInstance().getId(), new ToDoService.ToDoCallBack() {
             @Override
             public void onSuccess(List<ToDoResponse> toDoResponseList) {
                 for ( ToDoResponse toDoResponse : toDoResponseList) {

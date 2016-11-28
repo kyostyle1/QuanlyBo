@@ -56,7 +56,7 @@ public class ToDoResponse implements ParentListItem {
 
     @Override
     public boolean isInitiallyExpanded() {
-        return false;
+        return true;
     }
 
     public void setToDoItems(List<CowToDo> toDoItems) {

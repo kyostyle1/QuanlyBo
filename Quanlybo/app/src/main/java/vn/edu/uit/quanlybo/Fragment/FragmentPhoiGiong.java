@@ -30,8 +30,6 @@ public class FragmentPhoiGiong extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_phoi_giong, container, false);
         cow_list = (ListView)rootView.findViewById(R.id.cow_list);
         phoigiong = (Button)rootView.findViewById(R.id.phoigiong);
-        Log.d("Id",String.valueOf( User.getInstance().getId()));
-        Log.d("Access-token", String.valueOf(User.getInstance().getAccess_token()));
         phoigiong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
