@@ -56,7 +56,7 @@ public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHea
         LibraryResponse libraryResponse = (LibraryResponse) childListItem;
        // childViewHolder.library_title.setText(libratyToDo.getLibraryType().ge);
       //  childViewHolder.library_desctiption.setText(libratyToDo.getTodo().getDescription());
-        childViewHolder.library_title.setText(libraryResponse.getContent());
+        childViewHolder.library_title.setText(libraryResponse.getTitle());
     }
 
     @Override
