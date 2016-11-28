@@ -73,9 +73,9 @@ public class LibraryService extends BaseService {
 
     // ------------------------ GET LIBRARY BY TYPE SERVICE----------------------------------
 
-    public void getLibraryByType(final GetLibraryByType getLibraryByType){
+    public void getLibraryByType(String typeId, final GetLibraryByType getLibraryByType){
         showProgressDialog();
-        Call<List<LibraryResponse>> call = quanLyBoAPI.getLibraryList();
+        Call<List<LibraryResponse>> call = quanLyBoAPI.getLibraryByType(typeId);
         call.enqueue(new Callback<List<LibraryResponse>>() {
             @Override
             public void onResponse(Call<List<LibraryResponse>> call, Response<List<LibraryResponse>> response) {

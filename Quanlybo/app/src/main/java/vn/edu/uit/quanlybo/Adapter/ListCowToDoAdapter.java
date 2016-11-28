@@ -32,7 +32,7 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
 
     public ListCowToDoAdapter(Activity activity,Context context, List<ParentListItem> itemList){
         super(itemList);
-        inflater = LayoutInflater.from(context);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
         this.activity = activity;
 

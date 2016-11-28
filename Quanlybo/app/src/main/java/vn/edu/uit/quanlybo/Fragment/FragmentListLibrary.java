@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
@@ -16,6 +17,10 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ListLibraryAdapter;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
+import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
+import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
+import vn.edu.uit.quanlybo.Model.User;
+import vn.edu.uit.quanlybo.Network.LibraryService;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.ToDoService;
 import vn.edu.uit.quanlybo.R;
@@ -26,20 +31,20 @@ import vn.edu.uit.quanlybo.R;
 
 public class FragmentListLibrary  extends Fragment {
 
-    private RecyclerView lvToDo;
+    private RecyclerView lvLibrary;
     private View rootView;
     private ListLibraryAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_library, container, false);
-        lvToDo = (RecyclerView)rootView.findViewById(R.id.list_library);
+        lvLibrary = (RecyclerView)rootView.findViewById(R.id.list_library);
         final List<ToDoHeader> toDoHeaders = new ArrayList<>();
         final List<ParentListItem> parentListItems = new ArrayList<>();
 
         adapter = new ListLibraryAdapter(getContext(), parentListItems);
 
-        ToDoService.getInstance().getToDoList("24", new ToDoService.ToDoCallBack() {
+        /*ToDoService.getInstance().getToDoList(User.getInstance().getId(), new ToDoService.ToDoCallBack() {
             @Override
             public void onSuccess(List<ToDoResponse> toDoResponseList) {
                 for ( ToDoResponse toDoResponse : toDoResponseList) {
@@ -56,6 +61,34 @@ public class FragmentListLibrary  extends Fragment {
             @Override
             public void onFailure(String errorCode) {
 
+            }
+        });*/
+        LibraryService.getInstance().getListTypeLibrary(new LibraryService.GetListTypeLibrary() {
+            @Override
+            public void onSuccess(List<LibraryType> libraryTypeList) {
+                for ( final LibraryType libraryType : libraryTypeList){
+                    LibraryService.getInstance().getLibraryByType(libraryType.getId(), new LibraryService.GetLibraryByType() {
+                        @Override
+                        public void onSuccess(List<LibraryResponse> libraryResponseList) {
+                            libraryType.setLibraryResponseList(libraryResponseList);
+                        }
+
+                        @Override
+                        public void onFailure(String errorCode) {
+
+                        }
+                    });
+                    parentListItems.add(libraryType);
+                    adapter = new ListLibraryAdapter(getContext(), parentListItems);
+                    adapter.notifyDataSetChanged();
+                    lvLibrary.setLayoutManager(new LinearLayoutManager(getContext()));
+                    lvLibrary.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(String errorCode) {
+                Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
             }
         });
 

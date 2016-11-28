@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LibraryResponse {
+
     @SerializedName("id")
     @Expose
     private String id;
