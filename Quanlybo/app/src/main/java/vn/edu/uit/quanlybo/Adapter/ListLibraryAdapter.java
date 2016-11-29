@@ -1,5 +1,6 @@
 package vn.edu.uit.quanlybo.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListLibraryHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListLibraryItemViewHolder;
+import vn.edu.uit.quanlybo.AlertDialog.LibraryDialog;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibratyToDo;
@@ -26,9 +28,11 @@ import vn.edu.uit.quanlybo.R;
 public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHeaderViewHolder, ListLibraryItemViewHolder> {
 
     private LayoutInflater inflater;
+    private Activity activity;
 
-    public ListLibraryAdapter(Context context, List<ParentListItem> itemList){
+    public ListLibraryAdapter(Activity activity, Context context, List<ParentListItem> itemList){
         super(itemList);
+        this.activity = activity;
         inflater = LayoutInflater.from(context);
     }
 
@@ -52,11 +56,17 @@ public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHea
 
     @Override
     public void onBindChildViewHolder(ListLibraryItemViewHolder childViewHolder, final int position, final Object childListItem) {
-        LibraryResponse libraryResponse = (LibraryResponse) childListItem;
+        final LibraryResponse libraryResponse = (LibraryResponse) childListItem;
         childViewHolder.library_title.setText(libraryResponse.getTitle());
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LibraryDialog libraryDialog = new LibraryDialog(activity);
+                libraryDialog.setTitle(libraryResponse.getTitle());
+                libraryDialog.setContent(libraryResponse.getContent());
+                libraryDialog.exit();
+                libraryDialog.show();
+
 
             }
         });

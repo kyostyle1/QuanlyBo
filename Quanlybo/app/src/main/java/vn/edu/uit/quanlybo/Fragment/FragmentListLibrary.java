@@ -50,7 +50,7 @@ public class FragmentListLibrary  extends Fragment {
                         public void onSuccess(List<LibraryResponse> libraryResponseList) {
                             libraryType.setLibraryResponseList(libraryResponseList);
                             parentListItems.add(libraryType);
-                            adapter = new ListLibraryAdapter(getContext(), parentListItems);
+                            adapter = new ListLibraryAdapter(getActivity(), getContext(), parentListItems);
                             adapter.notifyDataSetChanged();
                             lvLibrary.setLayoutManager(new LinearLayoutManager(getContext()));
                             lvLibrary.setAdapter(adapter);

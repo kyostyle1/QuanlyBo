@@ -71,7 +71,6 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(, "", Toast.LENGTH_SHORT).show();
                 ListToDoDialog listToDoDialog = new ListToDoDialog(activity);
                 listToDoDialog.setTitle(cowToDo.getToDo().getTitle());
                 listToDoDialog.setContent(cowToDo.getToDo().getContent());
