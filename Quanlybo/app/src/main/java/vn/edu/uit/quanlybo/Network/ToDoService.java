@@ -10,6 +10,8 @@ import retrofit2.Callback;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.Response;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginResponse;
 
@@ -68,6 +70,31 @@ public class ToDoService extends BaseService {
 
     public interface ToDoCallBack {
         void onSuccess(List<ToDoResponse> toDoResponseList);
+        void onFailure(String errorCode);
+
+    }
+
+
+    // ------------------------ POST TO DO STATUS SERVICE----------------------------------
+
+    public void postToDo(ToDoSuccessRequest toDoSuccessRequest, final PostToDoCallBack postToDoCallBack){
+        showProgressDialog();
+        Call<Response<ToDoSuccessResponse>> call = quanLyBoAPI.postStatusToDo(toDoSuccessRequest);
+        call.enqueue(new Callback<Response<ToDoSuccessResponse>>() {
+            @Override
+            public void onResponse(Call<Response<ToDoSuccessResponse>> call, retrofit2.Response<Response<ToDoSuccessResponse>> response) {
+                postToDoCallBack.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Response<ToDoSuccessResponse>> call, Throwable t) {
+                postToDoCallBack.onFailure("Faliure");
+            }
+        });
+    }
+
+    public interface PostToDoCallBack {
+        void onSuccess(Response<ToDoSuccessResponse> toDoSuccessResponseResponse);
         void onFailure(String errorCode);
 
     }

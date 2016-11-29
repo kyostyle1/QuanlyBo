@@ -9,6 +9,7 @@ import vn.edu.uit.quanlybo.Fragment.FragmentListCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentPhoiGiong;
 import vn.edu.uit.quanlybo.Fragment.FragmentSearchId;
 import vn.edu.uit.quanlybo.Fragment.FragmentSearchNFC;
+import vn.edu.uit.quanlybo.Fragment.FragmentSearchQrCode;
 
 /**
  * Created by phuc9 on 10/30/2016.
@@ -31,6 +32,9 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
             case 1:
                 fragment = new FragmentSearchNFC();
                 break;
+            case 2:
+                fragment = new FragmentSearchQrCode();
+                break;
             default:
                 fragment = new FragmentSearchId();
                 break;
@@ -40,7 +44,7 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -52,6 +56,9 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
                 break;
             case 1:
                 title="Search NFC";
+                break;
+            case 2:
+                title="Search QR";
                 break;
         }
 

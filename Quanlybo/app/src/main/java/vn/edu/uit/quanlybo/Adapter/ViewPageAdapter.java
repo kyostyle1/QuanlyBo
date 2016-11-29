@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import vn.edu.uit.quanlybo.Fragment.FragmentCreateCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentListCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentPhoiGiong;
+import vn.edu.uit.quanlybo.Fragment.RootFragment;
 
 /**
  * Created by phuc9 on 10/25/2016.
@@ -22,7 +23,7 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new FragmentCreateCow();
+                fragment = new RootFragment();
                 break;
             case 1:
                 fragment = new FragmentListCow();

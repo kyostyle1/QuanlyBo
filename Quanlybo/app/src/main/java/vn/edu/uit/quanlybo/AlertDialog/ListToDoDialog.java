@@ -3,6 +3,7 @@ package vn.edu.uit.quanlybo.AlertDialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,10 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CheckListAdapter;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowStatus;
+import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
+import vn.edu.uit.quanlybo.Network.ToDoService;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -28,6 +33,10 @@ public class ListToDoDialog {
     private Activity activity;
     private View contextView;
     private OnCloseCallback onCloseCallback;
+    CheckListAdapter adapter;
+    List<CowStatus> cowStatusList;
+    ListView lv;
+    private String todoId;
 
     public ListToDoDialog(Activity atv){
         this.activity = atv;
@@ -56,6 +65,29 @@ public class ListToDoDialog {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for( int i =0 ; i < adapter.getCount(); i ++){
+                    if ( adapter.getItem(i).getSuccess().equals("yes") ){
+                        ToDoSuccessRequest toDoSuccessRequest = new ToDoSuccessRequest(
+                                String.valueOf(adapter.getItem(i).getId()),
+                                String.valueOf(adapter.getItem(i).getDay_old()),
+                                todoId,
+                                adapter.getItem(i).getSuccess()
+                                );
+
+                        ToDoService.getInstance().postToDo(toDoSuccessRequest, new ToDoService.PostToDoCallBack() {
+                            @Override
+                            public void onSuccess(Response<ToDoSuccessResponse> toDoSuccessResponseResponse) {
+                                Log.d("Success", "success");
+                            }
+
+                            @Override
+                            public void onFailure(String errorCode) {
+                                Log.d("Falire", errorCode);
+                            }
+                        });
+
+                    }
+                }
                 Toast.makeText(activity, "OK", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
@@ -95,9 +127,15 @@ public class ListToDoDialog {
     }
 
     public ListToDoDialog setListCheck(List<CowStatus> cowStatus){
-        ListView lv = (ListView)contextView.findViewById(R.id.checkListToDo);
-        CheckListAdapter adapter = new CheckListAdapter(activity.getBaseContext(), R.layout.check_list_item, cowStatus);
+        cowStatusList = cowStatus;
+        lv = (ListView)contextView.findViewById(R.id.checkListToDo);
+        adapter = new CheckListAdapter(activity.getBaseContext(), R.layout.check_list_item, cowStatus);
         lv.setAdapter(adapter);
+        return this;
+    }
+
+    public ListToDoDialog setToDoId(String id){
+        todoId = id;
         return this;
     }
 

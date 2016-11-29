@@ -154,6 +154,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
+                    android:id="@+id/father_id"
                     android:maxLines="1"
                     android:inputType="number"
                     android:layout_span="2" />
@@ -162,6 +163,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:id="@+id/mother_id"
                     android:inputType="number"
                     android:layout_column="2"
                     android:layout_span="2" />
@@ -203,7 +205,9 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:maxLines="1"
-                    android:layout_span="3" />
+                    android:lines="1"
+                    android:layout_span="3"
+                    android:id="@+id/qrId" />
             </TableRow>
 
             <TableRow
@@ -230,6 +234,7 @@
                         <EditText
                             android:id="@+id/nfcId"
                             android:layout_column="0"
+                            android:lines="1"
                             android:maxLines="1"
                             android:layout_span="4">
                         </EditText>
@@ -252,6 +257,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:id="@+id/btn_create"
                     android:text="Thêm Bò"
                     android:layout_span="4" />
             </TableRow>

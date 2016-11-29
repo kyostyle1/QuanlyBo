@@ -2,6 +2,7 @@ package vn.edu.uit.quanlybo.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,12 @@ public class CowDetailToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoH
     @Override
     public void onBindChildViewHolder(CowDetailToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
         final ToDoDetail toDoDetail = (ToDoDetail)childListItem;
-        childViewHolder.content.setText(toDoDetail.getContent());
+        if ( toDoDetail.getSuccess().equals("yes")) {
+            childViewHolder.content.setText(toDoDetail.getContent());
+            childViewHolder.content.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }else {
+            childViewHolder.content.setText(toDoDetail.getContent());
+        }
 
     }
 

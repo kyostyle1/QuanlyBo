@@ -38,7 +38,7 @@ public class CheckListAdapter extends ArrayAdapter<CowStatus> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CowStatus cowStatus = cowStatuses.get(position);
+        final CowStatus cowStatus = cowStatuses.get(position);
         CheckViewHolder checkViewHolder = null;
         if ( convertView == null){
             LayoutInflater inflater = LayoutInflater.from(context);
@@ -47,11 +47,17 @@ public class CheckListAdapter extends ArrayAdapter<CowStatus> {
             checkViewHolder.checkBoxItem = ( CheckBox ) convertView.findViewById(R.id.checkBoxItem);
             checkViewHolder.cowNameId = (TextView) convertView.findViewById(R.id.cow_name_id);
             convertView.setTag(checkViewHolder);
-            checkViewHolder.cowNameId.setOnClickListener(new View.OnClickListener() {
+            if ( cowStatus.getSuccess().equals("yes") ){
+                checkViewHolder.checkBoxItem.setChecked(true);
+                checkViewHolder.checkBoxItem.setEnabled(false);
+            }
+            else {
+                checkViewHolder.checkBoxItem.setChecked(false);
+            }
+            checkViewHolder.checkBoxItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     CheckBox cb = (CheckBox) view;
-                    CowStatus cowStatus = (CowStatus) cb.getTag();
                     if ( cb.isChecked() ){
                         cowStatus.setSuccess("yes");
                     }else{

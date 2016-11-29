@@ -76,6 +76,7 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
                 listToDoDialog.setTitle(cowToDo.getToDo().getTitle());
                 listToDoDialog.setContent(cowToDo.getToDo().getContent());
                 listToDoDialog.confirm();
+                listToDoDialog.setToDoId(cowToDo.getToDo().getId());
                 listToDoDialog.setListCheck(cowToDo.getCow());
                 listToDoDialog.show();
             }

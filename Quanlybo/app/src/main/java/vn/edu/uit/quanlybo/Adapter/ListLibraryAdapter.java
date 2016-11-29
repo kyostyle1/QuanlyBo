@@ -52,11 +52,14 @@ public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHea
 
     @Override
     public void onBindChildViewHolder(ListLibraryItemViewHolder childViewHolder, final int position, final Object childListItem) {
-        //ToDoItem toDoItem = (ToDoItem)childListItem;
         LibraryResponse libraryResponse = (LibraryResponse) childListItem;
-       // childViewHolder.library_title.setText(libratyToDo.getLibraryType().ge);
-      //  childViewHolder.library_desctiption.setText(libratyToDo.getTodo().getDescription());
         childViewHolder.library_title.setText(libraryResponse.getTitle());
+        childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
