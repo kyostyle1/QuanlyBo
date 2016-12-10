@@ -11,6 +11,8 @@ import retrofit2.http.Query;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
+import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
+import vn.edu.uit.quanlybo.Model.Market.SellCow;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowTypeResponse;
@@ -92,5 +94,10 @@ public interface QuanLyBoAPI {
     @GET("cow/check")
     Call<CowCheckResponse> checkCow(@Query("cow_1st") String cow_1st
             , @Query("cow_2nd") String cow_2nd);
-}
 
+    @POST("market")
+    Call<Response<SellCow>> postCowSell(@Body SellCow sellCow);
+
+    @GET("market")
+    Call<Response<List<BuyCowReponse>>> getListBuyCow();
+}

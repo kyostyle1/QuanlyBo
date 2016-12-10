@@ -1,0 +1,86 @@
+package vn.edu.uit.quanlybo.Model.Market;
+
+import java.util.Date;
+
+/**
+ * Created by Jackson Nghi on 12/10/2016.
+ */
+
+public class BuyCowReponse {
+    private String Id;
+    private String title;
+    private String location;
+    private int price;
+    private String cow_type;
+    private String cow_gender;
+    private String date_created;
+
+    public BuyCowReponse(String id, String title, String location, int price, String cow_type, String cow_gender, String date_created) {
+        Id = id;
+        this.title = title;
+        this.location = location;
+        this.price = price;
+        this.cow_type = cow_type;
+        this.cow_gender = cow_gender;
+        this.date_created = date_created;
+    }
+
+    public BuyCowReponse() {
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getCow_type() {
+        return cow_type;
+    }
+
+    public void setCow_type(String cow_type) {
+        this.cow_type = cow_type;
+    }
+
+    public String getCow_gender() {
+        return cow_gender;
+    }
+
+    public void setCow_gender(String cow_gender) {
+        this.cow_gender = cow_gender;
+    }
+
+    public String getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(String date_created) {
+        this.date_created = date_created;
+    }
+}

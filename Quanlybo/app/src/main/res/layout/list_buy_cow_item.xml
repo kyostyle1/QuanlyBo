@@ -3,4 +3,74 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:stretchColumns="*"
+        android:paddingBottom="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:stretchColumns="*"
+                android:layout_span="5">
+
+                <TableRow>
+                    <TextView
+                        android:text="Title"
+                        android:textSize="20dp"
+                        android:id="@+id/buy_cow_title" />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Cow Type"
+                        android:layout_span="2"
+                        android:id="@+id/buy_cow_type" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Cow Type"
+                        android:layout_span="2"
+                        android:id="@+id/buy_cow_gender" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Name"
+                        android:layout_span="2"
+                        android:id="@+id/sell_name" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Locatin"
+                        android:layout_span="2"
+                        android:id="@+id/sell_location" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Price"
+                        android:layout_span="2"
+                        android:id="@+id/sell_cow_price" />
+                </TableRow>
+            </TableLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:text="2016"
+                android:textSize="15sp"
+                android:id="@+id/sell_date" />
+        </TableRow>
+
+    </TableLayout>
 </LinearLayout>

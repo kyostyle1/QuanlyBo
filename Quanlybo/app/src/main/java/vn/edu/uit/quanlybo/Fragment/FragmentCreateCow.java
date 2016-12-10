@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,6 +173,7 @@ public class FragmentCreateCow extends Fragment {
         createCow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String fatherId;
                 if ( father.getText().toString() != null) {
                     fatherId = father.getText().toString();
@@ -210,7 +212,7 @@ public class FragmentCreateCow extends Fragment {
                         Integer.valueOf(User.getInstance().getId()),
                         Integer.valueOf(fatherId),
                         Integer.valueOf(motherId),
-                        Integer.valueOf(String.valueOf(cow_type_spinner.getSelectedItemId())),
+                        Integer.valueOf(String.valueOf(cow_type_spinner.getSelectedItemId()+1)),
                         nfc,
                         qr,
                         gender,
@@ -221,6 +223,7 @@ public class FragmentCreateCow extends Fragment {
                 CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
                     @Override
                     public void onSuccess() {
+
                         FragmentTransaction trans = getFragmentManager()
                                 .beginTransaction();
                         trans.replace(R.id.root_frame, new FragmentListCow());
@@ -231,6 +234,7 @@ public class FragmentCreateCow extends Fragment {
 
                     @Override
                     public void onFailure(String errorCode) {
+                        Log.d("Error",errorCode);
                         Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
                     }
                 });
