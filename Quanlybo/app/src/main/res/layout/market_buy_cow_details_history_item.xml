@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:stretchColumns="*"
+        android:paddingBottom="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:stretchColumns="*"
+                android:layout_span="5">
+
+                <TableRow>
+                    <TextView
+                        android:text="Id"
+                        android:textSize="20dp"
+                        android:id="@+id/details_history_buy_cow_id" />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Title"
+                        android:layout_span="2"
+                        android:id="@+id/details_history_buy_cow_title" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Desription"
+                        android:layout_span="2"
+                        android:textDirection="firstStrong"
+                        android:id="@+id/details_history_buy_cow_description" />
+                </TableRow>
+
+            </TableLayout>
+
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

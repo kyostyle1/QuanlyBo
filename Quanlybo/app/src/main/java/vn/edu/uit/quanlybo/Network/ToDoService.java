@@ -1,19 +1,15 @@
 package vn.edu.uit.quanlybo.Network;
 
 import android.app.Activity;
-import android.util.Log;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
-import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
-import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
-import vn.edu.uit.quanlybo.Network.Model.UserLoginResponse;
 
 /**
  * Created by PhucHuynh on 11/28/16.
@@ -79,22 +75,22 @@ public class ToDoService extends BaseService {
 
     public void postToDo(ToDoSuccessRequest toDoSuccessRequest, final PostToDoCallBack postToDoCallBack){
         showProgressDialog();
-        Call<Response<ToDoSuccessResponse>> call = quanLyBoAPI.postStatusToDo(toDoSuccessRequest);
-        call.enqueue(new Callback<Response<ToDoSuccessResponse>>() {
+        Call<BaseResponse<ToDoSuccessResponse>> call = quanLyBoAPI.postStatusToDo(toDoSuccessRequest);
+        call.enqueue(new Callback<BaseResponse<ToDoSuccessResponse>>() {
             @Override
-            public void onResponse(Call<Response<ToDoSuccessResponse>> call, retrofit2.Response<Response<ToDoSuccessResponse>> response) {
+            public void onResponse(Call<BaseResponse<ToDoSuccessResponse>> call, retrofit2.Response<BaseResponse<ToDoSuccessResponse>> response) {
                 postToDoCallBack.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<Response<ToDoSuccessResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<ToDoSuccessResponse>> call, Throwable t) {
                 postToDoCallBack.onFailure("Faliure");
             }
         });
     }
 
     public interface PostToDoCallBack {
-        void onSuccess(Response<ToDoSuccessResponse> toDoSuccessResponseResponse);
+        void onSuccess(BaseResponse<ToDoSuccessResponse> toDoSuccessResponseBaseResponse);
         void onFailure(String errorCode);
 
     }

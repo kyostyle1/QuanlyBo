@@ -5,8 +5,7 @@ import android.util.Log;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserRegisterRequest;
@@ -46,10 +45,10 @@ public class UserService extends BaseService {
     public void userLogin(String username, String password, final GetUserCallBack getUserCallBack){
         showProgressDialog();
         final UserLoginRequest request = new UserLoginRequest(username, password);
-        Call<Response<UserLoginResponse>> call = quanLyBoAPI.getUserLogin(request);
-        call.enqueue(new Callback<Response<UserLoginResponse>>() {
+        Call<BaseResponse<UserLoginResponse>> call = quanLyBoAPI.getUserLogin(request);
+        call.enqueue(new Callback<BaseResponse<UserLoginResponse>>() {
             @Override
-            public void onResponse(Call<Response<UserLoginResponse>> call, retrofit2.Response<Response<UserLoginResponse>> response) {
+            public void onResponse(Call<BaseResponse<UserLoginResponse>> call, retrofit2.Response<BaseResponse<UserLoginResponse>> response) {
                 if (response.isSuccessful()){
                     if (!response.body().getSuccess()){
                         getUserCallBack.onFailure(response.body().getMessage());
@@ -63,7 +62,7 @@ public class UserService extends BaseService {
             }
 
             @Override
-            public void onFailure(Call<Response<UserLoginResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<UserLoginResponse>> call, Throwable t) {
                 getUserCallBack.onFailure("");
             }
         });
@@ -82,10 +81,10 @@ public class UserService extends BaseService {
     public void registerUser(String username, String password, String email, String phone, String address, String name, final RegisterUserCallBack registerUserCallBack){
         showProgressDialog();
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,password,email,phone,address,name);
-        Call<Response<UserRegisterResponse>> call = quanLyBoAPI.registerUser(userRegisterRequest);
-        call.enqueue(new Callback<Response<UserRegisterResponse>>() {
+        Call<BaseResponse<UserRegisterResponse>> call = quanLyBoAPI.registerUser(userRegisterRequest);
+        call.enqueue(new Callback<BaseResponse<UserRegisterResponse>>() {
             @Override
-            public void onResponse(Call<Response<UserRegisterResponse>> call, retrofit2.Response<Response<UserRegisterResponse>> response) {
+            public void onResponse(Call<BaseResponse<UserRegisterResponse>> call, retrofit2.Response<BaseResponse<UserRegisterResponse>> response) {
                 if ( response.isSuccessful()){
                     if( !response.body().getSuccess()){
                         registerUserCallBack.onFailure(response.body().getMessage());
@@ -97,7 +96,7 @@ public class UserService extends BaseService {
             }
 
             @Override
-            public void onFailure(Call<Response<UserRegisterResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<UserRegisterResponse>> call, Throwable t) {
                 registerUserCallBack.onFailure("");
             }
         });

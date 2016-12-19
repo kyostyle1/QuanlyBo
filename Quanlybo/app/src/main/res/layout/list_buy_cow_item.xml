@@ -23,7 +23,13 @@
                 android:layout_column="0"
                 android:stretchColumns="*"
                 android:layout_span="5">
+                <TableRow>
+                    <TextView
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:id="@+id/buy_cow_id" />
 
+                </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Title"

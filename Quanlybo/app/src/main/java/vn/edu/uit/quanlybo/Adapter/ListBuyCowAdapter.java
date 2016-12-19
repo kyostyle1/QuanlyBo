@@ -32,6 +32,7 @@ public BuyCowReponse getItem(int position) {
 
 static class ViewHolder {
     TextView title;
+    TextView id;
     TextView location;
     TextView price;
     TextView cow_type;
@@ -47,6 +48,7 @@ static class ViewHolder {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_buy_cow_item, parent, false);
             holder = new ListBuyCowAdapter.ViewHolder();
+            holder.id = (TextView) convertView.findViewById(R.id.buy_cow_id);
             holder.title = (TextView) convertView.findViewById(R.id.buy_cow_title);
             holder.location = (TextView) convertView.findViewById(R.id.sell_location);
             holder.price = (TextView) convertView.findViewById(R.id.sell_cow_price);
@@ -57,7 +59,7 @@ static class ViewHolder {
         }else {
             holder = (ListBuyCowAdapter.ViewHolder)convertView.getTag();
         }
-
+        holder.id.setText(buyCowReponse.getId());
         holder.title.setText(buyCowReponse.getTitle());
         holder.location.setText("Địa chỉ: " + buyCowReponse.getLocation());
         holder.price.setText("Giá: " + String.valueOf(buyCowReponse.getPrice()));

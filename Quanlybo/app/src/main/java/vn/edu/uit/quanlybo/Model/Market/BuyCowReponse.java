@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class BuyCowReponse {
-    private String Id;
+    private String id;
     private String title;
     private String location;
     private int price;
@@ -16,7 +16,7 @@ public class BuyCowReponse {
     private String date_created;
 
     public BuyCowReponse(String id, String title, String location, int price, String cow_type, String cow_gender, String date_created) {
-        Id = id;
+        this.id = id;
         this.title = title;
         this.location = location;
         this.price = price;
@@ -29,11 +29,11 @@ public class BuyCowReponse {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getTitle() {

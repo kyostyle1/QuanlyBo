@@ -1,7 +1,6 @@
 package vn.edu.uit.quanlybo.Network;
 
 import android.app.Activity;
-import android.util.Log;
 
 import java.util.List;
 
@@ -9,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowTypeResponse;
@@ -160,15 +160,15 @@ public class CowService extends BaseService{
 
     public void createCow(CreateCowRequest createCowRequest, final CreateCowCallBack createCowCallBack){
         showProgressDialog();
-        Call<vn.edu.uit.quanlybo.Network.Model.Response<NoData>> call = quanLyBoAPI.createCow(createCowRequest);
-        call.enqueue(new Callback<vn.edu.uit.quanlybo.Network.Model.Response<NoData>>() {
+        Call<BaseResponse<NoData>> call = quanLyBoAPI.createCow(createCowRequest);
+        call.enqueue(new Callback<BaseResponse<NoData>>() {
             @Override
-            public void onResponse(Call<vn.edu.uit.quanlybo.Network.Model.Response<NoData>> call, Response<vn.edu.uit.quanlybo.Network.Model.Response<NoData>> response) {
+            public void onResponse(Call<BaseResponse<NoData>> call, Response<BaseResponse<NoData>> response) {
                 createCowCallBack.onSuccess();
             }
 
             @Override
-            public void onFailure(Call<vn.edu.uit.quanlybo.Network.Model.Response<NoData>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<NoData>> call, Throwable t) {
                 createCowCallBack.onFailure("Failure");
             }
         });

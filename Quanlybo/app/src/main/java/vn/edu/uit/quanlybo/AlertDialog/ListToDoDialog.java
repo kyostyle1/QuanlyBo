@@ -2,13 +2,11 @@ package vn.edu.uit.quanlybo.AlertDialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +16,7 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CheckListAdapter;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowStatus;
-import vn.edu.uit.quanlybo.Network.Model.Response;
+import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
 import vn.edu.uit.quanlybo.Network.ToDoService;
@@ -76,7 +74,7 @@ public class ListToDoDialog {
 
                         ToDoService.getInstance().postToDo(toDoSuccessRequest, new ToDoService.PostToDoCallBack() {
                             @Override
-                            public void onSuccess(Response<ToDoSuccessResponse> toDoSuccessResponseResponse) {
+                            public void onSuccess(BaseResponse<ToDoSuccessResponse> toDoSuccessResponseBaseResponse) {
                                 Log.d("Success", "success");
                             }
 

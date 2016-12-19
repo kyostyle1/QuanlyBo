@@ -41,7 +41,7 @@ public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCall
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_search_nfc, container, false);
-        Fragment fragment = new FragmentSellCows();
+       /* Fragment fragment = new FragmentSellCows();
         Bundle bundle = new Bundle();
         bundle.putString("cow_id", "40");
         fragment.setArguments(bundle);
@@ -49,7 +49,7 @@ public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCall
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(container.getId(), fragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
         addCow();
         if (rootView != null) {
             text_nfc = (TextView) rootView.findViewById(R.id.text_nfc);
@@ -117,6 +117,7 @@ public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCall
             @Override
             public void run() {
                 text_nfc.setText(id);
+                Log.d("NFCA",id);
                 int checkId = checkCowInList(String.valueOf(id));
                 if(checkId!=-1){
                     Cow itemCow = cows.get(checkId);

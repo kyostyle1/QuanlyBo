@@ -4,7 +4,7 @@ package vn.edu.uit.quanlybo.Network.Model;
  * Created by phuc9 on 11/14/2016.
  */
 
-public class Response<T> {
+public class BaseResponse<T> {
     private Boolean success;
     private String message;
     private T data;

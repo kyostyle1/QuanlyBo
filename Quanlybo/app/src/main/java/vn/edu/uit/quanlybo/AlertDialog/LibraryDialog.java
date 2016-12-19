@@ -2,24 +2,14 @@ package vn.edu.uit.quanlybo.AlertDialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CheckListAdapter;
-import vn.edu.uit.quanlybo.Model.ListCowToDo.CowStatus;
-import vn.edu.uit.quanlybo.Network.Model.Response;
-import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
-import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
-import vn.edu.uit.quanlybo.Network.ToDoService;
 import vn.edu.uit.quanlybo.R;
 
 /**

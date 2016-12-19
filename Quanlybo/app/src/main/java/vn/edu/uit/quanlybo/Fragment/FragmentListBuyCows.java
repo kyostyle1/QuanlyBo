@@ -3,6 +3,8 @@ package vn.edu.uit.quanlybo.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +16,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListBuyCowAdapter;
-import vn.edu.uit.quanlybo.Adapter.ListCowAdapter;
-import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
-import vn.edu.uit.quanlybo.Model.User;
-import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.MartketService;
-import vn.edu.uit.quanlybo.Network.Model.Response;
 import vn.edu.uit.quanlybo.R;
-
-import static vn.edu.uit.quanlybo.R.id.cow_list;
 
 /**
  * Created by Jackson Nghi on 12/5/2016.
@@ -37,7 +31,7 @@ public class FragmentListBuyCows extends Fragment {
     List<BuyCowReponse> buyCowReponses = new ArrayList<>();
     ListView buy_cow_list;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_list_buy_cows, container, false);
         buy_cow_list = (ListView)rootView.findViewById(R.id.buy_cow_list);
         addCow();
@@ -46,10 +40,17 @@ public class FragmentListBuyCows extends Fragment {
         buy_cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Cow itemCow = cows.get(position);
-                Intent intent = new Intent(getContext(), CowDetailActivity.class);
-                intent.putExtra("cow_id", itemCow.getId());
-                startActivity(intent);*/
+                BuyCowReponse itemBuyCow = buyCowReponses.get(position);
+                Fragment fragment = new FragmentDetailsBuyCow();
+                Bundle bundle = new Bundle();
+                bundle.putString("marketId", itemBuyCow.getId());
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(container.getId(), fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
         return rootView;

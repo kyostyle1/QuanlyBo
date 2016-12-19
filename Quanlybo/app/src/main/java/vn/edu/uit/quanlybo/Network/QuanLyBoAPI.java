@@ -12,13 +12,15 @@ import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
+import vn.edu.uit.quanlybo.Model.Market.CodeOTP;
+import vn.edu.uit.quanlybo.Model.Market.DetailsBuyCows;
 import vn.edu.uit.quanlybo.Model.Market.SellCow;
+import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowTypeResponse;
 import vn.edu.uit.quanlybo.Network.Model.CreateCowRequest;
 import vn.edu.uit.quanlybo.Network.Model.NoData;
-import vn.edu.uit.quanlybo.Network.Model.Response;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
@@ -34,18 +36,18 @@ import vn.edu.uit.quanlybo.Respone.ListCowResponse;
 public interface QuanLyBoAPI {
 
     @POST("login")
-    Call<Response<UserLoginResponse>> getUserLogin(
+    Call<BaseResponse<UserLoginResponse>> getUserLogin(
             @Body UserLoginRequest userLoginRequest);
 
     @POST("register")
-    Call<Response<UserRegisterResponse>> registerUser(
+    Call<BaseResponse<UserRegisterResponse>> registerUser(
             @Body UserRegisterRequest userRegisterRequest);
 
     @GET("cow-type")
     Call<List<CowTypeResponse>> getCowType();
 
     @POST("cow")
-    Call<Response<NoData>> createCow(@Body CreateCowRequest createCowRequest);
+    Call<BaseResponse<NoData>> createCow(@Body CreateCowRequest createCowRequest);
 
     @GET("cow/search")
     Call<ListCowResponse> getListCow(@Query("userId") String userId,
@@ -89,15 +91,19 @@ public interface QuanLyBoAPI {
     Call<List<LibraryType>> getTypeLibrary();
 
     @POST("cow/todo/success")
-    Call<Response<ToDoSuccessResponse>> postStatusToDo(@Body ToDoSuccessRequest toDoSuccessRequest);
+    Call<BaseResponse<ToDoSuccessResponse>> postStatusToDo(@Body ToDoSuccessRequest toDoSuccessRequest);
 
     @GET("cow/check")
     Call<CowCheckResponse> checkCow(@Query("cow_1st") String cow_1st
             , @Query("cow_2nd") String cow_2nd);
 
     @POST("market")
-    Call<Response<SellCow>> postCowSell(@Body SellCow sellCow);
+    Call<BaseResponse<SellCow>> postCowSell(@Body SellCow sellCow);
 
     @GET("market")
-    Call<Response<List<BuyCowReponse>>> getListBuyCow();
+    Call<BaseResponse<List<BuyCowReponse>>> getListBuyCow();
+    @GET("market/{marketId}")
+    Call<BaseResponse<DetailsBuyCows>> getDetailBuyCow(@Path("marketId") String marketId);
+    @GET("market/opt/{optCode}")
+    Call<BaseResponse<CodeOTP>> getCodeOtp(@Path("optCode") String optCode);
 }
