@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Network;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import retrofit2.Response;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
 import vn.edu.uit.quanlybo.Model.Market.CodeOTP;
 import vn.edu.uit.quanlybo.Model.Market.DetailsBuyCows;
+import vn.edu.uit.quanlybo.Model.Market.RequestCodeOTP;
 import vn.edu.uit.quanlybo.Model.Market.SellCow;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 
@@ -66,6 +68,33 @@ public class MartketService extends BaseService {
         void onSuccess(SellCow sellCow);
         void onFailure(String errorCode);
 
+    }
+    public void postBuyCodeOtp(String marketId,RequestCodeOTP requestCodeOTP, final  PostCodeOtp postCodeOtp){
+        showProgressDialog();
+        Call<BaseResponse<Boolean>> call = quanLyBoAPI.postCodeOtp(marketId,requestCodeOTP);
+        call.enqueue(new Callback<BaseResponse<Boolean>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Boolean>> call, Response<BaseResponse<Boolean>> response) {
+                if ( response.isSuccessful()){
+                    if( !response.body().getSuccess()){
+                        postCodeOtp.onFailure(response.body().getMessage());
+                    }
+                    else {
+                        postCodeOtp.onSuccess(response.body().getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Boolean>> call, Throwable t) {
+
+            }
+        });
+
+    }
+    public  interface PostCodeOtp{
+        void onSuccess(String success);
+        void onFailure(String errorCode);
     }
     public void getListBuyCow(final GetListBuyCow getListBuyCow){
         showProgressDialog();

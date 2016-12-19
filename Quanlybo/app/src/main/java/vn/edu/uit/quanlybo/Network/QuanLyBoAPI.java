@@ -14,6 +14,7 @@ import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
 import vn.edu.uit.quanlybo.Model.Market.CodeOTP;
 import vn.edu.uit.quanlybo.Model.Market.DetailsBuyCows;
+import vn.edu.uit.quanlybo.Model.Market.RequestCodeOTP;
 import vn.edu.uit.quanlybo.Model.Market.SellCow;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
@@ -104,6 +105,8 @@ public interface QuanLyBoAPI {
     Call<BaseResponse<List<BuyCowReponse>>> getListBuyCow();
     @GET("market/{marketId}")
     Call<BaseResponse<DetailsBuyCows>> getDetailBuyCow(@Path("marketId") String marketId);
-    @GET("market/opt/{optCode}")
+    @GET("market/otp/{optCode}")
     Call<BaseResponse<CodeOTP>> getCodeOtp(@Path("optCode") String optCode);
+    @POST("market/otp/{marketId}")
+    Call<BaseResponse<Boolean>> postCodeOtp(@Path("marketId") String marketId,@Body RequestCodeOTP requestCodeOTP);
 }

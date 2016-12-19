@@ -3,13 +3,16 @@ package vn.edu.uit.quanlybo.AlertDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Editable;
+import android.widget.EditText;
 
 /**
  * Created by Jackson Nghi on 11/26/2016.
  */
 
 public  final  class AlertDialogInfo {
-    public AlertDialog alertDialog(String infoAlert, Activity activity){
+    public AlertDialog alertDialog(String infoAlert, Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Thiết lập tiêu đề hiển thị
         builder.setTitle("Thông báo");
@@ -21,4 +24,6 @@ public  final  class AlertDialogInfo {
         AlertDialog dialog = builder.create();
         return dialog;
     }
+
+
 }

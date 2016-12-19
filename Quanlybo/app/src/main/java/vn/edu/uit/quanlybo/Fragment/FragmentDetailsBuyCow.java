@@ -1,14 +1,21 @@
 package vn.edu.uit.quanlybo.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.print.PrintAttributes;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -22,8 +29,10 @@ import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
 import vn.edu.uit.quanlybo.Model.Market.CodeOTP;
 import vn.edu.uit.quanlybo.Model.Market.DetailsBuyCows;
 import vn.edu.uit.quanlybo.Model.Market.History_Cow;
+import vn.edu.uit.quanlybo.Model.Market.RequestCodeOTP;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.MartketService;
+import vn.edu.uit.quanlybo.Network.UserService;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -98,6 +107,52 @@ public class FragmentDetailsBuyCow extends Fragment {
         }
         return false;
     }
+    protected void alertDialogInputEditText(){
+        final EditText edittext = new EditText(getActivity());
+        edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setMessage("Enter Code OTP");
+        alert.setTitle("Thông báo");
+
+        alert.setView(edittext);
+
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String YouEditTextValue = edittext.getText().toString();
+                String id_user_buy = User.getInstance().getId();
+                RequestCodeOTP requestCodeOTP = new RequestCodeOTP(id_user_buy,Integer.valueOf(YouEditTextValue));
+                MartketService.getInstance().postBuyCodeOtp(buyCows.getId(),requestCodeOTP, new MartketService.PostCodeOtp() {
+                    @Override
+                    public void onSuccess(String success) {
+                        AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                        alertDialogInfo.alertDialog(success,getActivity()).show();
+                        Fragment fragment = new FragmentListBuyCows();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(getView().getId(), fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+
+                    @Override
+                    public void onFailure(String errorCode) {
+                        AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                        alertDialogInfo.alertDialog(errorCode,getActivity()).show();
+                    }
+                });
+
+
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+            }
+        });
+
+        alert.show();
+    }
     protected  void addDetailsBuyCow(final DetailsBuyCows detailsBuyCows){
 
 
@@ -135,14 +190,14 @@ public class FragmentDetailsBuyCow extends Fragment {
         cow_target_name.setText("Cow Target: " + detailsBuyCows.getCow_target_name());
         cow_birthday.setText("Cow Birthday: " + detailsBuyCows.getCow_birthday());
         cow_day_on.setText("Cow day on: " + detailsBuyCows.getCow_day_old());
-       /* if(isUserOwnedCow()){
+       if(isUserOwnedCow()){
             btnBuy.setEnabled(false);
             btnOtp.setEnabled(true);
         }
         else {
             btnBuy.setEnabled(true);
             btnOtp.setEnabled(false);
-        }*/
+        }
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,19 +237,26 @@ public class FragmentDetailsBuyCow extends Fragment {
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    alertDialogInputEditText();
+
+            }
+        });
+        btnOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 MartketService.getInstance().getCodeOtp(buyCows.getId(), new MartketService.GetCodeOtp() {
                     @Override
                     public void onSuccess(CodeOTP codeOTP) {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
-                        alertDialogInfo.alertDialog(String.valueOf(codeOTP.getOtp()),getActivity());
+                        alertDialogInfo.alertDialog("Mã OTP: "+String.valueOf(codeOTP.getOtp()),getActivity()).show();
                     }
 
                     @Override
                     public void onFailure(String errorCode) {
-
+                        AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                        alertDialogInfo.alertDialog("Lỗi: "+errorCode,getActivity()).show();
                     }
                 });
-
             }
         });
     }
