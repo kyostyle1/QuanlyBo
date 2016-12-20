@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.AlertDialog.LibraryDialog;
+import vn.edu.uit.quanlybo.LoyaltyCardReader;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
@@ -27,61 +28,52 @@ import vn.edu.uit.quanlybo.Service.NfcCardReader;
  * Created by Jackson Nghi on 12/10/2016.
  */
 
-public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCallback {
-    private View rootView;
+public class FragmentChooseCow extends Fragment implements LoyaltyCardReader.AccountCallback {
+
     public static final String TAG = "CardReaderFragment";
-    private TextView text_nfc;
-    public static int READER_FLAGS =  NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
-    public NfcCardReader mNfcCardReader;
-    List<Cow> cows = new ArrayList<>();
+    // Recommend NfcAdapter flags for reading from other Android devices. Indicates that this
+    // activity is interested in NFC-A devices (including other Android devices), and that the
+    // system should not check for the presence of NDEF-formatted data (e.g. Android Beam).
+    public static int READER_FLAGS =
+            NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
+    public LoyaltyCardReader mLoyaltyCardReader;
+    private TextView mAccountField;
+
+    /** Called when sample is created. Displays generic UI with welcome text. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_search_nfc, container, false);
-       /* Fragment fragment = new FragmentSellCows();
-        Bundle bundle = new Bundle();
-        bundle.putString("cow_id", "40");
-        fragment.setArguments(bundle);
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(container.getId(), fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();*/
-        addCow();
-        if (rootView != null) {
-            text_nfc = (TextView) rootView.findViewById(R.id.text_nfc);
-            text_nfc.setText("Waiting...");
 
-            mNfcCardReader = new NfcCardReader(this);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
+        if (v != null) {
+            mAccountField = (TextView) v.findViewById(R.id.text_nfc);
+            mAccountField.setText("Waiting...");
+            Log.d("CCCCCC","BBBBBB");
+
+            mLoyaltyCardReader = new LoyaltyCardReader(this);
+            Log.d("AAAAAA","BBBBBB");
+            // Disable Android Beam and register our card reader callback
             enableReaderMode();
         }
 
-
-
-
-        return rootView;
+        return v;
     }
 
-    private void addCow(){
-        CowService.getInstance().getListCow(User.getInstance().getId(), new CowService.GetListCow() {
-            @Override
-            public void onSuccess(List<Cow> cowList) {
-                cows = cowList;
-            }
-
-            @Override
-            public void onFailure(String errorCode) {
-                Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
     @Override
     public void onPause() {
         super.onPause();
         disableReaderMode();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        enableReaderMode();
     }
 
     private void enableReaderMode() {
@@ -89,7 +81,9 @@ public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCall
         Activity activity = getActivity();
         NfcAdapter nfc = NfcAdapter.getDefaultAdapter(activity);
         if (nfc != null) {
-            nfc.enableReaderMode(activity, mNfcCardReader, READER_FLAGS, null);
+            Log.d("DDDDDD","BBBBBB");
+
+            nfc.enableReaderMode(activity, mLoyaltyCardReader, READER_FLAGS, null);
         }
     }
 
@@ -102,44 +96,16 @@ public class FragmentChooseCow extends Fragment implements NfcCardReader.NfcCall
         }
     }
 
-    protected int checkCowInList(String id){
-        for (int i=0; i<cows.size(); i++){
-            if (cows.get(i).getNfcId().equals(id)){
-                return i;
-            }
-        }
-        return  -1;
-
-    }
     @Override
-    public void onAccountReceived(final String id) {
+    public void onAccountReceived(final String account) {
+        // This callback is run on a background thread, but updates to UI elements must be performed
+        // on the UI thread.
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                text_nfc.setText(id);
-                Log.d("NFCA",id);
-                int checkId = checkCowInList(String.valueOf(id));
-                if(checkId!=-1){
-                    Cow itemCow = cows.get(checkId);
-                    Fragment fragment = new FragmentSellCows();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("cow_id", itemCow.getId());
-                    fragment.setArguments(bundle);
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(getView().getId(), fragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                }
-                else {
-                    LibraryDialog libraryDialog = new LibraryDialog(getActivity());
-                    libraryDialog.setTitle("Thông báo");
-                    libraryDialog.setContent("Con bò này bạn không sở hữu!");
-                    libraryDialog.show();
-                }
+
+                mAccountField.setText(account);
             }
         });
     }
-
 }
-

@@ -19,6 +19,8 @@ public class MainActivity extends FragmentActivity {
 
     private Fragment fragment;
 
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

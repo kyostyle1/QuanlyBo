@@ -53,6 +53,10 @@ public class FragmentSearchNFC extends Fragment {
             if (!hasNfc()) {
                 Toast.makeText(getActivity(), "NFC isn't available", Toast.LENGTH_LONG).show();
             }
+            else {
+                Toast.makeText(getActivity(), "NFC is available", Toast.LENGTH_LONG).show();
+            }
+            resolveIntent(getActivity().getIntent());
            // mNfcCardReader = new NfcCardReader(this);
             //  enableReaderMode();
         }
@@ -61,10 +65,6 @@ public class FragmentSearchNFC extends Fragment {
     }
 
 
-    public void onNewIntent(Intent intent) {
-        text_nfc.setText("Listening...");
-        resolveIntent(intent);
-    }
 
     private void resolveIntent(Intent intent) {
         String action = intent.getAction();

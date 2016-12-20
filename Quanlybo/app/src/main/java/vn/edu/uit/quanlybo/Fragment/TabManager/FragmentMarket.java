@@ -29,6 +29,7 @@ public class FragmentMarket extends Fragment {
             @Override
             public void onClick(View v) {
                // Fragment fragment = new FragmentSellCows();
+
                 Fragment fragment = new FragmentChooseCow();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
