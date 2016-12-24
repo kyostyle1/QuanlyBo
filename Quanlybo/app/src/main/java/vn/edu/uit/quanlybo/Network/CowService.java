@@ -102,28 +102,32 @@ public class CowService extends BaseService{
 
     // ------------------------ GET COW DETAIL BY NFC----------------------------------
 
-    public void getCowDetailByNfc(String userId, String nfcId, final CowDetailCallBack cowDetailCallBack){
+    public void getCowDetailByNfc(String userId, String nfcId, final GetCowDetailByNfc getCowDetailByNfc){
         showProgressDialog();
-        Call<CowDetailResponse> call = quanLyBoAPI.getCowDetailByNfc(userId, nfcId);
-        call.enqueue(new Callback<CowDetailResponse>() {
+        Call<BaseResponse<CowDetailResponse>> call = quanLyBoAPI.getCowDetailByNfc(userId, nfcId);
+        call.enqueue(new Callback<BaseResponse<CowDetailResponse>>() {
             @Override
-            public void onResponse(Call<CowDetailResponse> call, retrofit2.Response<CowDetailResponse> response) {
-                if ( response.isSuccessful() ){
-                    CowDetailResponse cowDetailResponse = response.body();
-                    cowDetailCallBack.onSuccess(cowDetailResponse);
+            public void onResponse(Call<BaseResponse<CowDetailResponse>> call, Response<BaseResponse<CowDetailResponse>> response) {
+                if(response.isSuccessful()){
+                    getCowDetailByNfc.onSuccess(response.body().getSuccess(),response.body().getData());
                 }
                 else {
-                    cowDetailCallBack.onFailure("Lỗi xảy ra");
+                    getCowDetailByNfc.onFailure("Failure");
                 }
-            }
+                }
+
 
             @Override
-            public void onFailure(Call<CowDetailResponse> call, Throwable t) {
-                cowDetailCallBack.onFailure("Không thể kết nối tới sever");
+            public void onFailure(Call<BaseResponse<CowDetailResponse>> call, Throwable t) {
+                getCowDetailByNfc.onFailure("Failure");
             }
         });
     }
+    public interface GetCowDetailByNfc {
+        void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse);
+        void onFailure(String errorCode);
 
+    }
     // ------------------------ GET COW DETAIL BY QRCODE----------------------------------
 
     public void getCowDetailByQrCode(String userId, String qrCode, final CowDetailCallBack cowDetailCallBack){

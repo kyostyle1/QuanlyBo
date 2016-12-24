@@ -31,7 +31,7 @@ public class User {
     public String accessToken;
     @SerializedName("name")
     @Expose
-    public Object name;
+    public String name;
     @SerializedName("password")
     @Expose
     public String password;
@@ -128,11 +128,11 @@ public class User {
         this.accessToken = accessToken;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 

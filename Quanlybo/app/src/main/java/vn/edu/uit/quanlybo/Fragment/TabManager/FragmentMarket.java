@@ -36,6 +36,8 @@ public class FragmentMarket extends Fragment {
                 fragmentTransaction.replace(container.getId(), fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
+
             }
         });
         btnBuy.setOnClickListener(new View.OnClickListener() {

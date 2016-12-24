@@ -36,7 +36,7 @@ public class UserLoginResponse {
     public String accessToken;
     @SerializedName("name")
     @Expose
-    public Object name;
+    public String name;
     @SerializedName("password")
     @Expose
     public String password;
@@ -50,7 +50,7 @@ public class UserLoginResponse {
     @Expose
     public String dateUpdated;
 
-    public UserLoginResponse(String id, String role, String username, String email, String phone, String address, String accessToken, Object name, String password, String active, String dateCreated, String dateUpdated) {
+    public UserLoginResponse(String id, String role, String username, String email, String phone, String address, String accessToken, String name, String password, String active, String dateCreated, String dateUpdated) {
         this.id = id;
         this.role = role;
         this.username = username;
@@ -121,11 +121,11 @@ public class UserLoginResponse {
         this.accessToken = accessToken;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 

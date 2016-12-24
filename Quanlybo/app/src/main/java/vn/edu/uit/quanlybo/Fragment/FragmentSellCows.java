@@ -3,6 +3,8 @@ package vn.edu.uit.quanlybo.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
 import vn.edu.uit.quanlybo.AlertDialog.LibraryDialog;
+import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarket;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.Market.SellCow;
 import vn.edu.uit.quanlybo.Model.User;
@@ -35,10 +38,11 @@ public class FragmentSellCows extends Fragment {
     private String title,content,location,price;
     private String phone, name,cowid,userid;
     private Cow sell;
-
+    private ViewGroup viewGroup;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sell_cows, container, false);
+        viewGroup = container;
         edtTitle = (EditText)rootView.findViewById(R.id.edtTitle);
         edtContent = (EditText)rootView.findViewById(R.id.edtContent);
         edtLocation = (EditText) rootView.findViewById(R.id.edtLocation);
@@ -63,10 +67,9 @@ public class FragmentSellCows extends Fragment {
                 public void onSuccess(List<Cow> cowList) {
 
                     for(Cow cow : cowList){
-                        Log.d("AAA",cow.getId());
 
                         if(cow.getId().equals(id) ){
-                            Log.d("BBB",id);
+
                             sell = cow ;
                             break;
                         }
@@ -74,7 +77,7 @@ public class FragmentSellCows extends Fragment {
                     txtCow.setText("Bò: "+ sell.getTypeName());
                     edtLocation.setText(User.getInstance().getAddress());
                     edtPhone.setText(User.getInstance().getPhone());
-                    edtName.setText(User.getInstance().getUsername());
+                    edtName.setText(String.valueOf(User.getInstance().getName()));
                 }
 
                 @Override
@@ -132,6 +135,19 @@ public class FragmentSellCows extends Fragment {
                     @Override
                     public void onSuccess(SellCow sellCow) {
                         Toast.makeText(getContext(),"Đăng bán thành công",Toast.LENGTH_SHORT).show();
+
+                        Fragment fragment = new FragmentListBuyCows();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.popBackStack();
+                        fragmentManager.popBackStack();
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(viewGroup.getId(), fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
+
+
                     }
 
                     @Override

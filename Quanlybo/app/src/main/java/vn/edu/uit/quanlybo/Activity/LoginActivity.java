@@ -54,8 +54,10 @@ public class LoginActivity extends Activity {
                         @Override
                         public void onSuccess(UserLoginResponse userLoginResponse) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            Log.d("TEST", userLoginResponse.getId());
+
                             User.getInstance().setId(userLoginResponse.getId());
+                            User.getInstance().setName(userLoginResponse.getName());
+                            User.getInstance().setPhone(userLoginResponse.getPhone());
                             User.getInstance().setRole(userLoginResponse.getRole());
                             User.getInstance().setEmail(userLoginResponse.getEmail());
                             User.getInstance().setAddress(userLoginResponse.getAddress());

@@ -3,6 +3,7 @@ package vn.edu.uit.quanlybo.Network;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -69,14 +70,14 @@ public interface QuanLyBoAPI {
 
     @GET("cow/todo-one")
     Call<CowDetailResponse> getCowDetail(@Query("userId") String userId,
-                                         @Query("id") String cowId);
+                                @Query("id") String cowId);
 
     @GET("cow/todo-one")
     Call<CowDetailResponse> getCowDetailByQrCode(@Query("userId") String userId,
                                                  @Query("qrId") String qrId);
 
     @GET("cow/todo-one")
-    Call<CowDetailResponse> getCowDetailByNfc(@Query("userId") String userId,
+    Call<BaseResponse<CowDetailResponse>> getCowDetailByNfc(@Query("userId") String userId,
                                               @Query("nfcId") String nfcId);
 
     @GET("cow")
