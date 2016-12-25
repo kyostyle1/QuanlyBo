@@ -8,18 +8,24 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_cow_id"
         android:inputType="number"
-        android:hint="Nhập ID"
+        android:hint="Nhập ID của bò để tìm kiếm"
         android:layout_gravity="center" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="Tìm kiếm bò"
         android:gravity="center"
         android:id="@+id/btn_search_id" />
 

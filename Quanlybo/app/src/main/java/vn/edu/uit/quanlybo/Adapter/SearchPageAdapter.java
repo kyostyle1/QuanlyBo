@@ -52,7 +52,7 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title="Search Id";
+                title="Search ID";
                 break;
             case 1:
                 title="Search NFC";

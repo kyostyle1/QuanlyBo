@@ -174,18 +174,3 @@ public class MartketService extends BaseService {
         void onFailure(String errorCode);
     }
 }
-
-
-    /*Call<vn.edu.uit.quanlybo.Network.Model.BaseResponse<SellCow>> call = quanLyBoAPI.postCowSell(buyCow);
-call.enqueue(new Callback<SellCow>() {
-@Override
-public void onResponse(Call<SellCow> call, BaseResponse<SellCow> response) {
-        SellCow data =response.body();
-        postWannaSell.onSuccess(data);
-        }
-
-@Override
-public void onFailure(Call<SellCow> call, Throwable t) {
-        postWannaSell.onFailure("");
-        }
-        });*/

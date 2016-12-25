@@ -16,6 +16,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import vn.edu.uit.quanlybo.Fragment.FragmentChooseCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentListLibrary;
+import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarketNew;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentTabTwo;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarket;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentSearchCow;
@@ -67,7 +68,7 @@ public class MainActivity extends FragmentActivity {
                         break;
 
                     case R.id.bottomBarMarket:
-                        fragment = new FragmentMarket();
+                        fragment = new FragmentMarketNew();
                         break;
 
                     default:

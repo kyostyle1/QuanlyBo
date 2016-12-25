@@ -54,18 +54,18 @@ static class ViewHolder {
             holder.price = (TextView) convertView.findViewById(R.id.sell_cow_price);
             holder.cow_type = (TextView) convertView.findViewById(R.id.buy_cow_type);
             holder.cow_gender = (TextView) convertView.findViewById(R.id.buy_cow_gender);
-            holder.date_created = (TextView) convertView.findViewById(R.id.sell_date);
+//            holder.date_created = (TextView) convertView.findViewById(R.id.sell_date);
             convertView.setTag(holder);
         }else {
             holder = (ListBuyCowAdapter.ViewHolder)convertView.getTag();
         }
-        holder.id.setText(buyCowReponse.getId());
+        holder.id.setText("#" + buyCowReponse.getId());
         holder.title.setText(buyCowReponse.getTitle());
-        holder.location.setText("Địa chỉ: " + buyCowReponse.getLocation());
+        holder.location.setText("Nơi bán: " + buyCowReponse.getLocation());
         holder.price.setText("Giá: " + String.valueOf(buyCowReponse.getPrice()));
         holder.cow_type.setText("Giống bò: " + buyCowReponse.getCow_type());
         holder.cow_gender.setText("Giới tính: " + buyCowReponse.getCow_gender());
-        holder.date_created.setText(buyCowReponse.getDate_created());
+//        holder.date_created.setText(buyCowReponse.getDate_created());
         return convertView;
     }
 }

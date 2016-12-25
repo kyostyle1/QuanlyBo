@@ -49,7 +49,7 @@ public class FragmentChooseCow extends Fragment  {
         View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
         if (v != null) {
             mAccountField = (TextView) v.findViewById(R.id.text_nfc);
-            mAccountField.setText("Waiting...");
+            mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
             updateReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
@@ -66,7 +66,7 @@ public class FragmentChooseCow extends Fragment  {
                                 fragment.setArguments(bundle);
                                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(container.getId(), fragment);
+                                fragmentTransaction.replace(R.id.text_nfc, fragment);
                                 fragmentTransaction.addToBackStack(null);
                                 getActivity().unregisterReceiver(updateReceiver);
                                 fragmentTransaction.commit();
@@ -75,7 +75,7 @@ public class FragmentChooseCow extends Fragment  {
                             } else {
                                 AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
                                 alertDialogInfo.alertDialog("Bạn không sở hữu con bò với mã NFC: " + nfc_id,getActivity()).show();
-                                mAccountField.setText("Waiting...");
+                                mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
                             }
 
                         }
@@ -83,7 +83,7 @@ public class FragmentChooseCow extends Fragment  {
                         @Override
                         public void onFailure(String errorCode) {
                             Toast.makeText(getActivity(),errorCode,Toast.LENGTH_SHORT);
-                            mAccountField.setText("Waiting...");
+                            mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
 
                         }
                     });

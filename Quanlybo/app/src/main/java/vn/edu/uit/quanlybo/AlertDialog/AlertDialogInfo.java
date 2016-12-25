@@ -12,10 +12,14 @@ import android.widget.EditText;
  */
 
 public  final  class AlertDialogInfo {
+    public String title;
     public AlertDialog alertDialog(String infoAlert, Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Thiết lập tiêu đề hiển thị
-        builder.setTitle("Thông báo");
+        if(title == null ){
+            title = "Thông báo";
+        }
+        builder.setTitle(title);
         //Thiết lập thông báo hiển thị
         builder.setMessage(infoAlert);
         builder.setCancelable(false);

@@ -5,13 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
     <android.support.design.widget.TabLayout
-        android:background="#c8e8ff"
+        android:background="#0D47A1"
         android:layout_alignParentTop="true"
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:tabSelectedTextColor="#e66d6d"
-        app:tabTextColor="#7c6854"
+        app:tabIndicatorColor="#F4FF81"
+        app:tabSelectedTextColor="#FFFFFF"
+        app:tabTextColor="#E3F2FD"
         >
 
     </android.support.design.widget.TabLayout>

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
@@ -35,12 +36,9 @@ import vn.edu.uit.quanlybo.Network.MartketService;
 import vn.edu.uit.quanlybo.Network.UserService;
 import vn.edu.uit.quanlybo.R;
 
-/**
- * Created by Jackson Nghi on 12/16/2016.
- */
-
 public class FragmentDetailsBuyCow extends Fragment {
     private View rootView;
+    private ViewPager viewPager;
     ListDetailsHistoryBuyMarket adapter = null;
     ListView listViewHistoryDetailsBuyCows;
     private DetailsBuyCows buyCows;
@@ -65,9 +63,9 @@ public class FragmentDetailsBuyCow extends Fragment {
     TableLayout tb_history;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_market_list_buy_cow_details, container, false);
-      //  addCow();
         listViewHistoryDetailsBuyCows = (ListView)rootView.findViewById(R.id.details_buy_cow_list);
         Bundle bundle = this.getArguments();
+        Log.d("startnew","startnew");
         if (bundle != null) {
             marketId = bundle.getString("marketId", "");
 
@@ -77,6 +75,7 @@ public class FragmentDetailsBuyCow extends Fragment {
             public void onSuccess(DetailsBuyCows detailsBuyCows) {
                     buyCows = detailsBuyCows;
                     addDetailsBuyCow(detailsBuyCows);
+                Log.d("startnew","startnew");
             }
 
             @Override
@@ -84,19 +83,6 @@ public class FragmentDetailsBuyCow extends Fragment {
 
             }
         }) ;
-
-
-
-        //cow_list.setAdapter(adapter);
-      /*  cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cow itemCow = cows.get(position);
-                Intent intent = new Intent(getContext(), CowDetailActivity.class);
-                intent.putExtra("cow_id", itemCow.getId());
-                startActivity(intent);
-            }
-        });*/
         return rootView;
     }
     protected boolean isUserOwnedCow(){
@@ -228,10 +214,6 @@ public class FragmentDetailsBuyCow extends Fragment {
                         tb_history.addView(tbr_history);
                     }
                 }
-
-               /* adapter = new ListDetailsHistoryBuyMarket(getContext(), detailsBuyCows.getListHistoryCow());
-                adapter.notifyDataSetChanged();
-                listViewHistoryDetailsBuyCows.setAdapter(adapter);*/
             }
         });
         btnBuy.setOnClickListener(new View.OnClickListener() {

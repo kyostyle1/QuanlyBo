@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cow_1st"
         android:paddingTop="10dp"
-        android:orientation="horizontal">
+        android:inputType="number"
+        android:paddingBottom="10dp"
+        android:hint="ID bò thứ nhất"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/cow_1st"
-            android:paddingTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
-            android:inputType="number"
-            android:paddingBottom="10dp"
-            android:text="Cow 1st"/>
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:id="@+id/cow_2nd"
             android:paddingTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
             android:inputType="number"
             android:paddingBottom="10dp"
-            android:hint="Cow 2nd"/>
-    </LinearLayout>
+            android:hint="ID bò thứ hai"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_check"
-        android:text="Check"/>
+        android:background="#1565C0"
+        android:textColor="#FFFFFF"
+        android:text="Kiểm tra"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -50,6 +52,5 @@
         android:textSize="16sp"
         android:paddingLeft="5dp"
         android:id="@+id/result_check"
-        android:textColor="#FF0000"
-        android:hint="Check Cow"/>
+        android:textColor="#0D47A1"/>
 </LinearLayout>

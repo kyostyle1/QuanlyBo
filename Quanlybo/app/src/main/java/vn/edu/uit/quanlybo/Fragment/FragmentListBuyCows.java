@@ -17,10 +17,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.uit.quanlybo.Activity.MarketDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListBuyCowAdapter;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
 import vn.edu.uit.quanlybo.Network.MartketService;
 import vn.edu.uit.quanlybo.R;
+
+import static android.R.attr.fragment;
 
 /**
  * Created by Jackson Nghi on 12/5/2016.
@@ -37,22 +40,19 @@ public class FragmentListBuyCows extends Fragment {
         buy_cow_list = (ListView)rootView.findViewById(R.id.buy_cow_list);
         addCow();
 
-//        buy_cow_list.setAdapter(adapter);
         buy_cow_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BuyCowReponse itemBuyCow = buyCowReponses.get(position);
-                Fragment fragment = new FragmentDetailsBuyCow();
                 Bundle bundle = new Bundle();
                 bundle.putString("marketId", itemBuyCow.getId());
+                Fragment fragment = new FragmentDetailsBuyCow();
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(container.getId(), fragment);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
-
             }
         });
         return rootView;
@@ -75,6 +75,7 @@ public class FragmentListBuyCows extends Fragment {
             }
         });
     }
+
 
 
 }

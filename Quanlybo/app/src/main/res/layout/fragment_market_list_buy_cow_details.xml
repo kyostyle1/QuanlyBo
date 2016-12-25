@@ -11,10 +11,16 @@
         android:stretchColumns="*"
         android:paddingBottom="10dp">
 
+        <TextView
+            android:text="Title"
+            android:textSize="20dp"
+            android:id="@+id/details_buy_cow_title" />
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -22,14 +28,6 @@
                 android:layout_column="0"
                 android:stretchColumns="*"
                 android:layout_span="5">
-
-                <TableRow>
-                    <TextView
-                        android:text="Title"
-                        android:textSize="20dp"
-                        android:id="@+id/details_buy_cow_title" />
-
-                </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Name"

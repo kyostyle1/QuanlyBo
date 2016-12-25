@@ -41,16 +41,16 @@ public class FragmentPhoiGiong extends Fragment{
                     @Override
                     public void onSuccess(CowCheckResponse cowCheckResponse) {
                         if ( cowCheckResponse.getStatus() == false){
-                            result_check.setText("Bạn không thể giao phối con bò " + cow1 + " với con bò " + cow2);
+                            result_check.setText("Bạn KHÔNG THỂ giao phối bò có ID " + cow1 + "  với bò có ID là " + cow2);
                         }
                         else {
-                            result_check.setText("Bạn có thể giao phối con bò " + cow1 + " với con bò " + cow2);
+                            result_check.setText("Bạn CÓ THỂ giao phối bò có ID " + cow1 + " với bò có ID là " + cow2);
                         }
                     }
 
                     @Override
                     public void onFailure(String errorCode) {
-                        result_check.setText("Không thể kiểm tra");
+                        result_check.setText("Không thể kiểm tra!");
                     }
                 });
             }

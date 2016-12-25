@@ -67,7 +67,7 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
             listCowId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
         }
         String cowIds = TextUtils.join(",", listCowId);
-        childViewHolder.itemCowId.setText("Danh sách con bò cần làm: " + cowIds);
+        childViewHolder.itemCowId.setText("ID bò cần làm: " + cowIds);
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

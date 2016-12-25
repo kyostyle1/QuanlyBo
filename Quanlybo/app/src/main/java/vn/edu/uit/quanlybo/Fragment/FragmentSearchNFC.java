@@ -44,7 +44,7 @@ public class FragmentSearchNFC extends Fragment {
 
         if (v != null) {
             text_nfc = (TextView) v.findViewById(R.id.text_nfc);
-            text_nfc.setText("Waiting...");
+            text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
 
 
         }

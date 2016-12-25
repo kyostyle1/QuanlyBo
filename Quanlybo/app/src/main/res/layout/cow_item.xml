@@ -49,11 +49,13 @@
                     <TextView
                         android:text="Giống"
                         android:id="@+id/cow_gender" />
+
+                </TableRow>
+                <TableRow>
                     <TextView
                         android:text="Nguồn gốc"
                         android:id="@+id/cow_source" />
                 </TableRow>
-
                 <TableRow>
                     <TextView
                         android:text="@string/ng_y_tu_i"

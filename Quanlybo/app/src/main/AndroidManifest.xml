@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.BIND_NFC_SERVICE"></uses-permission>
+    <uses-permission android:name="android.permission.BIND_NFC_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
@@ -26,20 +26,23 @@
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
+
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain"/>
+
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.CowDetailActivity"></activity>
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".Activity.SignUpActivity"></activity>
-
+        <activity android:name=".Activity.CowDetailActivity" />
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".Activity.MarketDetailActivity"></activity>
     </application>
 
 </manifest>

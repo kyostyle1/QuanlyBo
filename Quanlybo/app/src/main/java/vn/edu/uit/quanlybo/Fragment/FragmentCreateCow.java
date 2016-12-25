@@ -37,7 +37,7 @@ public class FragmentCreateCow extends Fragment {
     String cowTarget[]= {
             "Nuôi lấy thịt",
             "Nuôi lấy sữa",
-            "Nuôi để đẻ"
+            "Nuôi sinh sản"
     };
     View rootView;
 

@@ -4,7 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import vn.edu.uit.quanlybo.Fragment.FragmentChooseCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentCreateCow;
+import vn.edu.uit.quanlybo.Fragment.FragmentDetailsBuyCow;
+import vn.edu.uit.quanlybo.Fragment.FragmentListBuyCows;
 import vn.edu.uit.quanlybo.Fragment.FragmentListCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentPhoiGiong;
 import vn.edu.uit.quanlybo.Fragment.RootFragment;
@@ -12,21 +15,21 @@ import vn.edu.uit.quanlybo.Fragment.RootFragment;
 /**
  * Created by phuc9 on 10/25/2016.
  */
-public class ViewPageAdapter extends FragmentStatePagerAdapter {
-
-    public ViewPageAdapter(FragmentManager fm) {
+public class MarketAdapter extends FragmentStatePagerAdapter {
+    public Fragment fragment = null;
+    public MarketAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
+
         switch (position){
             case 0:
-                fragment = new FragmentListCow();
+                fragment = new FragmentListBuyCows();
                 break;
             case 1:
-                fragment = new RootFragment();
+                fragment = new FragmentChooseCow();
                 break;
             case 2:
                 fragment = new FragmentPhoiGiong();
@@ -46,13 +49,13 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
         switch (position){
 
             case 0:
-                title="Danh sách bò";
+                title="Chợ bò";
                 break;
             case 1:
-                title="Tạo Bò";
+                title="Đăng bán bò";
                 break;
             case 2:
-                title="Kiểm tra phối giống";
+               title="Danh sách bò đã đăng bán";
                 break;
         }
 
