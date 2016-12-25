@@ -66,11 +66,9 @@ public class FragmentChooseCow extends Fragment  {
                                 fragment.setArguments(bundle);
                                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.text_nfc, fragment);
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
-                                getActivity().unregisterReceiver(updateReceiver);
                                 fragmentTransaction.commit();
-
 
                             } else {
                                 AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
