@@ -47,11 +47,6 @@
                         android:textColor="#2196F3"
                         android:id="@+id/sell_cow_price" />
                 </TableRow>
-                <!--<TableRow>-->
-                    <!--<TextView-->
-                        <!--android:text="2016"-->
-                        <!--android:id="@+id/sell_date" />-->
-                <!--</TableRow>-->
                 <TableRow>
                     <TextView
                         android:text="Cow Type"

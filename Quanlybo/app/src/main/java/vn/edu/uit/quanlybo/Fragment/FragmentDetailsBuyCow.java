@@ -97,9 +97,7 @@ public class FragmentDetailsBuyCow extends Fragment {
         final EditText edittext = new EditText(getActivity());
         edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setMessage("Enter Code OTP");
-        alert.setTitle("Thông báo");
-
+        alert.setTitle("Nhập mã OTP");
         alert.setView(edittext);
 
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -230,7 +228,8 @@ public class FragmentDetailsBuyCow extends Fragment {
                     @Override
                     public void onSuccess(CodeOTP codeOTP) {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
-                        alertDialogInfo.alertDialog("Mã OTP: "+String.valueOf(codeOTP.getOtp()),getActivity()).show();
+                        alertDialogInfo.title = "Mã OTP";
+                        alertDialogInfo.alertDialog(String.valueOf(codeOTP.getOtp()),getActivity()).show();
                     }
 
                     @Override

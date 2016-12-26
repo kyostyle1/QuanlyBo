@@ -53,9 +53,6 @@ public class FragmentSellCows extends Fragment {
         btnSell = (Button) rootView.findViewById(R.id.btnSell);
         addCows();
         sellCow();
-
-
-
         return rootView;
     }
     protected void addCows(){
@@ -135,19 +132,16 @@ public class FragmentSellCows extends Fragment {
                     @Override
                     public void onSuccess(SellCow sellCow) {
                         Toast.makeText(getContext(),"Đăng bán thành công",Toast.LENGTH_SHORT).show();
-
-                        Fragment fragment = new FragmentListBuyCows();
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentManager.popBackStack();
-                        fragmentManager.popBackStack();
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(viewGroup.getId(), fragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-
-
-
+//
+//                        Fragment fragment = new FragmentListBuyCows();
+//                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                        fragmentManager.popBackStack();
+//                        fragmentManager.popBackStack();
+//
+//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                        fragmentTransaction.replace(viewGroup.getId(), fragment);
+//                        fragmentTransaction.addToBackStack(null);
+//                        fragmentTransaction.commit();
                     }
 
                     @Override

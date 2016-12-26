@@ -33,7 +33,7 @@ public class LibraryDialog {
         dialog.setContentView(contextView);
 
         Window window = dialog.getWindow();
-        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         window.setGravity(Gravity.CENTER);
         dialog.setTitle("ABC");
         /*WindowManager.LayoutParams lp = window.getAttributes();

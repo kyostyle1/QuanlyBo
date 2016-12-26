@@ -27,24 +27,17 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new FragmentSearchId();
-                break;
-            case 1:
                 fragment = new FragmentSearchNFC();
                 break;
-            case 2:
-                fragment = new FragmentSearchQrCode();
-                break;
-            default:
+            case 1:
                 fragment = new FragmentSearchId();
-                break;
         }
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -52,13 +45,10 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title="Search ID";
+                title="Tìm theo NFC";
                 break;
             case 1:
-                title="Search NFC";
-                break;
-            case 2:
-                title="Search QR";
+               title="Tìm theo ID";
                 break;
         }
 
