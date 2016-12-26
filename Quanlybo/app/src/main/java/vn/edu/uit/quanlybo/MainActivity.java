@@ -72,9 +72,12 @@ public class MainActivity extends FragmentActivity {
                         break;
                 }
 
+                String backstackstate = fragment.getClass().getName();
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, fragment)
+                        .addToBackStack(backstackstate)
                         .commit();
             }
         });

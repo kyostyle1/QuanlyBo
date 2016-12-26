@@ -31,18 +31,20 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_weight="1">
 
         <TextView android:text="Giống bò :"
             android:id="@+id/cow_detail_type"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
             android:padding="5dp"
+            android:paddingLeft="10dp"
             android:layout_weight="1"/>
         <TextView android:text="Giới tính"
             android:id="@+id/cow_detail_gender"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
 
@@ -50,12 +52,14 @@
             android:id="@+id/cow_detail_father"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
         <TextView android:text="Bò mẹ"
             android:id="@+id/cow_detail_mother"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
 
@@ -63,6 +67,7 @@
             android:id="@+id/cow_detail_born"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
 
@@ -70,23 +75,31 @@
             android:id="@+id/cow_detail_target"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
+
         <TextView android:text="Nguồn gốc"
             android:id="@+id/cow_detail_source"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_weight="1"
             android:text="Thay đổi thông tin bò"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_weight="1"
             android:text="Lịch sử mua bán bò"/>
     </TableLayout>
