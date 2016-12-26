@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +15,10 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import vn.edu.uit.quanlybo.Activity.CowDetailActivity;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
+import vn.edu.uit.quanlybo.R;
 
 /**
  * Created by PhucHuynh on 11/29/16.
@@ -47,9 +49,15 @@ public class FragmentSearchQrCode extends Fragment implements ZXingScannerView.R
             CowService.getInstance().getCowDetailByQrCode(User.getInstance().getId(), result, new CowService.CowDetailCallBack() {
                 @Override
                 public void onSuccess(CowDetailResponse cowDetailResponse) {
-                    Intent intent = new Intent(getContext(), CowDetailActivity.class);
-                    intent.putExtra("cow_id", cowDetailResponse.getCow().getId());
-                    startActivity(intent);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("cow_id", cowDetailResponse.getCow().getId());
+                    Fragment fragment = new FragmentDetailsBuyCow();
+                    fragment.setArguments(bundle);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
 
                 @Override

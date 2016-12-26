@@ -58,16 +58,14 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
 
     @Override
     public void onBindChildViewHolder(ListCowToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
-        //ToDoItem toDoItem = (ToDoItem)childListItem;
         final CowToDo cowToDo = (CowToDo)childListItem;
-
         childViewHolder.itemTitle.setText(cowToDo.getToDo().getTitle());
         final List<String> listCowId = new ArrayList<>();
         for ( int i = 0 ; i < cowToDo.getCow().size(); i ++){
             listCowId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
         }
-        String cowIds = TextUtils.join(",", listCowId);
-        childViewHolder.itemCowId.setText("ID bò cần làm: " + cowIds);
+        String cowIds = TextUtils.join(", #", listCowId);
+        childViewHolder.itemCowId.setText("#" + cowIds);
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

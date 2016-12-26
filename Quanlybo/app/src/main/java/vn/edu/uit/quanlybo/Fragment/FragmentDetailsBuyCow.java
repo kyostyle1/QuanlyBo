@@ -68,7 +68,6 @@ public class FragmentDetailsBuyCow extends Fragment {
         Log.d("startnew","startnew");
         if (bundle != null) {
             marketId = bundle.getString("marketId", "");
-
         }
         MartketService.getInstance().getDetailBuyCow(marketId , new MartketService.GetDetailBuyCow() {
             @Override

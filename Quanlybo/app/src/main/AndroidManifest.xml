@@ -6,10 +6,7 @@
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.BIND_NFC_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-feature
-        android:name="android.hardware.nfc"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -39,10 +36,10 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.CowDetailActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
         <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".Activity.MarketDetailActivity"></activity>
     </application>
 
 </manifest>

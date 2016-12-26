@@ -58,10 +58,10 @@ public class CowDetailToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoH
     public void onBindChildViewHolder(CowDetailToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
         final ToDoDetail toDoDetail = (ToDoDetail)childListItem;
         if ( toDoDetail.getSuccess().equals("yes")) {
-            childViewHolder.content.setText(toDoDetail.getContent());
+            childViewHolder.content.setText(toDoDetail.getTitle());
             childViewHolder.content.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }else {
-            childViewHolder.content.setText(toDoDetail.getContent());
+            childViewHolder.content.setText(toDoDetail.getTitle());
         }
 
     }

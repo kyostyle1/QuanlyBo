@@ -21,7 +21,6 @@ public class SearchPageAdapter extends FragmentStatePagerAdapter {
         super(fm);
     }
 
-
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;

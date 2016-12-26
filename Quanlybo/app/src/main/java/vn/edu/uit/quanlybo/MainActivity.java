@@ -14,23 +14,18 @@ import android.widget.Toast;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import vn.edu.uit.quanlybo.Fragment.FragmentChooseCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentListLibrary;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarketNew;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentTabTwo;
-import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentMarket;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentSearchCow;
 import vn.edu.uit.quanlybo.Fragment.TabManager.FragmentToDoList;
 
 public class MainActivity extends FragmentActivity {
 
     private Fragment fragment;
-    //Create NFC
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
     public final static String ACTION_UPDATE = "getNFC";
-
-    //public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +33,14 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        //NFC
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         pendingIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-       if (!hasNfc()) {
-            Toast.makeText(this, "NFC is not avaliable", Toast.LENGTH_LONG).show();
+        if(NfcAdapter.getDefaultAdapter(this) !=null){
+            if (!hasNfc()) {
+                Toast.makeText(this, "NFC is not avaliable", Toast.LENGTH_LONG).show();
+            }
         }
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -126,28 +122,22 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        nfcAdapter.disableForegroundDispatch(this);
+        if(NfcAdapter.getDefaultAdapter(this) !=null) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
+        if(NfcAdapter.getDefaultAdapter(this) !=null) {
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
+        }
     }
     @Override
     public void onBackPressed() {
         if (fragment != null){
-
-
         }
-            //user defined onBackPressed method. Not of Fragment.
         super.onBackPressed();
     }
-
-        //this will pass BackPress event to activity. If not called, it will
-        //prevent activity to get BackPress event.
-
-
-
-
 }

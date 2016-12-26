@@ -1,12 +1,9 @@
 package vn.edu.uit.quanlybo.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +14,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.edu.uit.quanlybo.Activity.MarketDetailActivity;
 import vn.edu.uit.quanlybo.Adapter.ListBuyCowAdapter;
 import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
 import vn.edu.uit.quanlybo.Network.MartketService;
 import vn.edu.uit.quanlybo.R;
-
-import static android.R.attr.fragment;
 
 /**
  * Created by Jackson Nghi on 12/5/2016.

@@ -5,5 +5,8 @@
     <string name="ng_y_tu_i">Ngày tuổi :</string>
     <string name="c">Đực</string>
     <string name="nfc_disable">NFC DISABLE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     nfc_disable
 </resources>
