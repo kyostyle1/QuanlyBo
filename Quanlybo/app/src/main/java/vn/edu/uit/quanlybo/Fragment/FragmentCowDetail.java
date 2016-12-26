@@ -67,9 +67,9 @@ public class FragmentCowDetail extends Fragment {
     }
 
     public void initData() {
-        CowService.getInstance().getCowDetail(User.getInstance().getId(), cow_id_intent, new CowService.CowDetailCallBack() {
+        CowService.getInstance().getCowDetail(User.getInstance().getId(), cow_id_intent, new CowService.GetCowDetailByNfc() {
             @Override
-            public void onSuccess(CowDetailResponse cowDetailResponse) {
+            public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
                 cow = cowDetailResponse.getCow();
                 String father;
                 String mother;
@@ -106,6 +106,7 @@ public class FragmentCowDetail extends Fragment {
 
             @Override
             public void onFailure(String errorCode) {
+
             }
         });
     }

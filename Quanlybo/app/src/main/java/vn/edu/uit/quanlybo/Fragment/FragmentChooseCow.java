@@ -63,7 +63,7 @@ public class FragmentChooseCow extends Fragment  {
                             if(isCheck){
 
                                 cowId = cowDetailResponse.getCow().getId();
-                                Fragment fragment = new FragmentSellCows();
+                               /* Fragment fragment = new FragmentSellCows();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("cow_id",cowId);
                                 fragment.setArguments(bundle);
@@ -71,7 +71,16 @@ public class FragmentChooseCow extends Fragment  {
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commit();*/
+                                FragmentSellCows fragment =  new FragmentSellCows();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("cow_id",cowId);
+                                fragment.setArguments(bundle);
+                                FragmentTransaction trans = getFragmentManager().beginTransaction();
+                                trans.replace(R.id.root_frame,fragment);
+                                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                trans.addToBackStack(null);
+                                trans.commit();
                                 getActivity().unregisterReceiver(updateReceiver);
 
 
@@ -110,7 +119,7 @@ public class FragmentChooseCow extends Fragment  {
             getActivity().unregisterReceiver(updateReceiver);
 
         } catch (Exception e){
-            
+
         }
         super.onDestroy();
     }

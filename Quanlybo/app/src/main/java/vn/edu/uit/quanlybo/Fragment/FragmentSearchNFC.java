@@ -77,7 +77,6 @@ public class FragmentSearchNFC extends Fragment {
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
-
                                 getActivity().unregisterReceiver(updateReceiver);
 
 

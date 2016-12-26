@@ -29,7 +29,7 @@ public class MarketAdapter extends FragmentStatePagerAdapter {
                 fragment = new FragmentListBuyCows();
                 break;
             case 1:
-                fragment = new FragmentChooseCow();
+                fragment = new RootFragment(new FragmentChooseCow());
                 break;
             case 2:
                 fragment = new FragmentPhoiGiong();

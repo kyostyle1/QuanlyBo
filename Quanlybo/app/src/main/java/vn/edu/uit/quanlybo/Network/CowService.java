@@ -76,22 +76,24 @@ public class CowService extends BaseService{
 
     // ------------------------ GET COW DETAIL SERVICE----------------------------------
 
-    public void getCowDetail(String userId, String cowId, final CowDetailCallBack cowDetailCallBack){
+    public void getCowDetail(String userId, String cowId, final GetCowDetailByNfc getCowDetailByNfc){
         showProgressDialog();
         Call<BaseResponse<CowDetailResponse>> call = quanLyBoAPI.getCowDetail(userId, cowId);
         call.enqueue(new Callback<BaseResponse<CowDetailResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<CowDetailResponse>> call, Response<BaseResponse<CowDetailResponse>> response) {
                 if(response.isSuccessful()){
-                    cowDetailCallBack.onSuccess(response.body().getData());
+                    getCowDetailByNfc.onSuccess(response.body().getSuccess(),response.body().getData());
                 }
                 else {
-                    cowDetailCallBack.onFailure("Có lỗi xảy ra");
+                    getCowDetailByNfc.onFailure("Có lỗi xảy ra");
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<CowDetailResponse>> call, Throwable t) {
+                getCowDetailByNfc.onFailure("Failure");
+
             }
         });
 
