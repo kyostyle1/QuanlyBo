@@ -113,7 +113,29 @@ public class MartketService extends BaseService {
         });
 
     }
+    public  void getListMarketCowUser(String userId, final GetListBuyCow getListBuyCow){
+        showProgressDialog();
+        Call<BaseResponse<List<BuyCowReponse>>> call = quanLyBoAPI.getListMarketCowUser(userId);
+        call.enqueue(new Callback<BaseResponse<List<BuyCowReponse>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<BuyCowReponse>>> call, Response<BaseResponse<List<BuyCowReponse>>> response) {
+                if(response.isSuccessful()){
+                    List<BuyCowReponse> list = response.body().getData();
+                    getListBuyCow.onSuccess(list);
+                }
+                else{
+                    getListBuyCow.onFailure("Failure");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<BaseResponse<List<BuyCowReponse>>> call, Throwable t) {
+                getListBuyCow.onFailure("Failure");
+
+            }
+        });
+
+    }
     public interface GetListBuyCow {
         void onSuccess(List<BuyCowReponse> buyCowReponseList);
         void onFailure(String errorCode);

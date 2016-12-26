@@ -14,9 +14,11 @@ public class BuyCowReponse {
     private String cow_type;
     private String cow_gender;
     private String date_created;
+    private String is_sold;
 
-    public BuyCowReponse(String id, String title, String location, int price, String cow_type, String cow_gender, String date_created) {
+    public BuyCowReponse(String id,String is_sold, String title, String location, int price, String cow_type, String cow_gender, String date_created) {
         this.id = id;
+        this.is_sold = is_sold;
         this.title = title;
         this.location = location;
         this.price = price;
@@ -26,6 +28,14 @@ public class BuyCowReponse {
     }
 
     public BuyCowReponse() {
+    }
+
+    public String getIs_sold() {
+        return is_sold;
+    }
+
+    public void setIs_sold(String is_sold) {
+        this.is_sold = is_sold;
     }
 
     public String getId() {

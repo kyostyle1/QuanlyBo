@@ -18,10 +18,11 @@ import vn.edu.uit.quanlybo.R;
 
 public class ListBuyCowAdapter extends ArrayAdapter<BuyCowReponse> {
 
+private boolean isListUser;
 
-
-public ListBuyCowAdapter(Context context, List<BuyCowReponse> buyCowReponses){
+public ListBuyCowAdapter(Context context, List<BuyCowReponse> buyCowReponses,boolean isListUser){
         super(context, 0, buyCowReponses);
+        this.isListUser = isListUser;
         }
 
 
@@ -38,6 +39,7 @@ static class ViewHolder {
     TextView cow_type;
     TextView cow_gender;
     TextView date_created;
+    TextView is_sold;
 }
 
     @Override
@@ -54,7 +56,8 @@ static class ViewHolder {
             holder.price = (TextView) convertView.findViewById(R.id.sell_cow_price);
             holder.cow_type = (TextView) convertView.findViewById(R.id.buy_cow_type);
             holder.cow_gender = (TextView) convertView.findViewById(R.id.buy_cow_gender);
-//            holder.date_created = (TextView) convertView.findViewById(R.id.sell_date);
+            holder.is_sold = (TextView) convertView.findViewById(R.id.is_sold);
+          //  holder.date_created = (TextView) convertView.findViewById(R.id.sell_date);
             convertView.setTag(holder);
         }else {
             holder = (ListBuyCowAdapter.ViewHolder)convertView.getTag();
@@ -65,7 +68,13 @@ static class ViewHolder {
         holder.price.setText("Giá: " + String.valueOf(buyCowReponse.getPrice()));
         holder.cow_type.setText("Giống bò: " + buyCowReponse.getCow_type());
         holder.cow_gender.setText("Giới tính: " + buyCowReponse.getCow_gender());
-//        holder.date_created.setText(buyCowReponse.getDate_created());
+        if(isListUser){
+            if(buyCowReponse.getIs_sold().equals("1")){
+                holder.is_sold.setText("Đã bán");
+            }
+        }
+
+      //   holder.date_created.setText(buyCowReponse.getDate_created());
         return convertView;
     }
 }

@@ -9,6 +9,7 @@ import vn.edu.uit.quanlybo.Fragment.FragmentCreateCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentDetailsBuyCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentListBuyCows;
 import vn.edu.uit.quanlybo.Fragment.FragmentListCow;
+import vn.edu.uit.quanlybo.Fragment.FragmentListCowBuySellOfUser;
 import vn.edu.uit.quanlybo.Fragment.FragmentPhoiGiong;
 import vn.edu.uit.quanlybo.Fragment.RootFragment;
 
@@ -32,7 +33,7 @@ public class MarketAdapter extends FragmentStatePagerAdapter {
                 fragment = new RootFragment(new FragmentChooseCow());
                 break;
             case 2:
-                fragment = new FragmentPhoiGiong();
+                fragment = new FragmentListCowBuySellOfUser();
                 break;
         }
         return fragment;

@@ -58,7 +58,7 @@ public class FragmentListBuyCows extends Fragment {
             public void onSuccess(List<BuyCowReponse> buyCowReponseList ) {
 
                 buyCowReponses = buyCowReponseList;
-                adapter = new ListBuyCowAdapter(getContext(), buyCowReponses);
+                adapter = new ListBuyCowAdapter(getContext(), buyCowReponses,false);
                 adapter.notifyDataSetChanged();
                 buy_cow_list.setAdapter(adapter);
             }

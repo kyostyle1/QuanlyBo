@@ -64,6 +64,13 @@
                         android:layout_span="2"
                         android:id="@+id/sell_location" />
                 </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text=""
+                        android:layout_span="2"
+                        android:textColor="#FF0000"
+                        android:id="@+id/is_sold" />
+                </TableRow>
 
             </TableLayout>
         </TableRow>

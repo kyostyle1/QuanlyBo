@@ -110,4 +110,6 @@ public interface QuanLyBoAPI {
     Call<BaseResponse<CodeOTP>> getCodeOtp(@Path("optCode") String optCode);
     @POST("market/otp/{marketId}")
     Call<BaseResponse<Boolean>> postCodeOtp(@Path("marketId") String marketId,@Body RequestCodeOTP requestCodeOTP);
+    @GET("market/user/{userId}")
+    Call<BaseResponse<List<BuyCowReponse>>> getListMarketCowUser(@Path("userId") String userId);
 }
