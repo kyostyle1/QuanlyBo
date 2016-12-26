@@ -68,15 +68,16 @@ public class FragmentSearchNFC extends Fragment {
                             if(isCheck){
                                 cowId = cowDetailResponse.getCow().getId();
 
-                               /* Intent intentCow = new Intent(getActivity(),CowDetailResponse.class);
-                               // Fragment fragment = new FragmentSellCows();
-                                intentCow.putExtra("cow_id",cowId);
-                                startActivity(intentCow);*/
-                             /*   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("cow_id", cowId);
+                                Fragment fragment = new FragmentCowDetail();
+                                fragment.setArguments(bundle);
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();*/
+                                fragmentTransaction.commit();
+
                                 getActivity().unregisterReceiver(updateReceiver);
 
 

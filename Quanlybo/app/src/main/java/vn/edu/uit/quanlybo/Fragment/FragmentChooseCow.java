@@ -106,7 +106,12 @@ public class FragmentChooseCow extends Fragment  {
 
     @Override
     public void onDestroy(){
-        getActivity().unregisterReceiver(updateReceiver);
+        try {
+            getActivity().unregisterReceiver(updateReceiver);
+
+        } catch (Exception e){
+            
+        }
         super.onDestroy();
     }
 
