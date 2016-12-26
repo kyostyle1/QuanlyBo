@@ -48,13 +48,6 @@ public class LibraryDialog {
     }
 
     public LibraryDialog exit(){
-        Button button = (Button)contextView.findViewById(R.id.btn_library_dismiss);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
         return this;
     }
 

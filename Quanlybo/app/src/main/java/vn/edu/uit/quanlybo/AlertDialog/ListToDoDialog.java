@@ -86,7 +86,6 @@ public class ListToDoDialog {
 
                     }
                 }
-                Toast.makeText(activity, "OK", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         });

@@ -49,13 +49,9 @@ public class FragmentDetailsBuyCow extends Fragment {
     TextView location;
     TextView content;
     TextView price;
-    TextView isSold;
-    TextView dateCreated;
-    TextView dateUpdated;
     TextView cow_type_name;
     TextView cow_target_name;
     TextView cow_gender_name;
-    TextView cow_birthday;
     TextView cow_day_on;
     Button btnHistory;
     Button btnBuy;
@@ -147,13 +143,8 @@ public class FragmentDetailsBuyCow extends Fragment {
         location = (TextView)rootView.findViewById(R.id.details_buy_cow_location);
         content = (TextView)rootView.findViewById(R.id.details_buy_cow_content);
         price = (TextView)rootView.findViewById(R.id.details_buy_cow_price);
-        isSold = (TextView)rootView.findViewById(R.id.details_buy_cow_is_sold);
-        dateCreated = (TextView)rootView.findViewById(R.id.details_buy_cow_date_created);
-        dateUpdated = (TextView)rootView.findViewById(R.id.details_buy_cow_date_updated);
         cow_type_name = (TextView)rootView.findViewById(R.id.details_buy_cow_type_name);
         cow_gender_name = (TextView)rootView.findViewById(R.id.details_buy_cow_gender_name);
-        cow_target_name = (TextView)rootView.findViewById(R.id.details_buy_cow_target_name);
-        cow_birthday = (TextView)rootView.findViewById(R.id.details_buy_cow_birthday);
         cow_day_on = (TextView)rootView.findViewById(R.id.details_buy_cow_day_on);
         btnHistory = (Button)rootView.findViewById(R.id.btn_details_buy_cow_history);
         btnBuy = (Button)rootView.findViewById(R.id.btn_details_buy_cow);
@@ -162,17 +153,13 @@ public class FragmentDetailsBuyCow extends Fragment {
         title.setText(detailsBuyCows.getTitle());
         name.setText(detailsBuyCows.getName());
         phone.setText(detailsBuyCows.getPhone());
-        location.setText("D/c: " + detailsBuyCows.getLocation());
+        location.setText("Địa chỉ: " + detailsBuyCows.getLocation());
         content.setText("Nội dung: " + detailsBuyCows.getContent());
-        price.setText("$: " + detailsBuyCows.getPrice());
-        isSold.setText("Is Sold: "+ detailsBuyCows.getIs_sold());
-        dateCreated.setText("Date Created: "+ detailsBuyCows.getDateCreated());
-        dateUpdated.setText("Date Updated: " + detailsBuyCows.getDateUpdated());
-        cow_type_name.setText("Cow Type: " + detailsBuyCows.getCow_type_name());
-        cow_gender_name.setText("Cow Gender: " + detailsBuyCows.getCow_gender_name());
-        cow_target_name.setText("Cow Target: " + detailsBuyCows.getCow_target_name());
-        cow_birthday.setText("Cow Birthday: " + detailsBuyCows.getCow_birthday());
-        cow_day_on.setText("Cow day on: " + detailsBuyCows.getCow_day_old());
+        price.setText("Giá tiền: " + detailsBuyCows.getPrice());
+
+        cow_type_name.setText("Giống bò: " + detailsBuyCows.getCow_type_name());
+        cow_gender_name.setText("Giới tính: " + detailsBuyCows.getCow_gender_name());
+        cow_day_on.setText("Số ngày tuổi: " + detailsBuyCows.getCow_day_old());
        if(isUserOwnedCow()){
             btnBuy.setEnabled(false);
             btnOtp.setEnabled(true);

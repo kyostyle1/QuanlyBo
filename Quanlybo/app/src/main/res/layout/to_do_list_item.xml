@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Công việc"
         android:id="@+id/cow_detail_to_do_content"
-        android:textSize="15sp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"/>
 
 </LinearLayout>
