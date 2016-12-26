@@ -3,12 +3,16 @@ package vn.edu.uit.quanlybo.Fragment;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
+import vn.edu.uit.quanlybo.MainActivity;
+import vn.edu.uit.quanlybo.Model.User;
+import vn.edu.uit.quanlybo.Network.CowService;
+import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.R;
 
 /**
@@ -28,6 +37,7 @@ public class FragmentSearchNFC extends Fragment {
    // public static final String TAG = "CardReaderFragment";
     private TextView text_nfc;
     private BroadcastReceiver updateReceiver;
+    private String cowId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,7 @@ public class FragmentSearchNFC extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
@@ -45,14 +55,60 @@ public class FragmentSearchNFC extends Fragment {
         if (v != null) {
             text_nfc = (TextView) v.findViewById(R.id.text_nfc);
             text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
+            updateReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    final String nfc_id = intent.getStringExtra("nfc_id");
+                    text_nfc.setText(nfc_id);
+                    CowService.getInstance().getCowDetailByNfc(User.getInstance().getId(), nfc_id, new CowService.GetCowDetailByNfc() {
+                        @Override
+                        public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
+                            if(isCheck){
+                                cowId = cowDetailResponse.getCow().getId();
+                                Intent intentCow = new Intent(getActivity(),CowDetailResponse.class);
+                               // Fragment fragment = new FragmentSellCows();
+                                intentCow.putExtra("cow_id",cowId);
+                                startActivity(intentCow);
+                             /*   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();*/
+
+                            } else {
+                                AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                                alertDialogInfo.alertDialog("Bạn không sở hữu con bò với mã NFC: " + nfc_id,getActivity()).show();
+                                text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(String errorCode) {
+                            Toast.makeText(getActivity(),errorCode,Toast.LENGTH_SHORT);
+                            text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
+
+                        }
+                    });
 
 
+
+                }
+            };
+            getActivity().registerReceiver(updateReceiver, new IntentFilter(MainActivity.ACTION_UPDATE));
         }
+
+
+
 
         return v;
     }
 
-
+    @Override
+    public void onDestroy(){
+        getActivity().unregisterReceiver(updateReceiver);
+        super.onDestroy();
+    }
 
 
 }

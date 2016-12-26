@@ -50,6 +50,7 @@ public class FragmentChooseCow extends Fragment  {
         if (v != null) {
             mAccountField = (TextView) v.findViewById(R.id.text_nfc);
             mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
+
             updateReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {

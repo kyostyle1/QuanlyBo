@@ -69,7 +69,7 @@ public interface QuanLyBoAPI {
     Call<List<ToDoResponse>> getToDoList(@Path("userId") String userId);
 
     @GET("cow/todo-one")
-    Call<CowDetailResponse> getCowDetail(@Query("userId") String userId,
+    Call<BaseResponse<CowDetailResponse>> getCowDetail(@Query("userId") String userId,
                                 @Query("id") String cowId);
 
     @GET("cow/todo-one")

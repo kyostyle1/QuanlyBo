@@ -21,6 +21,7 @@ import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.CowDetail.CurrentToDo;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
+import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
 import vn.edu.uit.quanlybo.Network.ToDoService;
@@ -94,7 +95,7 @@ public class CowDetailActivity extends Activity {
     }
 
     public void initData(){
-        CowService.getInstance().getCowDetail("24", cow_id_intent, new CowService.CowDetailCallBack() {
+        CowService.getInstance().getCowDetail(User.getInstance().getId(), cow_id_intent, new CowService.CowDetailCallBack() {
             @Override
             public void onSuccess(CowDetailResponse cowDetailResponse) {
                 cow = cowDetailResponse.getCow();
