@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,7 @@ public class FragmentSearchNFC extends Fragment {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
@@ -63,17 +64,22 @@ public class FragmentSearchNFC extends Fragment {
                     CowService.getInstance().getCowDetailByNfc(User.getInstance().getId(), nfc_id, new CowService.GetCowDetailByNfc() {
                         @Override
                         public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
+                            Log.d("KKKK",String.valueOf(isCheck));
                             if(isCheck){
                                 cowId = cowDetailResponse.getCow().getId();
-                                Intent intentCow = new Intent(getActivity(),CowDetailResponse.class);
+
+                               /* Intent intentCow = new Intent(getActivity(),CowDetailResponse.class);
                                // Fragment fragment = new FragmentSellCows();
                                 intentCow.putExtra("cow_id",cowId);
-                                startActivity(intentCow);
+                                startActivity(intentCow);*/
                              /*   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();*/
+                                getActivity().unregisterReceiver(updateReceiver);
+
+
 
                             } else {
                                 AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
@@ -103,10 +109,14 @@ public class FragmentSearchNFC extends Fragment {
 
         return v;
     }
-
     @Override
     public void onDestroy(){
-        getActivity().unregisterReceiver(updateReceiver);
+        try {
+            getActivity().unregisterReceiver(updateReceiver);
+
+        } catch (Exception e){
+
+        }
         super.onDestroy();
     }
 

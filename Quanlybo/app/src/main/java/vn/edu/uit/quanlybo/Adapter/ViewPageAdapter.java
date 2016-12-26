@@ -5,8 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import vn.edu.uit.quanlybo.Fragment.FragmentCreateCow;
+import vn.edu.uit.quanlybo.Fragment.FragmentGetNFCCreateCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentListCow;
 import vn.edu.uit.quanlybo.Fragment.FragmentPhoiGiong;
+import vn.edu.uit.quanlybo.Fragment.FragmentSearchNFC;
 import vn.edu.uit.quanlybo.Fragment.RootFragment;
 
 /**
@@ -16,6 +18,7 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
 
     public ViewPageAdapter(FragmentManager fm) {
         super(fm);
+
     }
 
     @Override
@@ -26,7 +29,7 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
                 fragment = new FragmentListCow();
                 break;
             case 1:
-                fragment = new RootFragment();
+                fragment = new RootFragment(new FragmentGetNFCCreateCow());
                 break;
             case 2:
                 fragment = new FragmentPhoiGiong();

@@ -15,6 +15,11 @@ import vn.edu.uit.quanlybo.R;
  */
 
 public class RootFragment extends Fragment {
+    private Fragment fragment;
+
+    public RootFragment(Fragment fragment) {
+        this.fragment = fragment;
+    }
 
     @Nullable
     @Override
@@ -27,7 +32,7 @@ public class RootFragment extends Fragment {
 		 * When this container fragment is created, we fill it with our first
 		 * "real" fragment
 		 */
-        transaction.replace(R.id.root_frame, new FragmentCreateCow());
+        transaction.replace(R.id.root_frame, fragment);
         transaction.commit();
         return view;
     }

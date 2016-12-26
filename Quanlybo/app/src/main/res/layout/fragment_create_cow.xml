@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_create_cow">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -189,26 +190,6 @@
                     android:id="@+id/cow_target_spinner" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="*">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Mã QR"
-                    />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:maxLines="1"
-                    android:lines="1"
-                    android:layout_span="3"
-                    android:id="@+id/qrId" />
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -239,11 +220,7 @@
                             android:layout_span="4">
                         </EditText>
 
-                        <Button
-                            android:id="@+id/btnNfcId"
-                            android:layout_column="2"
-                            android:text="Nhập">
-                        </Button>
+
                     </TableRow>
 
                 </TableLayout>

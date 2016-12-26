@@ -132,8 +132,11 @@ public class FragmentSellCows extends Fragment {
                     @Override
                     public void onSuccess(SellCow sellCow) {
                         Toast.makeText(getContext(),"Đăng bán thành công",Toast.LENGTH_SHORT).show();
-//
-//                        Fragment fragment = new FragmentListBuyCows();
+                        FragmentManager fragmentManager =  getFragmentManager();
+
+                        fragmentManager.popBackStack();
+                        fragmentManager.popBackStack();
+//                    Fragment fragment = new FragmentListBuyCows();
 //                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 //                        fragmentManager.popBackStack();
 //                        fragmentManager.popBackStack();

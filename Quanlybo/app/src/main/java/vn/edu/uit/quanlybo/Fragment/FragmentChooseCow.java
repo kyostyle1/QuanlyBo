@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class FragmentChooseCow extends Fragment  {
                         @Override
                         public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
                             if(isCheck){
+
                                 cowId = cowDetailResponse.getCow().getId();
                                 Fragment fragment = new FragmentSellCows();
                                 Bundle bundle = new Bundle();
@@ -70,12 +72,15 @@ public class FragmentChooseCow extends Fragment  {
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
+                                getActivity().unregisterReceiver(updateReceiver);
+
 
                             } else {
                                 AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
                                 alertDialogInfo.alertDialog("Bạn không sở hữu con bò với mã NFC: " + nfc_id,getActivity()).show();
                                 mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
                             }
+
 
                         }
 
@@ -96,6 +101,7 @@ public class FragmentChooseCow extends Fragment  {
 
         return v;
     }
+
 
 
     @Override

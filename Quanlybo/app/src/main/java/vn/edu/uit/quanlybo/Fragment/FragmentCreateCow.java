@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import vn.edu.uit.quanlybo.AlertDialog.AlertDialogInfo;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.Model.CowTypeResponse;
@@ -53,14 +54,14 @@ public class FragmentCreateCow extends Fragment {
     private String target = "meat";
     private String gender = "male";
     private String source = "no";
+    ViewGroup viewGroup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_create_cow, container, false);
-
+        viewGroup = container;
         /*Spinner Giong bo*/
         getType();
-
         /* Date time picker */
         CowBirthday = (EditText)rootView.findViewById(R.id.cow_birthday);
         CowBirthday.setOnClickListener(new View.OnClickListener() {
@@ -132,16 +133,13 @@ public class FragmentCreateCow extends Fragment {
 
         /* NFC Id*/
         nfcId = (EditText)rootView.findViewById(R.id.nfcId);
-        qrId = (EditText)rootView.findViewById(R.id.qrId);
 
-        btnNfcId = (Button)rootView.findViewById(R.id.btnNfcId);
-        btnNfcId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            final String id = bundle.getString("nfc_id");
+            nfcId.setText(id);
+        }
+        nfcId.setKeyListener(null);
         return rootView;
     }
 
@@ -174,6 +172,11 @@ public class FragmentCreateCow extends Fragment {
             @Override
             public void onClick(View view) {
 
+
+
+
+
+
                 String fatherId;
                 if ( father.getText().toString() != null) {
                     fatherId = father.getText().toString();
@@ -189,10 +192,8 @@ public class FragmentCreateCow extends Fragment {
                     nfc = nfcId.getText().toString();
                 }else nfc = "";
 
-                String qr;
-                if ( qrId.getText().toString() != null){
-                    qr = qrId.getText().toString();
-                }else qr = "";
+                String qr=null;
+
 
                 long target_id = cow_target.getSelectedItemId();
                 switch ( (int)target_id){
@@ -223,13 +224,10 @@ public class FragmentCreateCow extends Fragment {
                 CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
                     @Override
                     public void onSuccess() {
-
-                        FragmentTransaction trans = getFragmentManager()
-                                .beginTransaction();
-                        trans.replace(R.id.root_frame, new FragmentListCow());
-                        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                        trans.addToBackStack(null);
-                        trans.commit();
+                        AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                        alertDialogInfo.alertDialog("Bạn Tạo Bò Thành Công!",getActivity()).show();
+                        getFragmentManager().popBackStack();
+                        getFragmentManager().popBackStack();
                     }
 
                     @Override
@@ -238,6 +236,7 @@ public class FragmentCreateCow extends Fragment {
                         Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
                     }
                 });
+
             }
         });
     }
