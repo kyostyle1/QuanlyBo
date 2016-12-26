@@ -13,11 +13,10 @@
         android:layout_height="wrap_content"
         android:text="Công việc"
         android:id="@+id/library_title"
-        android:textSize="15sp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_marginTop="5dp"/>
 
 </LinearLayout>

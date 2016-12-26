@@ -11,15 +11,9 @@
                 android:layout_width="match_parent"
                 android:padding="10dp"
                 android:id="@+id/library_content"
+                android:text="16sp"
+                android:textAlignment="inherit"
                 android:layout_height="wrap_content" />
-
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="exit"
-            android:id="@+id/btn_library_dismiss"/>
 
 
     </LinearLayout>

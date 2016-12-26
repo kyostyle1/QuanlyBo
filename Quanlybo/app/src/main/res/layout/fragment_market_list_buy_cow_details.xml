@@ -3,11 +3,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:stretchColumns="*"
         android:paddingBottom="10dp">
@@ -15,97 +14,93 @@
         <TextView
             android:text="Title"
             android:textSize="20dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
             android:id="@+id/details_buy_cow_title" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:stretchColumns="*"
-                android:layout_span="5">
+                android:stretchColumns="*">
                 <TableRow>
                     <TextView
                         android:text="Name"
-                        android:layout_span="2"
-                        android:id="@+id/details_buy_cow_name" />
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:id="@+id/details_buy_cow_name"
+                        android:paddingLeft="10dp" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Phone"
-                        android:layout_span="2"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
                         android:id="@+id/details_buy_cow_phone" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Location"
-                        android:layout_span="2"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:id="@+id/details_buy_cow_location" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
                         android:text="Content"
-                        android:layout_span="2"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
                         android:id="@+id/details_buy_cow_content" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Price"
-                        android:layout_span="2"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
                         android:id="@+id/details_buy_cow_price" />
                 </TableRow>
                 <TableRow>
                     <TextView
-                        android:text="Is Sold"
-                        android:layout_span="2"
-                        android:id="@+id/details_buy_cow_is_sold" />
+                        android:text="Cow Type name"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
+                        android:id="@+id/details_buy_cow_type_name" />
                 </TableRow>
                 <TableRow>
                     <TextView
-                        android:text="Date Created"
-                        android:layout_span="2"
-                        android:id="@+id/details_buy_cow_date_created" />
+                        android:text="Cow Gender name"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
+                        android:id="@+id/details_buy_cow_gender_name" />
                 </TableRow>
                 <TableRow>
                     <TextView
-                        android:text="Date Updates"
-                        android:layout_span="2"
-                        android:id="@+id/details_buy_cow_date_updated" />
+                        android:text="Cow Day On"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/textview_bottom_line"
+                        android:paddingLeft="10dp"
+                        android:id="@+id/details_buy_cow_day_on" />
                 </TableRow>
-
-            </TableLayout>
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:stretchColumns="*"
-                android:layout_span="5">
-                <TextView
-                    android:text="Cow Type name"
-                    android:layout_span="2"
-                    android:id="@+id/details_buy_cow_type_name" />
-                <TextView
-                    android:text="Cow Target name"
-                    android:layout_span="2"
-                    android:id="@+id/details_buy_cow_target_name" />
-                <TextView
-                    android:text="Cow Gender name"
-                    android:layout_span="2"
-                    android:id="@+id/details_buy_cow_gender_name" />
-                <TextView
-                    android:text="Cow Birthday"
-                    android:layout_span="2"
-                    android:id="@+id/details_buy_cow_birthday" />
-                <TextView
-                    android:text="Cow Day On"
-                    android:layout_span="2"
-                    android:id="@+id/details_buy_cow_day_on" />
 
             </TableLayout>
 

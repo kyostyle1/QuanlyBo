@@ -38,7 +38,6 @@
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
             android:padding="5dp"
-            android:paddingLeft="10dp"
             android:layout_weight="1"/>
         <TextView android:text="Giới tính"
             android:id="@+id/cow_detail_gender"
@@ -52,14 +51,12 @@
             android:id="@+id/cow_detail_father"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
         <TextView android:text="Bò mẹ"
             android:id="@+id/cow_detail_mother"
             android:background="@drawable/textview_bottom_line"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
             android:padding="5dp"
             android:layout_weight="1"/>
 

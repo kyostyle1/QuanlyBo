@@ -172,11 +172,6 @@ public class FragmentCreateCow extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-
-
-
-
                 String fatherId;
                 if ( father.getText().toString() != null) {
                     fatherId = father.getText().toString();
