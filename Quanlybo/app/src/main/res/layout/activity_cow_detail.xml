@@ -28,54 +28,53 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:stretchColumns="4" >
+        android:layout_weight="3">
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+        <TextView android:text="Giống bò :"
+            android:id="@+id/cow_detail_type"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
+        <TextView android:text="Giới tính"
+            android:id="@+id/cow_detail_gender"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
 
-            <TableLayout
-                android:layout_weight="3">
+        <TextView android:text="Bò cha:"
+            android:id="@+id/cow_detail_father"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
+        <TextView android:text="Bò mẹ"
+            android:id="@+id/cow_detail_mother"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
 
-                <TextView android:text="Giống bò :"
-                    android:id="@+id/cow_detail_type"
-                    android:layout_weight="1"/>
-                <TextView android:text="Giới tính"
-                    android:id="@+id/cow_detail_gender"
-                    android:layout_weight="1"/>
+        <TextView android:text="Ngày sinh :"
+            android:id="@+id/cow_detail_born"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
 
-                <TextView android:text="Bò cha:"
-                    android:id="@+id/cow_detail_father"
-                    android:layout_weight="1"/>
-                <TextView android:text="Bò mẹ"
-                    android:id="@+id/cow_detail_mother"
-                    android:layout_weight="1"/>
-
-                <TextView android:text="Ngày sinh :"
-                    android:id="@+id/cow_detail_born"
-                    android:layout_weight="1"/>
-
-                <TextView android:text="Mục đích nuôi : "
-                    android:id="@+id/cow_detail_target"
-                    android:layout_weight="1"/>
-                <TextView android:text="Nguồn gốc"
-                    android:id="@+id/cow_detail_source"
-                    android:layout_weight="1"/>
-
-            </TableLayout>
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
+        <TextView android:text="Mục đích nuôi : "
+            android:id="@+id/cow_detail_target"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
+        <TextView android:text="Nguồn gốc"
+            android:id="@+id/cow_detail_source"
+            android:background="@drawable/textview_bottom_line"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Lịch sử mua bán bò"/>
-    </LinearLayout>
+    </TableLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

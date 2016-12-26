@@ -71,4 +71,3 @@ public class CowDetailToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoH
         super.expandParent(parentListItem);
     }
 }
-

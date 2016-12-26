@@ -84,11 +84,11 @@ public class FragmentCowDetail extends Fragment {
                 } else {
                     mother = cow.getFather().toString();
                 }
-                cow_id.setText("#" + cow.getId());
+                cow_id.setText("Thông tin chi biết bò:  #" + cow.getId());
                 cow_type.setText("Giống bò : " + cow.getTypeName());
                 cow_gender.setText("Giới tính : " + cow.getGenderName());
-                cow_father.setText("Bò cha : " + father);
-                cow_mother.setText("Bò mẹ : " + mother);
+                cow_father.setText("ID bò cha : #" + father);
+                cow_mother.setText("ID bò mẹ : #" + mother);
                 cow_target.setText("Mục đích nuôi : " + cow.getTargetName());
                 cow_born.setText("Ngày sinh : " + cow.getBirthday());
                 cow_source.setText("Nguồn gốc: " + cow.getSourceName());

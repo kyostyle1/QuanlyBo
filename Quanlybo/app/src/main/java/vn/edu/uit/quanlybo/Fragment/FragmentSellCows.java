@@ -128,18 +128,8 @@ public class FragmentSellCows extends Fragment {
                     public void onSuccess(SellCow sellCow) {
                         Toast.makeText(getContext(),"Đăng bán thành công",Toast.LENGTH_SHORT).show();
                         FragmentManager fragmentManager =  getFragmentManager();
-
                         fragmentManager.popBackStack();
                         fragmentManager.popBackStack();
-//                    Fragment fragment = new FragmentListBuyCows();
-//                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                        fragmentManager.popBackStack();
-//                        fragmentManager.popBackStack();
-//
-//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                        fragmentTransaction.replace(viewGroup.getId(), fragment);
-//                        fragmentTransaction.addToBackStack(null);
-//                        fragmentTransaction.commit();
                     }
 
                     @Override
@@ -150,7 +140,6 @@ public class FragmentSellCows extends Fragment {
                 });
             }
         });
-
 
     }
 }
