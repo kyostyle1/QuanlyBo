@@ -24,6 +24,7 @@ import vn.edu.uit.quanlybo.Network.Model.CowTypeResponse;
 import vn.edu.uit.quanlybo.Network.Model.CreateCowRequest;
 import vn.edu.uit.quanlybo.Network.Model.NoData;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessNfcRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
 import vn.edu.uit.quanlybo.Network.Model.UserLoginRequest;
@@ -94,6 +95,9 @@ public interface QuanLyBoAPI {
 
     @POST("cow/todo/success")
     Call<BaseResponse<ToDoSuccessResponse>> postStatusToDo(@Body ToDoSuccessRequest toDoSuccessRequest);
+
+    @POST("cow/todo/success")
+    Call<BaseResponse<ToDoSuccessResponse>> postStatusNfcToDo(@Body ToDoSuccessNfcRequest toDoSuccessNfcRequest);
 
     @GET("cow/check")
     Call<CowCheckResponse> checkCow(@Query("cow_1st") String cow_1st

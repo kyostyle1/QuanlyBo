@@ -50,10 +50,6 @@ public class LoginActivity extends Activity {
 
         username = (EditText)findViewById(R.id.input_username);
         password = (EditText)findViewById(R.id.input_password);
-        username.setText("famer");
-        password.setText("famer");
-        username.setFocusable(false);
-        password.setFocusable(false);
         LoginButton();
         SignUp();
 

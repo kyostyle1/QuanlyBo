@@ -2,6 +2,14 @@ package vn.edu.uit.quanlybo.AlertDialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,8 +23,14 @@ import android.widget.Toast;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CheckListAdapter;
+import vn.edu.uit.quanlybo.Fragment.FragmentCowDetail;
+import vn.edu.uit.quanlybo.MainActivity;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowStatus;
+import vn.edu.uit.quanlybo.Model.User;
+import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
+import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessNfcRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
 import vn.edu.uit.quanlybo.Network.ToDoService;
@@ -35,8 +49,10 @@ public class ListToDoDialog {
     List<CowStatus> cowStatusList;
     ListView lv;
     private String todoId;
+    private BroadcastReceiver updateReceiver;
 
-    public ListToDoDialog(Activity atv){
+
+    public ListToDoDialog(final Activity atv){
         this.activity = atv;
         dialog = new Dialog(activity);
         contextView = activity.getLayoutInflater().inflate(R.layout.dialog_to_do_list, null);
@@ -54,6 +70,45 @@ public class ListToDoDialog {
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
+
+        updateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(final Context context, Intent intent) {
+                final String nfc_id = intent.getStringExtra("nfc_id");
+                CowService.getInstance().getCowDetailByNfc(User.getInstance().getId(), nfc_id, new CowService.GetCowDetailByNfc() {
+                    @Override
+                    public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
+                        Toast.makeText(context, "NFC", Toast.LENGTH_SHORT).show();
+                        String success = "yes";
+                        ToDoSuccessNfcRequest toDoSuccessNfcRequest = new ToDoSuccessNfcRequest(
+                                nfc_id, String.valueOf(cowDetailResponse.getCow().getDayOld()), todoId, success
+                        );
+                        ToDoService.getInstance().postNfcToDo(toDoSuccessNfcRequest, new ToDoService.PostToDoCallBack() {
+                            @Override
+                            public void onSuccess(BaseResponse<ToDoSuccessResponse> toDoSuccessResponseBaseResponse) {
+                                Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
+                                dismiss();
+                            }
+
+                            @Override
+                            public void onFailure(String errorCode) {
+
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onFailure(String errorCode) {
+                        Toast.makeText(atv,errorCode,Toast.LENGTH_SHORT);
+                    }
+                });
+
+
+
+            }
+        };
+        atv.registerReceiver(updateReceiver, new IntentFilter(MainActivity.ACTION_UPDATE));
 
     }
 
@@ -100,6 +155,12 @@ public class ListToDoDialog {
 
     public ListToDoDialog dismiss() {
         dialog.dismiss();
+        try {
+            activity.unregisterReceiver(updateReceiver);
+
+        } catch (Exception e){
+
+        }
         if (onCloseCallback != null) {
             onCloseCallback.onClose();
         }

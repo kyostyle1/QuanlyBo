@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Fragment.TabManager;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
@@ -17,9 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.ListCowToDoAdapter;
-import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoHeader;
-import vn.edu.uit.quanlybo.Model.ListCowToDo.ToDoItem;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.Network.ToDoService;
@@ -36,6 +34,7 @@ public class FragmentToDoList extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     final List<ToDoHeader> toDoHeaders = new ArrayList<>();
     final List<ParentListItem> parentListItems = new ArrayList<>();
+    private Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -81,36 +80,42 @@ public class FragmentToDoList extends Fragment {
     void refreshItems() {
 
         clearData();
-        ToDoService.getInstance().getToDoList(User.getInstance().getId(), new ToDoService.ToDoCallBack() {
-            @Override
-            public void onSuccess(List<ToDoResponse> toDoResponseList) {
-                for ( ToDoResponse toDoResponse : toDoResponseList) {
-                    toDoResponse.setToDoItems(toDoResponse.getCow_todo());
-                    parentListItems.add(toDoResponse);
-                }
 
-                adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ToDoService.getInstance().getToDoList(User.getInstance().getId(), new ToDoService.ToDoCallBack() {
+                    @Override
+                    public void onSuccess(List<ToDoResponse> toDoResponseList) {
+                        for ( ToDoResponse toDoResponse : toDoResponseList) {
+                            toDoResponse.setToDoItems(toDoResponse.getCow_todo());
+                            parentListItems.add(toDoResponse);
+                        }
+
+                        adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems);
+                        lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
+                        lvToDo.setAdapter(adapter);
+
+                    }
+
+                    @Override
+                    public void onFailure(String errorCode) {
+
+                    }
+                });
                 adapter.notifyDataSetChanged();
-                lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
-                lvToDo.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
+        }, 1000);
 
-            @Override
-            public void onFailure(String errorCode) {
-
-            }
-        });
-
-        onItemsLoadComplete();
     }
 
     void onItemsLoadComplete() {
         // Update the adapter and notify data set changed
         // ...
 
-        adapter.notifyDataSetChanged();
+
         // Stop refresh animation
-        swipeRefreshLayout.setRefreshing(false);
     }
 
     public void clearData() {

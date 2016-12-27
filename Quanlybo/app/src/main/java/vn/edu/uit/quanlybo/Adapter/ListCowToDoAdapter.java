@@ -78,8 +78,13 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
         String cowIdsDo = TextUtils.join(", #", listCowDo);
         String cowIdsNotDo = TextUtils.join(", #", listCowNotDo);
 
-        childViewHolder.itemCowIdNotDo.setText("Chưa hoàn thành: #" + cowIdsNotDo);
-        childViewHolder.itemCowIdDo.setText("Đã hoàn thành: #" + cowIdsDo);
+        if ( listCowDo.size() > 0){
+            childViewHolder.itemCowIdDo.setText("Đã hoàn thành: #" + cowIdsDo);
+        }
+
+        if ( listCowNotDo.size() > 0 ){
+            childViewHolder.itemCowIdNotDo.setText("Chưa hoàn thành: #" + cowIdsNotDo);
+        }
 
         Picasso.with(context)
                 .load(cowToDo.getToDo().getImg())

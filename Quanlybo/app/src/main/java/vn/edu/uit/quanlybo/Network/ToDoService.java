@@ -6,8 +6,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
+import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessNfcRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessRequest;
 import vn.edu.uit.quanlybo.Network.Model.ToDoSuccessResponse;
 
@@ -84,7 +86,25 @@ public class ToDoService extends BaseService {
 
             @Override
             public void onFailure(Call<BaseResponse<ToDoSuccessResponse>> call, Throwable t) {
-                postToDoCallBack.onFailure("Faliure");
+                postToDoCallBack.onFailure("Failure");
+            }
+        });
+    }
+
+    public void postNfcToDo(ToDoSuccessNfcRequest toDoSuccessNfcRequest, final  PostToDoCallBack postToDoCallBack){
+        showProgressDialog();
+        Call<BaseResponse<ToDoSuccessResponse>> call = quanLyBoAPI.postStatusNfcToDo(toDoSuccessNfcRequest);
+        call.enqueue(new Callback<BaseResponse<ToDoSuccessResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ToDoSuccessResponse>> call, Response<BaseResponse<ToDoSuccessResponse>> response) {
+                postToDoCallBack.onSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ToDoSuccessResponse>> call, Throwable t) {
+                postToDoCallBack.onFailure("Failure");
+
             }
         });
     }
