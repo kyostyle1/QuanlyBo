@@ -2,32 +2,32 @@
 <tabs>
     <tab
         id="@+id/bottomBarToDo"
-        icon="@drawable/ic_action_list"
+        icon="@drawable/list"
         title="Công việc"/>
 
     <tab
         id="@+id/bottomBarListCow"
-        icon="@drawable/ic_action_cow"
+        icon="@drawable/cow"
         title="Bò"/>
 
     <tab
         id="@+id/bottomBarSearch"
-        icon="@drawable/ic_action_search"
+        icon="@drawable/search"
         title="Tìm kiếm"/>
 
     <tab
         id="@+id/bottomBarLibrary"
-        icon="@drawable/ic_action_library"
+        icon="@drawable/library"
         title="Tài liệu"/>
 
     <tab
         id="@+id/bottomBarMarket"
-        icon="@drawable/ic_action_market"
+        icon="@drawable/market"
         title="Chợ bò"/>
 
     <tab
         id="@+id/bottomProfile"
-        icon="@drawable/ic_action_market"
+        icon="@drawable/user"
         title="Tài khoản"/>
 </tabs>
 

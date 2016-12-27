@@ -17,6 +17,17 @@ public class CreateCowRequest {
     private String target;
     private String isBorn;
 
+    public CreateCowRequest(int userId, int typeId, String nfcId, String qrId, String gender, String birthday, String target, String isBorn) {
+        this.userId = userId;
+        this.typeId = typeId;
+        this.nfcId = nfcId;
+        this.qrId = qrId;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.target = target;
+        this.isBorn = isBorn;
+    }
+
     public CreateCowRequest(int userId, int father, int mother, int typeId, String nfcId, String qrId, String gender, String birthday, String target, String isBorn) {
         this.userId = userId;
         this.father = father;

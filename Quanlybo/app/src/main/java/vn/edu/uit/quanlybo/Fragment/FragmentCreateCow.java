@@ -175,12 +175,12 @@ public class FragmentCreateCow extends Fragment {
                 String fatherId;
                 if ( father.getText().toString() != null) {
                     fatherId = father.getText().toString();
-                }else fatherId = "";
+                }else fatherId = null;
 
                 String motherId;
                 if ( mother.getText().toString() != null) {
                     motherId = mother.getText().toString();
-                }else motherId = "";
+                }else motherId = null;
 
                 String nfc;
                 if( nfcId.getText().toString() != null){
@@ -204,24 +204,39 @@ public class FragmentCreateCow extends Fragment {
                     default:
                         target = "meat";
                 }
-                CreateCowRequest createCowRequest = new CreateCowRequest(
-                        Integer.valueOf(User.getInstance().getId()),
-                        Integer.valueOf(fatherId),
-                        Integer.valueOf(motherId),
-                        Integer.valueOf(String.valueOf(cow_type_spinner.getSelectedItemId()+1)),
-                        nfc,
-                        qr,
-                        gender,
-                        CowBirthday.getText().toString(),
-                        target,
-                        source
-                );
+                if ( nfcId.getText() == null){
+                    nfc = "";
+                }
+                CreateCowRequest createCowRequest;
+                if ( mother.getText().toString().equals("") || father.getText().toString().equals("") ){
+                    createCowRequest = new CreateCowRequest(
+                            Integer.valueOf(User.getInstance().getId()),
+                            Integer.valueOf(String.valueOf(cow_type_spinner.getSelectedItemId()+1)),
+                            nfc,
+                            qr,
+                            gender,
+                            CowBirthday.getText().toString(),
+                            target,
+                            source);
+                }
+                else {
+                    createCowRequest = new CreateCowRequest(
+                            Integer.valueOf(User.getInstance().getId()),
+                            Integer.valueOf(fatherId),
+                            Integer.valueOf(motherId),
+                            Integer.valueOf(String.valueOf(cow_type_spinner.getSelectedItemId() + 1)),
+                            nfc,
+                            qr,
+                            gender,
+                            CowBirthday.getText().toString(),
+                            target,
+                            source);
+                }
                 CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
                     @Override
                     public void onSuccess() {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
                         alertDialogInfo.alertDialog("Bạn Tạo Bò Thành Công!",getActivity()).show();
-                        getFragmentManager().popBackStack();
                         getFragmentManager().popBackStack();
                     }
 

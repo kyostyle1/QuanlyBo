@@ -34,6 +34,8 @@ public class LoginActivity extends Activity {
         password = (EditText)findViewById(R.id.input_password);
         username.setText("famer");
         password.setText("famer");
+        username.setFocusable(false);
+        password.setFocusable(false);
         LoginButton();
         SignUp();
 
@@ -73,6 +75,7 @@ public class LoginActivity extends Activity {
                         @Override
                         public void onFailure(String errorCode) {
                             AlertDialog alertFailure = new AlertDialogInfo().alertDialog(errorCode,LoginActivity.this);
+                            alertFailure.setMessage("Không thể kết nối internet, vui lòng kiểm tra lại đường truyền");
                             alertFailure.show();
                         }
                     });
