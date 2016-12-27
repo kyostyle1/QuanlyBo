@@ -63,7 +63,7 @@ public class FragmentGetNFCCreateCow extends android.support.v4.app.Fragment {
                     trans.addToBackStack(null);
                     trans.commit();
 
-                    getActivity().unregisterReceiver(updateReceiver);
+
 
 
                 }
@@ -76,22 +76,10 @@ public class FragmentGetNFCCreateCow extends android.support.v4.app.Fragment {
 
         return v;
     }
-   /* @Override
-    public void onPause(){
-        getActivity().unregisterReceiver(updateReceiver);
-
-        super.onPause();
-    }*/
     @Override
-    public void onDestroy(){
-        try {
-            getActivity().unregisterReceiver(updateReceiver);
-
-        } catch (Exception e){
-
-        }
-        super.onDestroy();
+    public void onDestroyView() {
+        getActivity().unregisterReceiver(updateReceiver);
+        super.onDestroyView();
     }
-
 
 }

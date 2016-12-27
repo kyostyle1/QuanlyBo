@@ -5,17 +5,26 @@ package vn.edu.uit.quanlybo.Model.Market;
  */
 
 public class History_Cow {
+    private String day_old;
     private String todo_id;
     private String success;
     private String title;
     private String description;
 
-
-    public History_Cow(String todo_id, String success, String title, String description) {
+    public History_Cow(String day_old, String todo_id, String success, String title, String description) {
+        this.day_old = day_old;
         this.todo_id = todo_id;
         this.success = success;
         this.title = title;
         this.description = description;
+    }
+
+    public String getDay_old() {
+        return day_old;
+    }
+
+    public void setDay_old(String day_old) {
+        this.day_old = day_old;
     }
 
     public String getId() {

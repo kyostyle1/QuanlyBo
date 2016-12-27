@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -66,3 +67,72 @@
 
     </LinearLayout>
 </LinearLayout>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_layout"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border_layout"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/list_to_do_item_image"
+            android:src="@drawable/ic_action_cow"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
+        android:id="@+id/item_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="75dp"
+            android:text="Công việc"
+            android:id="@+id/list_cow_to_do_item_title"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_cow_to_do_item_id"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:paddingTop="5dp"
+            android:textColor="#2962FF"
+            android:text="Đã hoàn thành : "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_cow_to_do_item_id_1"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:paddingTop="5dp"
+            android:textColor="#2962FF"
+            android:paddingBottom="10dp"
+            android:text="Chưa hoàn thành : "/>
+
+    </LinearLayout>
+</LinearLayout>
+>>>>>>> d6fa0bfd30c23c6f84a25dc45aaee8bbfa397be2

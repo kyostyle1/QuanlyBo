@@ -28,7 +28,7 @@ import vn.edu.uit.quanlybo.R;
 public class FragmentSellCows extends Fragment {
 
     private EditText edtTitle, edtContent, edtLocation, edtPrice, edtName, edtPhone;
-    private TextView txtCow;
+    private TextView txtCow,txtId;
     private Button btnSell;
     private String title,content,location,price;
     private String phone, name,cowid,userid;
@@ -45,6 +45,7 @@ public class FragmentSellCows extends Fragment {
         edtName = (EditText) rootView.findViewById(R.id.edtName);
         edtPhone = (EditText) rootView.findViewById(R.id.edtPhone);
         txtCow = (TextView) rootView.findViewById(R.id.txtCow);
+        txtId = (TextView) rootView.findViewById(R.id.txtIdCow);
         btnSell = (Button) rootView.findViewById(R.id.btnSell);
         addCows();
         sellCow();
@@ -66,7 +67,8 @@ public class FragmentSellCows extends Fragment {
                             break;
                         }
                     }
-                    txtCow.setText("Bò: "+ sell.getTypeName());
+                    txtId.setText("ID Bò: #"+ sell.getId());
+                    txtCow.setText("Giống Bò: "+ sell.getTypeName());
                     edtLocation.setText(User.getInstance().getAddress());
                     edtPhone.setText(User.getInstance().getPhone());
                     edtName.setText(String.valueOf(User.getInstance().getName()));
@@ -129,7 +131,7 @@ public class FragmentSellCows extends Fragment {
                         Toast.makeText(getContext(),"Đăng bán thành công",Toast.LENGTH_SHORT).show();
                         FragmentManager fragmentManager =  getFragmentManager();
                         fragmentManager.popBackStack();
-                        fragmentManager.popBackStack();
+                        //fragmentManager.popBackStack();
                     }
 
                     @Override
