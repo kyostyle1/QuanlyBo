@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoHeaderViewHolder;
 import vn.edu.uit.quanlybo.Adapter.ViewHolder.ListCowToDoItemViewHolder;
 import vn.edu.uit.quanlybo.AlertDialog.ListToDoDialog;
+import vn.edu.uit.quanlybo.Model.ListCowToDo.CowStatus;
 import vn.edu.uit.quanlybo.Model.ListCowToDo.CowToDo;
 import vn.edu.uit.quanlybo.Network.Model.ToDoResponse;
 import vn.edu.uit.quanlybo.R;
@@ -60,12 +62,29 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
     public void onBindChildViewHolder(ListCowToDoItemViewHolder childViewHolder, final int position, final Object childListItem) {
         final CowToDo cowToDo = (CowToDo)childListItem;
         childViewHolder.itemTitle.setText(cowToDo.getToDo().getTitle());
-        final List<String> listCowId = new ArrayList<>();
-        for ( int i = 0 ; i < cowToDo.getCow().size(); i ++){
+        final List<String> listCowDo = new ArrayList<>();
+        final List<String> listCowNotDo = new ArrayList<>();
+
+        /*for ( int i = 0 ; i < cowToDo.getCow().size(); i ++){
             listCowId.add(String.valueOf(cowToDo.getCow().get(i).getId()));
+        }*/
+        for (CowStatus cowStatus : cowToDo.getCow()){
+            if ( cowStatus.getSuccess().equals("no")){
+                listCowNotDo.add(String.valueOf(cowStatus.getId()));
+            } else {
+                listCowDo.add(String.valueOf(cowStatus.getId()));
+            }
         }
-        String cowIds = TextUtils.join(", #", listCowId);
-        childViewHolder.itemCowId.setText("#" + cowIds);
+        String cowIdsDo = TextUtils.join(", #", listCowDo);
+        String cowIdsNotDo = TextUtils.join(", #", listCowNotDo);
+
+        childViewHolder.itemCowIdNotDo.setText("Chưa hoàn thành: #" + cowIdsNotDo);
+        childViewHolder.itemCowIdDo.setText("Đã hoàn thành: #" + cowIdsDo);
+
+        Picasso.with(context)
+                .load(cowToDo.getToDo().getImg())
+                .into(childViewHolder.itemImage);
+
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

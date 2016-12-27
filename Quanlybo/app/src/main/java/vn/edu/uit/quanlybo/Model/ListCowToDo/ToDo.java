@@ -9,6 +9,7 @@ public class ToDo {
     private String title;
     private String description;
     private String content;
+    private String img;
     private String success;
 
     public ToDo(String id, String title, String description, String content, String success) {
@@ -17,6 +18,14 @@ public class ToDo {
         this.description = description;
         this.content = content;
         this.success = success;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getId() {

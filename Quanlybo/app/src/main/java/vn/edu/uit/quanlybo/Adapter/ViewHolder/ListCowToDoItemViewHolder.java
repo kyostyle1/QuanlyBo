@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Adapter.ViewHolder;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
@@ -14,11 +15,15 @@ import vn.edu.uit.quanlybo.R;
 public class ListCowToDoItemViewHolder extends ChildViewHolder {
 
     public TextView itemTitle;
-    public TextView itemCowId;
+    public TextView itemCowIdDo;
+    public TextView itemCowIdNotDo;
+    public ImageView itemImage;
 
     public ListCowToDoItemViewHolder(View itemView) {
         super(itemView);
         itemTitle = (TextView)itemView.findViewById(R.id.list_cow_to_do_item_title);
-        itemCowId = (TextView)itemView.findViewById(R.id.list_cow_to_do_item_id);
+        itemCowIdDo = (TextView)itemView.findViewById(R.id.list_cow_to_do_item_id);
+        itemCowIdNotDo = (TextView)itemView.findViewById(R.id.list_cow_to_do_item_id_1);
+        itemImage = (ImageView)itemView.findViewById(R.id.list_to_do_item_image);
     }
 }

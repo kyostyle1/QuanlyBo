@@ -232,7 +232,7 @@ public class FragmentCreateCow extends Fragment {
                             target,
                             source);
                 }
-                CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
+                 CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
                     @Override
                     public void onSuccess() {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
