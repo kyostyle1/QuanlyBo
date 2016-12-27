@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,18 @@ static class ViewHolder {
         holder.cow_type.setText("Giống bò: " + buyCowReponse.getCow_type());
         holder.cow_gender.setText("Giới tính: " + buyCowReponse.getCow_gender());
         if(isListUser){
-            if(buyCowReponse.getIs_sold().equals("1")){
+
+            if( buyCowReponse.getIs_sold() == 1 ){
                 holder.is_sold.setText("Đã bán");
             }
+            else{
+                holder.is_sold.setText("");
+                holder.is_sold.setVisibility(View.GONE);
+            }
+
+        }else {
+            holder.is_sold.setVisibility(View.GONE);
+
         }
 
       //   holder.date_created.setText(buyCowReponse.getDate_created());

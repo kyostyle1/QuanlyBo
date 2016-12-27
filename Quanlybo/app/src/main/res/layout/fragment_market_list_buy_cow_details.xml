@@ -1,149 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:stretchColumns="*"
-        android:paddingBottom="10dp">
-
-        <TextView
-            android:text="Title"
-            android:textSize="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:id="@+id/details_buy_cow_title" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:stretchColumns="*">
-                <TableRow>
-                    <TextView
-                        android:text="Name"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:id="@+id/details_buy_cow_name"
-                        android:paddingLeft="10dp" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Phone"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_phone" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Location"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:id="@+id/details_buy_cow_location" />
-                </TableRow>
-
-                <TableRow>
-                    <TextView
-                        android:text="Content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_content" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Price"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_price" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Cow Type name"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_type_name" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Cow Gender name"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_gender_name" />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:text="Cow Day On"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@drawable/textview_bottom_line"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/details_buy_cow_day_on" />
-                </TableRow>
-
-            </TableLayout>
-
-        </TableRow>
-
-        <TableLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lấy OTP"
-                android:id="@+id/btn_details_buy_cow_get_otp"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lịch sử"
-                android:id="@+id/btn_details_buy_cow_history"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mua"
-                android:id="@+id/btn_details_buy_cow"/>
-        </TableLayout>
-
-    </TableLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TableLayout
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:stretchColumns="*"
+            android:paddingBottom="10dp">
 
+            <TextView
+                android:text="Title"
+                android:textSize="40sp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:id="@+id/details_buy_cow_title" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:stretchColumns="*">
+                    <TableRow>
+                        <TextView
+                            android:text="Name"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textSize="20sp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:id="@+id/details_buy_cow_name"
+                            android:paddingLeft="10dp" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Phone"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:textSize="20sp"
+                            android:paddingLeft="10dp"
+                            android:id="@+id/details_buy_cow_phone" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Location"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:textSize="20sp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:id="@+id/details_buy_cow_location" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:text="Content"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textSize="20sp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:id="@+id/details_buy_cow_content" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Price"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:textSize="20sp"
+                            android:id="@+id/details_buy_cow_price" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Cow Type name"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:textSize="20sp"
+                            android:id="@+id/details_buy_cow_type_name" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Cow Gender name"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:textSize="20sp"
+                            android:id="@+id/details_buy_cow_gender_name" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="Cow Day On"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:textSize="20sp"
+                            android:background="@drawable/textview_bottom_line"
+                            android:paddingLeft="10dp"
+                            android:id="@+id/details_buy_cow_day_on" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </TableRow>
+
+            <TableLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lấy OTP"
+                    android:id="@+id/btn_details_buy_cow_get_otp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lịch sử"
+                    android:id="@+id/btn_details_buy_cow_history"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mua"
+                    android:id="@+id/btn_details_buy_cow"/>
+            </TableLayout>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/tb_history">
 
         </TableLayout>
-    </ScrollView>
 
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/details_buy_cow_list"
-        />
-</LinearLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_buy_cow_list"
+            />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

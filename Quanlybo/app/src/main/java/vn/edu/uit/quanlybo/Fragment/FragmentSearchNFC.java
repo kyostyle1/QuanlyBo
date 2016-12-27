@@ -53,6 +53,7 @@ public class FragmentSearchNFC extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
 
+
         if (v != null) {
             text_nfc = (TextView) v.findViewById(R.id.text_nfc);
             text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
@@ -64,7 +65,6 @@ public class FragmentSearchNFC extends Fragment {
                     CowService.getInstance().getCowDetailByNfc(User.getInstance().getId(), nfc_id, new CowService.GetCowDetailByNfc() {
                         @Override
                         public void onSuccess(Boolean isCheck, CowDetailResponse cowDetailResponse) {
-                            Log.d("KKKK",String.valueOf(isCheck));
                             if(isCheck){
                                 cowId = cowDetailResponse.getCow().getId();
 
@@ -77,8 +77,6 @@ public class FragmentSearchNFC extends Fragment {
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
-                                getActivity().unregisterReceiver(updateReceiver);
-
 
 
                             } else {
@@ -102,6 +100,7 @@ public class FragmentSearchNFC extends Fragment {
                 }
             };
             getActivity().registerReceiver(updateReceiver, new IntentFilter(MainActivity.ACTION_UPDATE));
+
         }
 
 
@@ -109,16 +108,15 @@ public class FragmentSearchNFC extends Fragment {
 
         return v;
     }
+
+
     @Override
-    public void onDestroy(){
-        try {
-            getActivity().unregisterReceiver(updateReceiver);
-
-        } catch (Exception e){
-
-        }
-        super.onDestroy();
+    public void onDestroyView() {
+        getActivity().unregisterReceiver(updateReceiver);
+        super.onDestroyView();
     }
+
+
 
 
 }
