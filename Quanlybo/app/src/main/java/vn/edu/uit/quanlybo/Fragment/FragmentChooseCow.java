@@ -30,9 +30,7 @@ import vn.edu.uit.quanlybo.R;
 public class FragmentChooseCow extends Fragment  {
 
     public static final String TAG = "CardReaderFragment";
-    // Recommend NfcAdapter flags for reading from other Android devices. Indicates that this
-    // activity is interested in NFC-A devices (including other Android devices), and that the
-    // system should not check for the presence of NDEF-formatted data (e.g. Android Beam).
+
     private TextView mAccountField;
     private BroadcastReceiver updateReceiver;
 
@@ -48,6 +46,8 @@ public class FragmentChooseCow extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search_nfc, container, false);
+
+
         if (v != null) {
             mAccountField = (TextView) v.findViewById(R.id.text_nfc);
             mAccountField.setText("Áp thẻ NFC vào để tìm kiếm...");
@@ -63,15 +63,7 @@ public class FragmentChooseCow extends Fragment  {
                             if(isCheck){
 
                                 cowId = cowDetailResponse.getCow().getId();
-                               /* Fragment fragment = new FragmentSellCows();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("cow_id",cowId);
-                                fragment.setArguments(bundle);
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();*/
+
                                 FragmentSellCows fragment =  new FragmentSellCows();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("cow_id",cowId);
@@ -81,7 +73,6 @@ public class FragmentChooseCow extends Fragment  {
                                 trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 trans.addToBackStack(null);
                                 trans.commit();
-                                getActivity().unregisterReceiver(updateReceiver);
 
 
                             } else {
@@ -102,11 +93,12 @@ public class FragmentChooseCow extends Fragment  {
                     });
 
 
-
                 }
             };
             getActivity().registerReceiver(updateReceiver, new IntentFilter(MainActivity.ACTION_UPDATE));
+
         }
+
 
         return v;
     }
@@ -114,14 +106,12 @@ public class FragmentChooseCow extends Fragment  {
 
 
     @Override
-    public void onDestroy(){
-        try {
+    public void onDestroyView() {
+
             getActivity().unregisterReceiver(updateReceiver);
 
-        } catch (Exception e){
 
-        }
-        super.onDestroy();
+        super.onDestroyView();
     }
 
 }

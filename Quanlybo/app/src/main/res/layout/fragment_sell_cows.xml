@@ -2,16 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="5dp"
+    android:paddingTop="15dp"
+    android:paddingLeft="20dp"
+    android:paddingRight= "20dp"
     android:id="@+id/fragmentBuyCows">
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:id="@+id/txtIdCow"
+        android:textSize="20sp"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bò:"
+        android:text="Giống Bò:"
+        android:textSize="20sp"
+        android:paddingTop="5dp"
         android:id="@+id/txtCow"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Tựa đề:"/>
     <EditText
         android:layout_width="match_parent"
@@ -20,6 +31,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Nội dung:"/>
     <EditText
         android:layout_width="match_parent"
@@ -28,6 +40,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:text="Giá:"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:id="@+id/edtPrice" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Địa chỉ:"/>
     <EditText
         android:layout_width="match_parent"
@@ -36,6 +60,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Name:"/>
     <EditText
         android:layout_width="match_parent"
@@ -44,24 +69,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Phone:"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:id="@+id/edtPhone" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Giá:"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:id="@+id/edtPrice" />
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="Đăng bán"
         android:id="@+id/btnSell"/>
 

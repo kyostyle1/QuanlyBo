@@ -43,7 +43,7 @@ public class FragmentDetailsBuyCow extends Fragment {
     ListView listViewHistoryDetailsBuyCows;
     private DetailsBuyCows buyCows;
     String marketId = null;
-    TextView title;
+    TextView title,id_cow,title_market;
     TextView name;
     TextView phone;
     TextView location;
@@ -105,12 +105,15 @@ public class FragmentDetailsBuyCow extends Fragment {
                     public void onSuccess(String success) {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
                         alertDialogInfo.alertDialog(success,getActivity()).show();
-                        Fragment fragment = new FragmentListBuyCows();
+                      //  Fragment fragment = new FragmentListBuyCows();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentManager.popBackStack();
+
+
+                        /*FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(getView().getId(), fragment);
                         fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
+                        fragmentTransaction.commit();*/
                     }
 
                     @Override
@@ -136,7 +139,8 @@ public class FragmentDetailsBuyCow extends Fragment {
 
 
         tb_history = (TableLayout) rootView.findViewById(R.id.tb_history);
-
+        id_cow = (TextView) rootView.findViewById(R.id.details_buy_cow_id_cow) ;
+        title_market= (TextView) rootView.findViewById(R.id.details_buy_cow_title_martket) ;
         title = (TextView) rootView.findViewById(R.id.details_buy_cow_title);
         name = (TextView) rootView.findViewById(R.id.details_buy_cow_name);
         phone = (TextView) rootView.findViewById(R.id.details_buy_cow_phone);
@@ -150,7 +154,10 @@ public class FragmentDetailsBuyCow extends Fragment {
         btnBuy = (Button)rootView.findViewById(R.id.btn_details_buy_cow);
         btnOtp = (Button)rootView.findViewById(R.id.btn_details_buy_cow_get_otp) ;
 
-        title.setText(detailsBuyCows.getTitle());
+
+        title.setText("Thông tin chi tiết bài đăng: "+"#"+detailsBuyCows.getId());
+        title_market.setText(detailsBuyCows.getTitle());
+        id_cow.setText("ID Bò: #"+detailsBuyCows.getCowId());
         name.setText(detailsBuyCows.getName());
         phone.setText(detailsBuyCows.getPhone());
         location.setText("Địa chỉ: " + detailsBuyCows.getLocation());
@@ -161,12 +168,14 @@ public class FragmentDetailsBuyCow extends Fragment {
         cow_gender_name.setText("Giới tính: " + detailsBuyCows.getCow_gender_name());
         cow_day_on.setText("Số ngày tuổi: " + detailsBuyCows.getCow_day_old());
        if(isUserOwnedCow()){
-            btnBuy.setEnabled(false);
-            btnOtp.setEnabled(true);
+            btnBuy.setVisibility(View.GONE);
+           /* btnBuy.setEnabled(false);
+            btnOtp.setEnabled(true);*/
         }
         else {
-            btnBuy.setEnabled(true);
-            btnOtp.setEnabled(false);
+           btnOtp.setVisibility(View.GONE);
+          /*  btnBuy.setEnabled(true);
+            btnOtp.setEnabled(false);*/
         }
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,10 +183,11 @@ public class FragmentDetailsBuyCow extends Fragment {
                 if(tb_history.getChildCount()==0){
                     TableRow.LayoutParams layoutParams = new TableRow.LayoutParams();
                     layoutParams.setMargins(20,20,20,20);
+
                     TextView name_id = new TextView(getActivity());
                     TextView name_title = new TextView(getActivity());
-                    name_id.setText("ID");
-                    name_title.setText("Title");
+                    name_id.setText("Ngày tuổi");
+                    name_title.setText("Công việc");
                     name_id.setLayoutParams(layoutParams);
                     name_title.setLayoutParams(layoutParams);
                     TableRow name_tbr = new TableRow(getActivity());
@@ -191,7 +201,7 @@ public class FragmentDetailsBuyCow extends Fragment {
                         txt_id.setLayoutParams(layoutParams);
                         txt_title.setLayoutParams(layoutParams);
                         TableRow tbr_history = new TableRow(getActivity());
-                        txt_id.setText(history_cow.getId());
+                        txt_id.setText(history_cow.getDay_old());
                         txt_title.setText(history_cow.getTitle());
                         tbr_history.addView(txt_id);
                         tbr_history.addView(txt_title);
