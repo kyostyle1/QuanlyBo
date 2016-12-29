@@ -1,7 +1,9 @@
 package vn.edu.uit.quanlybo.AlertDialog;
 
+import android.animation.TypeConverter;
 import android.app.Activity;
 import android.app.Dialog;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class LibraryDialog {
     private View contextView;
     private ListToDoDialog.OnCloseCallback onCloseCallback;
     CheckListAdapter adapter;
+
 
     private String todoId;
 
@@ -69,6 +72,7 @@ public class LibraryDialog {
             title = "THÔNG BÁO";
         }
         dialog.setTitle(title);
+
         return this;
     }
 
@@ -77,6 +81,7 @@ public class LibraryDialog {
             content = "";
         }
         TextView contentView = (TextView)contextView.findViewById(R.id.library_content);
+        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         contentView.setText(content);
         return this;
     }
