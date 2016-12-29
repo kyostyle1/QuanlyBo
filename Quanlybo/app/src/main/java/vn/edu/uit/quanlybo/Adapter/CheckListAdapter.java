@@ -69,7 +69,7 @@ public class CheckListAdapter extends ArrayAdapter<CowStatus> {
             checkViewHolder = (CheckViewHolder) convertView.getTag();
         }
 
-        checkViewHolder.cowNameId.setText(String.valueOf(cowStatus.getId()));
+        checkViewHolder.cowNameId.setText("#" + String.valueOf(cowStatus.getId()));
         if ( cowStatus.getSuccess().equals("yes")){
             checkViewHolder.checkBoxItem.setChecked(true);
         }else {

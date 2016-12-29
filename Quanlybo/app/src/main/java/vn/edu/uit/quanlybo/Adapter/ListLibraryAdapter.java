@@ -66,8 +66,6 @@ public class ListLibraryAdapter extends ExpandableRecyclerAdapter<ListLibraryHea
                 libraryDialog.setContent(libraryResponse.getContent());
                 libraryDialog.exit();
                 libraryDialog.show();
-
-
             }
         });
     }

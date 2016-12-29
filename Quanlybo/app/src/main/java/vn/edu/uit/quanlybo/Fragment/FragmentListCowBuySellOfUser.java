@@ -61,7 +61,9 @@ public class FragmentListCowBuySellOfUser extends Fragment {
                 buyCowReponses = buyCowReponseList;
                 adapter = new ListBuyCowAdapter(getContext(), buyCowReponses,true);
                 adapter.notifyDataSetChanged();
-                buy_cow_list.setAdapter(adapter);
+                if( buyCowReponseList != null) {
+                    buy_cow_list.setAdapter(adapter);
+                }
             }
 
             @Override

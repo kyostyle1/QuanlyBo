@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="16sp"
         android:layout_alignParentTop="true"
         android:text="Content"
         android:id="@+id/dialog_to_do_content"/>
@@ -15,10 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_to_do_content"
-        android:layout_above="@+id/btn_confirm"
+        android:layout_above="@+id/to_do_note"
         android:id="@+id/checkListToDo">
     </ListView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/to_do_note"
+        android:textColor="#0D47A1"
+        android:textSize="16sp"
+        android:layout_above="@+id/btn_confirm"
+        android:textAlignment="center"
+        android:text="Chạm thẻ NFC vào để hoàn thành ..."/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="35dp"
