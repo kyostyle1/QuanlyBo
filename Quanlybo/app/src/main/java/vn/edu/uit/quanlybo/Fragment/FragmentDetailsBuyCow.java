@@ -2,6 +2,7 @@ package vn.edu.uit.quanlybo.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.print.PrintAttributes;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +61,7 @@ public class FragmentDetailsBuyCow extends Fragment {
     TableLayout tb_history;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_market_list_buy_cow_details, container, false);
-        listViewHistoryDetailsBuyCows = (ListView)rootView.findViewById(R.id.details_buy_cow_list);
+        //listViewHistoryDetailsBuyCows = (ListView)rootView.findViewById(R.id.details_buy_cow_list);
         Bundle bundle = this.getArguments();
         Log.d("startnew","startnew");
         if (bundle != null) {
@@ -169,44 +171,67 @@ public class FragmentDetailsBuyCow extends Fragment {
         cow_day_on.setText("Số ngày tuổi: " + detailsBuyCows.getCow_day_old());
        if(isUserOwnedCow()){
             btnBuy.setVisibility(View.GONE);
-           /* btnBuy.setEnabled(false);
-            btnOtp.setEnabled(true);*/
+           if(detailsBuyCows.getIs_sold() == 1){
+               btnOtp.setVisibility(View.GONE);
+           }
+          
         }
         else {
            btnOtp.setVisibility(View.GONE);
-          /*  btnBuy.setEnabled(true);
-            btnOtp.setEnabled(false);*/
+
         }
+
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(tb_history.getChildCount()==0){
-                    TableRow.LayoutParams layoutParams = new TableRow.LayoutParams();
-                    layoutParams.setMargins(20,20,20,20);
+                    TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+                    layoutParams.weight = 1;
+                    TableRow.LayoutParams layoutParams1 = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
 
                     TextView name_id = new TextView(getActivity());
                     TextView name_title = new TextView(getActivity());
+
+                    name_title.setLayoutParams(layoutParams);
+                    name_title.setGravity(Gravity.CENTER_HORIZONTAL);
+                    name_id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                    name_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                    name_id.setTextColor(getResources().getColor(R.color.colorWhite));
+                    name_title.setTextColor(getResources().getColor(R.color.colorWhite));
+                //    name_title.invalidate();
+                  //  name_id.invalidate();
+                    name_id.setPadding(10,10,10,10);
+                    name_title.setPadding(10,10,10,10);
                     name_id.setText("Ngày tuổi");
                     name_title.setText("Công việc");
-                    name_id.setLayoutParams(layoutParams);
-                    name_title.setLayoutParams(layoutParams);
                     TableRow name_tbr = new TableRow(getActivity());
+                    name_tbr.setLayoutParams(layoutParams1);
+                    name_tbr.setBackgroundResource(R.color.colorTableRow);
+                    name_tbr.invalidate();
                     name_tbr.addView(name_id);
                     name_tbr.addView(name_title);
-                    tb_history.addView(name_tbr);
+                    tb_history.addView(name_tbr,layoutParams1);
 
                     for (History_Cow history_cow : detailsBuyCows.getListHistoryCow()){
                         TextView txt_id= new TextView(getActivity());
                         TextView txt_title = new TextView(getActivity());
-                        txt_id.setLayoutParams(layoutParams);
                         txt_title.setLayoutParams(layoutParams);
+                        txt_title.setPadding(10,10,10,10);
+
                         TableRow tbr_history = new TableRow(getActivity());
+                        tbr_history.setLayoutParams(layoutParams);
                         txt_id.setText(history_cow.getDay_old());
+                        txt_id.setGravity(Gravity.CENTER_HORIZONTAL);
+                        txt_id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                        txt_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+
                         txt_title.setText(history_cow.getTitle());
+                        tbr_history.setBackgroundResource(R.drawable.border_layout);
                         tbr_history.addView(txt_id);
                         tbr_history.addView(txt_title);
-                        tb_history.addView(tbr_history);
+                        tb_history.addView(tbr_history,layoutParams1);
                     }
+
                 }
             }
         });

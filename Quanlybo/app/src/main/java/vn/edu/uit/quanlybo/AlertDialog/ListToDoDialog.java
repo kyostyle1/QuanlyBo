@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
 package vn.edu.uit.quanlybo.AlertDialog;
 
 import android.app.Activity;
@@ -7,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,6 +179,7 @@ public class ListToDoDialog {
             content = "";
         }
         TextView contentView = (TextView)contextView.findViewById(R.id.dialog_to_do_content);
+        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         contentView.setText(content);
         return this;
     }

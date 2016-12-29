@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
 package vn.edu.uit.quanlybo.Adapter;
 
 import android.app.Activity;
@@ -108,7 +112,11 @@ public class ListCowToDoAdapter extends ExpandableRecyclerAdapter<ListCowToDoHea
     public void expandParent(ParentListItem parentListItem) {
         super.expandParent(parentListItem);
     }
+<<<<<<< HEAD
 
 
 }
 
+=======
+}
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e

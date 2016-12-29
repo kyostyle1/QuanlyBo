@@ -11,7 +11,7 @@
                 android:layout_width="match_parent"
                 android:padding="10dp"
                 android:id="@+id/library_content"
-                android:text="16sp"
+                android:text="18sp"
                 android:textAlignment="inherit"
                 android:layout_height="wrap_content" />
 

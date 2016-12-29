@@ -162,11 +162,11 @@
 
         </TableLayout>
         <TableLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:stretchColumns="0,1"
             android:background="#FFFFFF"
             android:id="@+id/tb_history">
 
@@ -174,12 +174,6 @@
 
 
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/details_buy_cow_list"
-            />
 
     </LinearLayout>
 

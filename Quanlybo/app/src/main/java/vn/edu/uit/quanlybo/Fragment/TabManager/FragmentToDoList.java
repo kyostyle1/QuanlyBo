@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
 package vn.edu.uit.quanlybo.Fragment.TabManager;
 
 import android.os.Bundle;
@@ -118,9 +122,16 @@ public class FragmentToDoList extends Fragment {
     }
 
     public void clearData() {
+<<<<<<< HEAD
         List<ParentListItem> parentListItems1 = new ArrayList<>();
         adapter = new ListCowToDoAdapter(getActivity(), getContext(), parentListItems1);
         lvToDo.setLayoutManager(new LinearLayoutManager(getContext()));
         lvToDo.setAdapter(adapter);
     }
 }
+=======
+        lvToDo.removeAllViewsInLayout();
+        adapter.notifyDataSetChanged();
+    }
+}
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e

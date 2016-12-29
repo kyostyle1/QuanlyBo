@@ -20,6 +20,7 @@
         android:id="@+id/checkListToDo">
     </ListView>
 
+<<<<<<< HEAD
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +30,9 @@
         android:layout_above="@+id/btn_confirm"
         android:textAlignment="center"
         android:text="Chạm thẻ NFC vào để hoàn thành ..."/>
+=======
+
+>>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
     <Button
         android:layout_width="match_parent"
         android:layout_height="35dp"
