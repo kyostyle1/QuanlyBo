@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="#1"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/cow_id" />
 
@@ -36,29 +36,39 @@
                 <TableRow>
                     <TextView
                         android:text="Mục đích "
+                        android:textSize="18sp"
+
                         android:id="@+id/cow_target" />
 
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Loại"
+                        android:textSize="18sp"
+
                         android:id="@+id/cow_type" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
                         android:text="Giống"
+                        android:textSize="18sp"
+
                         android:id="@+id/cow_gender" />
 
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Nguồn gốc"
+                        android:textSize="18sp"
+
                         android:id="@+id/cow_source" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="@string/ng_y_tu_i"
+                        android:textSize="18sp"
+
                         android:layout_span="2"
                         android:id="@+id/cow_born" />
                 </TableRow>

@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="#1"
-                android:textSize="20dp"
+                android:textSize="22sp"
                 android:textColor="#0D47A1"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/buy_cow_id" />
@@ -35,7 +35,7 @@
                 <TableRow>
                     <TextView
                         android:text="Title"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="#0D47A1"
                         android:id="@+id/buy_cow_title" />
                 </TableRow>
@@ -43,24 +43,30 @@
                     <TextView
                         android:text="Price"
                         android:layout_span="2"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:textColor="#2196F3"
                         android:id="@+id/sell_cow_price" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Cow Type"
+                        android:textSize="16sp"
+
                         android:id="@+id/buy_cow_type" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Gender"
                         android:layout_span="2"
+                        android:textSize="16sp"
+
                         android:id="@+id/buy_cow_gender" />
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:text="Location"
+                        android:textSize="16sp"
+
                         android:layout_span="2"
                         android:id="@+id/sell_location" />
                 </TableRow>
@@ -68,6 +74,8 @@
                     <TextView
                         android:text=""
                         android:layout_span="2"
+                        android:textSize="18sp"
+
                         android:textColor="#FF0000"
                         android:id="@+id/is_sold" />
                 </TableRow>

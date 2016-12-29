@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
 package vn.edu.uit.quanlybo.Fragment.TabManager;
 
 import android.content.Intent;
@@ -75,7 +72,4 @@ public class FragmentProfile extends Fragment {
 
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 3af7b4341815f133a5761b1d5f2309ca3e7f670e
