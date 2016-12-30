@@ -102,7 +102,9 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_weight="1"
-            android:text="Thay đổi thông tin bò"/>
+            android:backgroundTint="@color/colorTableRow"
+            android:textColor="@color/colorWhite"
+            android:text="Kiểm tra phối giống"/>
 
         <Button
             android:layout_width="match_parent"
@@ -110,6 +112,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/colorTableRow"
+            android:textColor="@color/colorWhite"
             android:text="Lịch sử mua bán bò"/>
     </TableLayout>
 

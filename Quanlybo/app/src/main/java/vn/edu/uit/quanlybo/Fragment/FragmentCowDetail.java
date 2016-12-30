@@ -82,7 +82,7 @@ public class FragmentCowDetail extends Fragment {
                 if (cow.getMother() == null) {
                     mother = "";
                 } else {
-                    mother = cow.getFather().toString();
+                    mother = cow.getMother().toString();
                 }
                 cow_id.setText("Thông tin chi biết bò:  #" + cow.getId());
                 cow_type.setText("Giống bò : " + cow.getTypeName());

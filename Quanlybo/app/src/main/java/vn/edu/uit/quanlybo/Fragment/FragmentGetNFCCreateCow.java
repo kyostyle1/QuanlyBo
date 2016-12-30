@@ -47,7 +47,7 @@ public class FragmentGetNFCCreateCow extends android.support.v4.app.Fragment {
 
         if (v != null) {
             text_nfc = (TextView) v.findViewById(R.id.text_nfc);
-            text_nfc.setText("Áp thẻ NFC vào để tìm kiếm...");
+            text_nfc.setText("Chạm thẻ NFC vào để tạo bò...");
             updateReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
