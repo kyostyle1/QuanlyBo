@@ -2,12 +2,14 @@ package vn.edu.uit.quanlybo.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
@@ -16,8 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CowDetailToDoAdapter;
+import vn.edu.uit.quanlybo.AlertDialog.HistoryCowDialog;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.CowDetail.CurrentToDo;
+import vn.edu.uit.quanlybo.Model.CowDetail.HistoryCow;
+import vn.edu.uit.quanlybo.Model.Market.BuyCowReponse;
 import vn.edu.uit.quanlybo.Model.User;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
@@ -39,6 +44,7 @@ public class FragmentCowDetail extends Fragment {
     RecyclerView toDoList;
     String cow_id_intent;
     CowDetailToDoAdapter adapter;
+    private Button btnHistory;
     final List<ParentListItem> parentListItems = new ArrayList<>();
 
     @Override
@@ -57,6 +63,8 @@ public class FragmentCowDetail extends Fragment {
         cow_target = (TextView)rootView.findViewById(R.id.cow_detail_target);
         cow_born = (TextView)rootView.findViewById(R.id.cow_detail_born);
         cow_source = (TextView)rootView.findViewById(R.id.cow_detail_source);
+        btnHistory = (Button)rootView.findViewById(R.id.cow_detail_btn_history);
+        showHistoryCow();
         initTodoList();
         return rootView;
     }
@@ -65,7 +73,28 @@ public class FragmentCowDetail extends Fragment {
         toDoList = (RecyclerView)rootView.findViewById(R.id.cow_detail_list_to_do);
 
     }
+    protected void showHistoryCow(){
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CowService.getInstance().getListHistoryCow(cow_id_intent, new CowService.GetHistoryCow() {
+                    @Override
+                    public void onSuccess(List<HistoryCow> historyCowList) {
+                        HistoryCowDialog historyCowDialog = new HistoryCowDialog(getActivity());
+                        historyCowDialog.setTitle("Lịch sử mua bán bò");
+                        historyCowDialog.setContent(historyCowList);
+                        historyCowDialog.exit();
+                        historyCowDialog.show();
+                    }
 
+                    @Override
+                    public void onFailure(String errorCode) {
+
+                    }
+                });
+            }
+        });
+    }
     public void initData() {
         CowService.getInstance().getCowDetail(User.getInstance().getId(), cow_id_intent, new CowService.GetCowDetailByNfc() {
             @Override

@@ -112,6 +112,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_weight="1"
+            android:id="@+id/cow_detail_btn_history"
             android:backgroundTint="@color/colorTableRow"
             android:textColor="@color/colorWhite"
             android:text="Lịch sử mua bán bò"/>

@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlybo.Network;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.CowDetail.HistoryCow;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowDetailResponse;
@@ -74,6 +76,34 @@ public class CowService extends BaseService{
 
     }
 
+    //------------------------- GET HISTORY COW -------------------------------------
+    public void getListHistoryCow(String cow_id,final GetHistoryCow getHistoryCow){
+        showProgressDialog();
+        Call<BaseResponse<List<HistoryCow>>> call = quanLyBoAPI.getListHistoryCow(cow_id);
+        call.enqueue(new Callback<BaseResponse<List<HistoryCow>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<HistoryCow>>> call, Response<BaseResponse<List<HistoryCow>>> response) {
+                if(response.body().getSuccess()){
+                    List<HistoryCow> historyCows = response.body().getData();
+                    getHistoryCow.onSuccess(historyCows);
+                }
+                else {
+                    List<HistoryCow> historyCows = null;
+                    getHistoryCow.onSuccess(historyCows);
+                }
+                Log.d("RRR",String.valueOf(response.body().getSuccess()));
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<List<HistoryCow>>> call, Throwable t) {
+                    getHistoryCow.onFailure("Đã có lỗi xảy ra");
+            }
+        });
+    }
+    public interface GetHistoryCow{
+        void onSuccess(List<HistoryCow> historyCowList);
+        void onFailure(String errorCode);
+    }
     // ------------------------ GET COW DETAIL SERVICE----------------------------------
 
     public void getCowDetail(String userId, String cowId, final GetCowDetailByNfc getCowDetailByNfc){

@@ -198,8 +198,6 @@ public class FragmentDetailsBuyCow extends Fragment {
                     name_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                     name_id.setTextColor(getResources().getColor(R.color.colorWhite));
                     name_title.setTextColor(getResources().getColor(R.color.colorWhite));
-                //    name_title.invalidate();
-                  //  name_id.invalidate();
                     name_id.setPadding(10,10,10,10);
                     name_title.setPadding(10,10,10,10);
                     name_id.setText("Ngày tuổi");
