@@ -10,6 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.CowDetail.CheckPhoiGiong;
 import vn.edu.uit.quanlybo.Model.CowDetail.HistoryCow;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryResponse;
 import vn.edu.uit.quanlybo.Model.ListLibrary.LibraryType;
@@ -84,6 +85,10 @@ public interface QuanLyBoAPI {
 
     @GET("cow")
     Call<List<Cow>> getListCow(@Query("userId") String userId);
+
+    @GET("cow/check/nfc")
+    Call<BaseResponse<CheckPhoiGiong>> getCheckPhoiGiongNFC(@Query("cow_1st") String cow_1st,
+                                                            @Query("cow_2nd") String cow_2nd);
 
     @GET("/cow/user-history/{cow_id}")
     Call<BaseResponse<List<HistoryCow>>> getListHistoryCow(@Path("cow_id") String cow_id);

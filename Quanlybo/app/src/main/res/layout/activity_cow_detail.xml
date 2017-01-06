@@ -104,6 +104,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorTableRow"
             android:textColor="@color/colorWhite"
+            android:id="@+id/cow_detail_btn_check_phoigiong"
             android:text="Kiểm tra phối giống"/>
 
         <Button

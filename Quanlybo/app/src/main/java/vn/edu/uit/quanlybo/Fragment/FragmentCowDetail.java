@@ -6,6 +6,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.uit.quanlybo.Adapter.CowDetailToDoAdapter;
+import vn.edu.uit.quanlybo.AlertDialog.CheckPhoiGiongDialog;
 import vn.edu.uit.quanlybo.AlertDialog.HistoryCowDialog;
 import vn.edu.uit.quanlybo.Model.Cow;
 import vn.edu.uit.quanlybo.Model.CowDetail.CurrentToDo;
@@ -44,7 +46,7 @@ public class FragmentCowDetail extends Fragment {
     RecyclerView toDoList;
     String cow_id_intent;
     CowDetailToDoAdapter adapter;
-    private Button btnHistory;
+    private Button btnHistory,btnCheckPG;
     final List<ParentListItem> parentListItems = new ArrayList<>();
 
     @Override
@@ -64,7 +66,9 @@ public class FragmentCowDetail extends Fragment {
         cow_born = (TextView)rootView.findViewById(R.id.cow_detail_born);
         cow_source = (TextView)rootView.findViewById(R.id.cow_detail_source);
         btnHistory = (Button)rootView.findViewById(R.id.cow_detail_btn_history);
+        btnCheckPG = (Button) rootView.findViewById(R.id.cow_detail_btn_check_phoigiong);
         showHistoryCow();
+        showCheckPhoiGiong();
         initTodoList();
         return rootView;
     }
@@ -72,6 +76,16 @@ public class FragmentCowDetail extends Fragment {
     public void initTodoList(){
         toDoList = (RecyclerView)rootView.findViewById(R.id.cow_detail_list_to_do);
 
+    }
+    protected void showCheckPhoiGiong(){
+        btnCheckPG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckPhoiGiongDialog checkPhoiGiongDialog = new CheckPhoiGiongDialog(getActivity(),cow_id_intent);
+                checkPhoiGiongDialog.setContent("Chạm NFC của bò mà bạn muốn phối giống ...");
+                checkPhoiGiongDialog.show();
+            }
+        });
     }
     protected void showHistoryCow(){
         btnHistory.setOnClickListener(new View.OnClickListener() {

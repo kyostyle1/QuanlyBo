@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlybo.Model.Cow;
+import vn.edu.uit.quanlybo.Model.CowDetail.CheckPhoiGiong;
 import vn.edu.uit.quanlybo.Model.CowDetail.HistoryCow;
 import vn.edu.uit.quanlybo.Network.Model.BaseResponse;
 import vn.edu.uit.quanlybo.Network.Model.CowCheckResponse;
@@ -102,6 +103,40 @@ public class CowService extends BaseService{
     }
     public interface GetHistoryCow{
         void onSuccess(List<HistoryCow> historyCowList);
+        void onFailure(String errorCode);
+    }
+
+
+
+    //------------------------- CHECK COW PHOI GIONG--------------------------------
+    public void  getCheckPhoiGiongNFC(String cow_1st, String cow_2nd, final GetCheckNFCPhoiGiong getCheckNFCPhoiGiong){
+        showProgressDialog();
+        Call<BaseResponse<CheckPhoiGiong>> call = quanLyBoAPI.getCheckPhoiGiongNFC(cow_1st,cow_2nd);
+        call.enqueue(new Callback<BaseResponse<CheckPhoiGiong>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<CheckPhoiGiong>> call, Response<BaseResponse<CheckPhoiGiong>> response) {
+                if(response.body().getSuccess()){
+                    if(response.body().getData().isStatus()){
+                        getCheckNFCPhoiGiong.onSuccess("Có thể phối giống");
+                    }
+                    else {
+                        getCheckNFCPhoiGiong.onSuccess("Không thể phối giống");
+                    }
+                }
+                else {
+                    getCheckNFCPhoiGiong.onSuccess("Bò không tồn tại");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<CheckPhoiGiong>> call, Throwable t) {
+                    getCheckNFCPhoiGiong.onFailure("Đã có lỗi xảy ra");
+            }
+        });
+    }
+    public interface GetCheckNFCPhoiGiong{
+        void onSuccess(String status);
         void onFailure(String errorCode);
     }
     // ------------------------ GET COW DETAIL SERVICE----------------------------------
