@@ -82,6 +82,7 @@ public class FragmentCowDetail extends Fragment {
             @Override
             public void onClick(View v) {
                 CheckPhoiGiongDialog checkPhoiGiongDialog = new CheckPhoiGiongDialog(getActivity(),cow_id_intent);
+                checkPhoiGiongDialog.setTitle("Kiểm tra phối giống");
                 checkPhoiGiongDialog.setContent("Chạm NFC của bò mà bạn muốn phối giống ...");
                 checkPhoiGiongDialog.show();
             }

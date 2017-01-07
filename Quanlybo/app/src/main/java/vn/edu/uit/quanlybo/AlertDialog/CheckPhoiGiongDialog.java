@@ -5,6 +5,10 @@ import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -14,6 +18,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import vn.edu.uit.quanlybo.Adapter.CheckListAdapter;
+import vn.edu.uit.quanlybo.MainActivity;
 import vn.edu.uit.quanlybo.Network.CowService;
 import vn.edu.uit.quanlybo.R;
 
@@ -29,6 +34,7 @@ public class CheckPhoiGiongDialog {
     private BroadcastReceiver updateReceiver;
     private String cow_id;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public CheckPhoiGiongDialog(Activity atv, final String cow_id){
         this.activity = atv;
         dialog = new Dialog(activity);
@@ -38,8 +44,6 @@ public class CheckPhoiGiongDialog {
         Window window = dialog.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         window.setGravity(Gravity.CENTER);
-        dialog.setTitle("ABC");
-
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -55,12 +59,16 @@ public class CheckPhoiGiongDialog {
 
                     @Override
                     public void onFailure(String errorCode) {
-                        setContent(errorCode);
+                        TextView contentView = (TextView)contextView.findViewById(R.id.txt_check_phoigiong);
+                        contentView.setText(errorCode);
+
 
                     }
                 });
             }
         };
+        activity.registerReceiver(updateReceiver, new IntentFilter(MainActivity.ACTION_UPDATE));
+
 
     }
 
@@ -102,6 +110,7 @@ public class CheckPhoiGiongDialog {
         }
         TextView contentView = (TextView)contextView.findViewById(R.id.txt_check_phoigiong);
         contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+        contentView.setGravity(Gravity.CENTER);
         contentView.setText(content);
         return this;
     }
