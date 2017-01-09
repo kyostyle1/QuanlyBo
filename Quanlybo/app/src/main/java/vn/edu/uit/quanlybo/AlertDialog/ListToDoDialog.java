@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
@@ -67,6 +68,17 @@ public class ListToDoDialog {
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                try {
+                    activity.unregisterReceiver(updateReceiver);
+
+                } catch (Exception e){
+
+                }
+            }
+        });
 
         updateReceiver = new BroadcastReceiver() {
             @Override

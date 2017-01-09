@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
@@ -47,6 +48,18 @@ public class CheckPhoiGiongDialog {
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                try {
+                    activity.unregisterReceiver(updateReceiver);
+
+                } catch (Exception e){
+
+                }
+            }
+        });
+
         updateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -55,6 +68,13 @@ public class CheckPhoiGiongDialog {
                     @Override
                     public void onSuccess(String status) {
                         setContent(status);
+
+                        try {
+                            activity.unregisterReceiver(updateReceiver);
+
+                        } catch (Exception e){
+
+                        }
                     }
 
                     @Override

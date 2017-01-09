@@ -232,20 +232,27 @@ public class FragmentCreateCow extends Fragment {
                             target,
                             source);
                 }
-                 CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
-                    @Override
-                    public void onSuccess() {
-                        AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
-                        alertDialogInfo.alertDialog("Bạn Tạo Bò Thành Công!",getActivity()).show();
-                        getFragmentManager().popBackStack();
-                    }
+                if(createCowRequest.getBirthday().toString().equals("")){
+                    AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                    alertDialogInfo.alertDialog("Vui lòng nhập ngày sinh của bò!",getActivity()).show();;
+                }
+                else {
+                    CowService.getInstance().createCow(createCowRequest, new CowService.CreateCowCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
+                            alertDialogInfo.alertDialog("Bạn Tạo Bò Thành Công!",getActivity()).show();
+                            getFragmentManager().popBackStack();
+                        }
 
-                    @Override
-                    public void onFailure(String errorCode) {
-                        Log.d("Error",errorCode);
-                        Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(String errorCode) {
+                            Log.d("Error",errorCode);
+                            Toast.makeText(getContext(), errorCode, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
 
             }
         });
