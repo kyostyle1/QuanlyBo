@@ -56,7 +56,7 @@ public class ListToDoDialog {
         dialog.setContentView(contextView);
 
         Window window = dialog.getWindow();
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         window.setGravity(Gravity.CENTER);
         dialog.setTitle("ABC");
         /*WindowManager.LayoutParams lp = window.getAttributes();

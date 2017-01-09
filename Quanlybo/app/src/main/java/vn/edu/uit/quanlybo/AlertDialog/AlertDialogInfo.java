@@ -24,7 +24,7 @@ public  final  class AlertDialogInfo {
         builder.setMessage(infoAlert);
         builder.setCancelable(false);
         //Tạo nút Hủy
-        builder.setNeutralButton("OK", null);
+        builder.setNeutralButton("Đồng ý", null);
         AlertDialog dialog = builder.create();
         return dialog;
     }

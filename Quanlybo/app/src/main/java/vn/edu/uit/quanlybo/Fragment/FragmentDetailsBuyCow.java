@@ -94,10 +94,10 @@ public class FragmentDetailsBuyCow extends Fragment {
         final EditText edittext = new EditText(getActivity());
         edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Nhập mã OTP");
+        alert.setTitle("Nhập mã bán bò");
         alert.setView(edittext);
 
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String YouEditTextValue = edittext.getText().toString();
                 String id_user_buy = User.getInstance().getId();
@@ -129,7 +129,7 @@ public class FragmentDetailsBuyCow extends Fragment {
             }
         });
 
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
             }
@@ -247,7 +247,7 @@ public class FragmentDetailsBuyCow extends Fragment {
                     @Override
                     public void onSuccess(CodeOTP codeOTP) {
                         AlertDialogInfo alertDialogInfo = new AlertDialogInfo();
-                        alertDialogInfo.title = "Mã OTP";
+                        alertDialogInfo.title = "Mã bán bò";
                         alertDialogInfo.alertDialog(String.valueOf(codeOTP.getOtp()),getActivity()).show();
                     }
 
